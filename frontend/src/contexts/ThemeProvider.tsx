@@ -8,27 +8,54 @@ interface ThemeProviderProps {
 const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
 }) => {
-  // Initialize theme from localStorage or use 'dark' as default
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme || 'dark';
-  });
+  // Initialize theme with 'dark' as default, will be updated from localStorage after mount
+  const [theme, setTheme] = useState('dark');
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client side before accessing localStorage
+  useEffect(() => {
+    setIsClient(true);
+    
+    // Only access localStorage after component mounts on client
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      }
+    } catch (error) {
+      console.warn('Failed to access localStorage:', error);
+    }
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    
+    // Only update localStorage if we're on the client
+    if (isClient) {
+      try {
+        localStorage.setItem('theme', newTheme);
+      } catch (error) {
+        console.warn('Failed to save theme to localStorage:', error);
+      }
+    }
   };
 
   useEffect(() => {
-    document.querySelector('html')?.setAttribute('data-theme', theme);
-    // Also set a class for additional CSS targeting if needed
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    if (isClient) {
+      const htmlElement = document.querySelector('html');
+      if (htmlElement) {
+        htmlElement.setAttribute('data-theme', theme);
+      }
+      
+      // Also set a class for additional CSS targeting if needed
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     }
-  }, [theme]);
+  }, [theme, isClient]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
