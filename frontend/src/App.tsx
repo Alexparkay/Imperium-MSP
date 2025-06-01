@@ -1,34 +1,20 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
+import MarketDatabase from './pages/MarketDatabase';
+import SignalScanner from './pages/SignalScanner';
+import DataEnrichment from './pages/DataEnrichment';
+import MigrationInsights from './pages/MigrationInsights';
+import Outreach from './pages/Outreach';
+import OutreachTracking from './pages/OutreachTracking';
+import Pricing from './pages/Pricing';
+import SplineTest from './pages/SplineTest';
+import GlassmorphicExample from './pages/GlassmorphicExample';
+import Menu from './components/menu/Menu';
 import { FilterProvider } from './contexts/FilterContext';
-
-// Lazy load components to improve initial load
-const Home = React.lazy(() => import('./pages/Home'));
-const Profile = React.lazy(() => import('./pages/Profile'));
-const EditProfile = React.lazy(() => import('./pages/EditProfile'));
-const MarketDatabase = React.lazy(() => import('./pages/MarketDatabase'));
-const SignalScanner = React.lazy(() => import('./pages/SignalScanner'));
-const DataEnrichment = React.lazy(() => import('./pages/DataEnrichment'));
-const MigrationInsights = React.lazy(() => import('./pages/MigrationInsights'));
-const Outreach = React.lazy(() => import('./pages/Outreach'));
-const OutreachTracking = React.lazy(() => import('./pages/OutreachTracking'));
-const Pricing = React.lazy(() => import('./pages/Pricing'));
-const SplineTest = React.lazy(() => import('./pages/SplineTest'));
-const GlassmorphicExample = React.lazy(() => import('./pages/GlassmorphicExample'));
-const Menu = React.lazy(() => import('./components/menu/Menu'));
-
-// Loading component
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center min-h-screen bg-background-primary">
-    <div className="glass-panel p-8 rounded-xl">
-      <div className="flex flex-col items-center space-y-4">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent-primary"></div>
-        <p className="text-text-secondary">Loading Imperium MSP...</p>
-      </div>
-    </div>
-  </div>
-);
 
 // Error boundary component
 class ErrorBoundary extends React.Component<
@@ -98,32 +84,28 @@ function App() {
           <div className="fixed -top-[30%] -right-[10%] w-[80%] h-[80%] rounded-full bg-accent-primary/5 blur-[120px] pointer-events-none"></div>
           <div className="fixed -bottom-[30%] -left-[10%] w-[80%] h-[80%] rounded-full bg-accent-primary/8 blur-[120px] pointer-events-none"></div>
           
-          <Suspense fallback={<LoadingSpinner />}>
-            <Menu />
-            <main className="flex-1 ml-[110px] relative z-10">
-              <Suspense fallback={<LoadingSpinner />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/spline-test" element={<SplineTest />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/profile/edit" element={<EditProfile />} />
-                  <Route path="/ui-example" element={<GlassmorphicExample />} />
-                  <Route path="/market-database" element={
-                    <FilterProvider>
-                      <MarketDatabase />
-                    </FilterProvider>
-                  } />
-                  <Route path="/signal-scanner" element={<SignalScanner />} />
-                  <Route path="/signal-scanner/:facilityId" element={<SignalScanner />} />
-                  <Route path="/data-enrichment" element={<DataEnrichment />} />
-                  <Route path="/migration-insights" element={<MigrationInsights />} />
-                  <Route path="/outreach" element={<Outreach />} />
-                  <Route path="/outreach-tracking" element={<OutreachTracking />} />
-                  <Route path="/pricing" element={<Pricing />} />
-                </Routes>
-              </Suspense>
-            </main>
-          </Suspense>
+          <Menu />
+          <main className="flex-1 ml-[110px] relative z-10">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/spline-test" element={<SplineTest />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/edit" element={<EditProfile />} />
+              <Route path="/ui-example" element={<GlassmorphicExample />} />
+              <Route path="/market-database" element={
+                <FilterProvider>
+                  <MarketDatabase />
+                </FilterProvider>
+              } />
+              <Route path="/signal-scanner" element={<SignalScanner />} />
+              <Route path="/signal-scanner/:facilityId" element={<SignalScanner />} />
+              <Route path="/data-enrichment" element={<DataEnrichment />} />
+              <Route path="/migration-insights" element={<MigrationInsights />} />
+              <Route path="/outreach" element={<Outreach />} />
+              <Route path="/outreach-tracking" element={<OutreachTracking />} />
+              <Route path="/pricing" element={<Pricing />} />
+            </Routes>
+          </main>
         </div>
         
         {/* Toast container with glassmorphic styling */}
