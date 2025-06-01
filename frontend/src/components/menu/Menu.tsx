@@ -33,32 +33,23 @@ const groupMenuItems = () => {
 
 const Menu: React.FC = () => {
   const [isFullScreen, setIsFullScreen] = React.useState(false);
-  const [rootElement, setRootElement] = React.useState<HTMLElement | null>(null);
+  const element = document.getElementById('root');
   const location = useLocation();
   const menuGroups = groupMenuItems();
-
-  // Safely get the root element after component mounts
-  React.useEffect(() => {
-    const element = document.getElementById('root');
-    setRootElement(element);
-  }, []);
 
   const toggleFullScreen = () => {
     setIsFullScreen((prev) => !prev);
   };
 
   React.useEffect(() => {
-    // Only proceed if we have the root element
-    if (!rootElement) return;
-
     // Check if the document is already in fullscreen mode
     const isDocumentFullScreen = !!document.fullscreenElement;
     
     if (isFullScreen && !isDocumentFullScreen) {
       // Enter fullscreen
       try {
-        if (rootElement.requestFullscreen) {
-          rootElement.requestFullscreen({ navigationUI: 'auto' }).catch(err => {
+        if (element && element.requestFullscreen) {
+          element.requestFullscreen({ navigationUI: 'auto' }).catch(err => {
             console.error(`Error attempting to enable fullscreen: ${err.message}`);
           });
         }
@@ -77,7 +68,7 @@ const Menu: React.FC = () => {
         console.error("Error exiting fullscreen:", error);
       }
     }
-  }, [rootElement, isFullScreen]);
+  }, [element, isFullScreen]);
 
   return (
     <aside className="fixed left-0 top-0 h-screen flex flex-col justify-between py-6 px-4 
