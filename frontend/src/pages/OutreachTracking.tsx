@@ -93,7 +93,7 @@ interface Facility {
     followUpDate?: Date;
     notes: string;
   };
-  solarPotential: {
+  securityPotential: {
     annualSavings: number;
   };
 }
@@ -168,16 +168,16 @@ const OutreachTracking = () => {
 
   // Extended sample data for contacts to make it look more like a big database
   const expandedContacts = [
-    { id: 1, name: "Jeff Levy", email: "j.levy@example.com", company: "SAP Finance", location: "Atlanta, GA", position: "SAP Manager", status: "Engaged", lastContact: "2023-06-17", tags: ["SAP S/4HANA", "Decision Maker"], leadScore: 87, outreachHistory: [
-      { id: 1, date: "2023-06-17", type: "email", subject: "SAP Migration Proposal", status: "sent", response: "interested", notes: "Interested in learning more about the ROI" },
-      { id: 2, date: "2023-06-10", type: "email", subject: "Introduction to SAP S/4HANA", status: "sent", response: "positive", notes: "Requested more information" }
+    { id: 1, name: "Jeff Levy", email: "j.levy@example.com", company: "SecureEdge Finance", location: "Atlanta, GA", position: "CISO", status: "Engaged", lastContact: "2023-06-17", tags: ["MSP Security", "Decision Maker"], leadScore: 87, outreachHistory: [
+      { id: 1, date: "2023-06-17", type: "email", subject: "Cybersecurity Optimization Proposal", status: "sent", response: "interested", notes: "Interested in learning more about the ROI and threat protection improvements" },
+      { id: 2, date: "2023-06-10", type: "email", subject: "Introduction to Comprehensive MSP Security", status: "sent", response: "positive", notes: "Requested more information about endpoint protection" }
     ] },
-    { id: 2, name: "Amy Huke", email: "a.huke@example.com", company: "Honeywell", location: "Kansas City, MO", position: "ERP Director", status: "New", lastContact: "2023-06-15", tags: ["Manufacturing", "Prospect"], leadScore: 62, outreachHistory: [
-      { id: 1, date: "2023-06-15", type: "email", subject: "SAP Cloud Migration", status: "sent", response: "none", notes: "" }
+    { id: 2, name: "Amy Huke", email: "a.huke@example.com", company: "Honeywell", location: "Kansas City, MO", position: "VP of Cybersecurity", status: "New", lastContact: "2023-06-15", tags: ["Manufacturing Security", "Prospect"], leadScore: 62, outreachHistory: [
+      { id: 1, date: "2023-06-15", type: "email", subject: "Manufacturing Cybersecurity Solutions", status: "sent", response: "none", notes: "" }
     ] },
-    { id: 3, name: "Ryan Kuddes", email: "r.kuddes@example.com", company: "Siemens", location: "Denver, CO", position: "IT Manager", status: "Engaged", lastContact: "2023-06-22", tags: ["SAP", "Prospect"], leadScore: 73, outreachHistory: [
-      { id: 1, date: "2023-06-22", type: "email", subject: "SAP S/4HANA Implementation", status: "sent", response: "positive", notes: "Scheduled a follow-up call" },
-      { id: 2, date: "2023-06-15", type: "call", subject: "Initial Introduction", status: "completed", response: "interested", notes: "Showed interest in our solutions" }
+    { id: 3, name: "Ryan Kuddes", email: "r.kuddes@example.com", company: "Siemens", location: "Denver, CO", position: "Director of Information Security", status: "Engaged", lastContact: "2023-06-22", tags: ["Enterprise Security", "Prospect"], leadScore: 73, outreachHistory: [
+      { id: 1, date: "2023-06-22", type: "email", subject: "Comprehensive MSP Security Implementation", status: "sent", response: "positive", notes: "Scheduled a follow-up call to discuss SOC services" },
+      { id: 2, date: "2023-06-15", type: "call", subject: "Initial Security Assessment", status: "completed", response: "interested", notes: "Showed strong interest in managed security solutions" }
     ] }
   ]; 
 

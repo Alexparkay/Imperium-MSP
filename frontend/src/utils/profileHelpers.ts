@@ -1,59 +1,73 @@
 // Helper functions for the Profile component
 
-// SAP Company Data - Sample/Mock data
-export const sapCompanyData = {
+// MSP Company Data - Sample/Mock data
+export const mspCompanyData = {
   companyInfo: {
-    name: "Modern SAP Solutions Ltd.",
-    address: "123 Enterprise Way, Tech Park, CA 94103",
-    phone: "+1 (555) 123-4567",
-    email: "contact@modernsapsolutions.com",
-    website: "www.modernsapsolutions.com"
+    name: "SecureEdge MSP Solutions",
+    address: "789 Cyber Defense Boulevard, Security Plaza, TX 75201",
+    phone: "+1 (555) 789-0123",
+    email: "contact@secureedgemsp.com",
+    website: "www.secureedgemsp.com"
   },
   expertise: {
     serviceTypes: [
-      "SAP Implementation", 
-      "SAP Migration", 
-      "SAP S/4HANA", 
-      "SAP Cloud Integration", 
-      "SAP Security",
-      "Business Intelligence"
+      "Cybersecurity Services", 
+      "Managed SOC", 
+      "Cloud Security", 
+      "Microsoft 365 Management", 
+      "Endpoint Protection",
+      "Compliance Management",
+      "Penetration Testing",
+      "IT Helpdesk & Support"
     ],
     certifications: [
-      "SAP S/4HANA Professional Certification",
-      "SAP Certified Application Associate",
-      "SAP Certified Development Associate",
-      "ISO 27001 Information Security"
+      "CISSP - Certified Information Systems Security Professional",
+      "CompTIA Security+ Enterprise Certification",
+      "Microsoft 365 Certified: Security Administrator Expert",
+      "SOC 2 Type II Compliance Certified",
+      "ISO 27001 Information Security Management",
+      "CISA - Certified Information Systems Auditor"
     ]
   },
   performance: {
-    completedProjects: 128,
-    totalClients: 87,
-    averageImplementation: "4.3 months",
-    customerSatisfaction: 4.8
+    completedProjects: 245,
+    totalClients: 168,
+    averageImplementation: "2.8 months",
+    customerSatisfaction: 4.9
   },
-  sapServices: {
+  mspServices: {
     implementations: [
       {
-        name: "S/4HANA Cloud Implementation",
-        description: "Complete SAP S/4HANA cloud-based implementation services with migration from legacy systems.",
-        features: ["Data Migration", "Process Integration", "Training", "24/7 Support"]
+        name: "24/7 SOC Implementation",
+        description: "Complete Security Operations Center setup with real-time threat monitoring and incident response.",
+        features: ["Threat Detection", "Incident Response", "SIEM Integration", "24/7 Monitoring"]
       },
       {
-        name: "SAP Analytics Suite",
-        description: "Business intelligence and advanced analytics implementation using SAP Analytics Cloud.",
-        features: ["Dashboards", "Predictive Analytics", "Real-time Reporting", "Mobile Access"]
+        name: "Microsoft 365 Security Suite",
+        description: "Comprehensive M365 security implementation including Advanced Threat Protection and compliance setup.",
+        features: ["Email Security", "Identity Protection", "Data Loss Prevention", "Compliance Reporting"]
+      },
+      {
+        name: "Zero Trust Architecture",
+        description: "Implementation of comprehensive zero trust security framework for modern enterprises.",
+        features: ["Identity Verification", "Device Compliance", "Network Segmentation", "Access Controls"]
       }
     ],
     solutions: [
       {
-        name: "SAP Fiori UX Enhancement",
-        description: "Implementation of modern, responsive user experiences for SAP applications.",
-        features: ["Custom App Development", "Mobile-first Design", "Role-based Interfaces"]
+        name: "Endpoint Security Management",
+        description: "Advanced endpoint detection and response with automated threat remediation.",
+        features: ["EDR Implementation", "Patch Management", "Device Compliance", "Remote Monitoring"]
       },
       {
-        name: "SAP Automation Suite",
-        description: "Process automation and RPA solutions for SAP environments.",
-        features: ["Workflow Automation", "Document Processing", "API Integration", "Bot Development"]
+        name: "Cloud Security Posture",
+        description: "Comprehensive cloud security assessment and continuous compliance monitoring.",
+        features: ["Cloud Configuration", "Vulnerability Scanning", "Access Management", "Cost Optimization"]
+      },
+      {
+        name: "Backup & Disaster Recovery",
+        description: "Enterprise-grade backup solutions with tested disaster recovery procedures.",
+        features: ["Automated Backups", "Recovery Testing", "Business Continuity", "Compliance Documentation"]
       }
     ]
   }

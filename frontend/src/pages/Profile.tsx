@@ -6,7 +6,7 @@ import { MdBusiness, MdLocationOn, MdOutlineEmail, MdOutlinePhone, MdStorage, Md
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { geoPath } from "d3-geo";
 import { 
-  sapCompanyData, 
+  mspCompanyData, 
   regions, 
   findCountryRegion, 
   isInSelectedRegions,
@@ -20,7 +20,7 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [selectedRegions, setSelectedRegions] = useState<string[]>(["North America"]);
+  const [selectedRegions, setSelectedRegions] = useState<string[]>(["North America", "Europe", "Asia Pacific"]);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const [tooltipContent, setTooltipContent] = useState("");
@@ -98,6 +98,66 @@ const Profile = () => {
     );
   };
 
+  // Pro Cloud SaaS company data
+  const proCloudCompanyData = {
+    companyInfo: {
+      name: "Pro Cloud SaaS",
+      address: "Rio Verde, Arizona, United States",
+      phone: "+1 (480) 555-0123",
+      email: "contact@procloudsaas.com",
+      website: "www.procloudsaas.com"
+    },
+    mspServices: {
+      implementations: [
+        {
+          name: "cyberGUARD - Complete Cybersecurity",
+          description: "Comprehensive cybersecurity solution with EDR, email security, backup, and user training",
+          features: ["Email Security", "Endpoint Detection & Response", "Hardware Backup", "Email Backup", "Security Education", "Keyboard Encryption", "Password Management", "Professional Services"]
+        },
+        {
+          name: "Cloud Migration Services",
+          description: "End-to-end cloud adoption and migration for AWS, Azure, Google Cloud, and private environments",
+          features: ["Multi-Cloud Strategy", "Infrastructure Assessment", "Vulnerability Identification", "Security-First Migration", "Cost Optimization", "Scalability Planning"]
+        },
+        {
+          name: "Physical Security Integration",
+          description: "SaaS-based access control systems with open API frameworks and identity integration",
+          features: ["Keyless Access", "Contactless Systems", "Video Management", "Wireless Locking", "Identity Services", "UL 294 Certified", "SOC2 Compliant"]
+        }
+      ],
+      solutions: [
+        {
+          name: "CMMC Compliance Solutions",
+          description: "Specialized cybersecurity services for defense contractors and DoD supply chain",
+          features: ["CMMC 2.0 Framework", "Controlled Unclassified Information", "Defense Industrial Base", "Compliance Assessment", "Gap Analysis", "Remediation Planning"]
+        },
+        {
+          name: "Managed IT Services",
+          description: "Comprehensive IT management including business continuity, compliance, and automation",
+          features: ["Business Continuity", "Data Loss Prevention", "Identity Management", "Network Management", "VOIP & Connectivity", "CCTV Monitoring"]
+        },
+        {
+          name: "Enterprise Applications",
+          description: "Business application integration and management for improved productivity",
+          features: ["CRM Integration", "Call Center Solutions", "Mobile Device Management", "Marketing Automation", "Collaboration Tools", "Output Management"]
+        }
+      ]
+    },
+    expertise: {
+      maxProjectSize: "Global Enterprise",
+      typicalProjectSize: "Mid-Market to Enterprise",
+      serviceTypes: ["Cybersecurity", "Cloud Migration", "Physical Security", "Managed IT", "CMMC Compliance", "Business Applications"],
+      certifications: ["AWS Certified", "Microsoft Azure Partner", "Google Cloud Partner", "UL 294", "SOC2", "CCPA Compliant", "CMMC Framework Specialist"],
+      serviceArea: ["North America", "Europe", "Asia Pacific", "South America", "Africa"]
+    },
+    performance: {
+      completedProjects: 150,
+      totalClients: 85,
+      averageImplementation: "3-6 months",
+      customerSatisfaction: 4.8
+    }
+  };
+
   return (
     <div className="w-full px-24 py-12 bg-[#020305] min-h-screen min-w-full relative">
       {/* Background gradient orbs */}
@@ -106,7 +166,7 @@ const Profile = () => {
 
       {/* Header Section */}
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">Partner Profile</h2>
+        <h2 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">MSP Partner Profile</h2>
         <button
           onClick={() => navigate('/profile/edit')}
           className="btn bg-gradient-to-br from-emerald-500 via-emerald-600 to-green-600 text-white border-none hover:shadow-lg hover:shadow-emerald-500/20"
@@ -227,36 +287,44 @@ const Profile = () => {
             <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
               <div className="flex items-center gap-3 mb-3">
                 <MdBusiness className="text-2xl text-emerald-500" />
-                <h3 className="text-lg font-semibold text-white">{sapCompanyData.companyInfo.name}</h3>
+                <h3 className="text-lg font-semibold text-white">{proCloudCompanyData.companyInfo.name}</h3>
               </div>
               <div className="text-sm space-y-2">
                 <div className="flex items-center gap-2">
                   <MdLocationOn className="text-emerald-400" />
-                  <span className="text-white/80">{sapCompanyData.companyInfo.address}</span>
+                  <span className="text-white/80">{proCloudCompanyData.companyInfo.address}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MdOutlinePhone className="text-emerald-400" />
-                  <span className="text-white/80">{sapCompanyData.companyInfo.phone}</span>
+                  <span className="text-white/80">{proCloudCompanyData.companyInfo.phone}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MdOutlineEmail className="text-emerald-400" />
-                  <span className="text-white/80">{sapCompanyData.companyInfo.email}</span>
+                  <span className="text-white/80">{proCloudCompanyData.companyInfo.email}</span>
                 </div>
                 <div className="text-white/80 mt-2">
                   <span className="text-white/60">Website:</span>
-                  <span className="ml-2">{sapCompanyData.companyInfo.website}</span>
+                  <span className="ml-2">{proCloudCompanyData.companyInfo.website}</span>
+                </div>
+                <div className="text-white/80 mt-2">
+                  <span className="text-white/60">Founded:</span>
+                  <span className="ml-2">2020</span>
+                </div>
+                <div className="text-white/80">
+                  <span className="text-white/60">Company Size:</span>
+                  <span className="ml-2">11-50 employees</span>
                 </div>
               </div>
             </div>
 
-            {/* Implementations */}
+            {/* Security Solutions */}
             <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
               <div className="flex items-center gap-3 mb-3">
-                <MdCode className="text-2xl text-emerald-500" />
-                <h3 className="text-lg font-semibold text-white">Implementations</h3>
+                <MdSecurity className="text-2xl text-emerald-500" />
+                <h3 className="text-lg font-semibold text-white">Security Solutions</h3>
               </div>
               <div>
-                {sapCompanyData.sapServices.implementations.map((impl, index) => (
+                {proCloudCompanyData.mspServices.implementations.map((impl, index) => (
                   <div key={index} className="text-sm space-y-2 mb-4 last:mb-0 bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10">
                     <div className="font-semibold text-white">{impl.name}</div>
                     <div className="text-white/80 text-xs">{impl.description}</div>
@@ -276,12 +344,12 @@ const Profile = () => {
             <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
               <div className="flex items-center gap-3 mb-3">
                 <MdStorage className="text-2xl text-emerald-500" />
-                <h3 className="text-lg font-semibold text-white">Regions You Operate In</h3>
+                <h3 className="text-lg font-semibold text-white">Global Service Coverage</h3>
               </div>
               
               {/* Selected regions display */}
               <div className="text-sm space-y-2 mb-4 bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10">
-                <div className="font-semibold text-white">Selected Regions</div>
+                <div className="font-semibold text-white">Active Service Regions</div>
                 <div className="flex flex-wrap gap-1 mt-2">
                   {selectedRegions.map((region) => (
                     <span 
@@ -301,6 +369,21 @@ const Profile = () => {
                   {selectedRegions.length === 0 && (
                     <span className="text-white/60 text-xs">No regions selected</span>
                   )}
+                </div>
+              </div>
+
+              {/* Pro Cloud Office Locations */}
+              <div className="text-sm space-y-2 mb-4 bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10">
+                <div className="font-semibold text-white">Global Office Locations</div>
+                <div className="grid grid-cols-2 gap-1 text-xs text-white/80">
+                  <div>🇺🇸 United States</div>
+                  <div>🇬🇧 United Kingdom</div>
+                  <div>🇦🇺 Australia</div>
+                  <div>🇮🇳 India</div>
+                  <div>🇳🇬 Nigeria</div>
+                  <div>🇲🇽 Mexico</div>
+                  <div>🇧🇷 Brazil</div>
+                  <div>🇧🇪 Belgium</div>
                 </div>
               </div>
 
@@ -522,19 +605,19 @@ const Profile = () => {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <p className="text-white/60 text-sm">Projects</p>
-                  <p className="text-xl font-bold text-white">{sapCompanyData.performance.completedProjects}</p>
+                  <p className="text-xl font-bold text-white">{proCloudCompanyData.performance.completedProjects}</p>
                 </div>
                 <div>
                   <p className="text-white/60 text-sm">Total Clients</p>
-                  <p className="text-xl font-bold text-white">{sapCompanyData.performance.totalClients}</p>
+                  <p className="text-xl font-bold text-white">{proCloudCompanyData.performance.totalClients}</p>
                 </div>
                 <div>
                   <p className="text-white/60 text-sm">Implementation</p>
-                  <p className="text-xl font-bold text-white">{sapCompanyData.performance.averageImplementation}</p>
+                  <p className="text-xl font-bold text-white">{proCloudCompanyData.performance.averageImplementation}</p>
                 </div>
                 <div>
                   <p className="text-white/60 text-sm">Satisfaction</p>
-                  <p className="text-xl font-bold text-white">{sapCompanyData.performance.customerSatisfaction}/5.0</p>
+                  <p className="text-xl font-bold text-white">{proCloudCompanyData.performance.customerSatisfaction}/5.0</p>
                 </div>
               </div>
             </div>
@@ -543,10 +626,10 @@ const Profile = () => {
             <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
               <div className="flex items-center gap-3 mb-4">
                 <MdSettings className="text-2xl text-emerald-500" />
-                <h3 className="text-lg font-semibold text-white">Service Types</h3>
+                <h3 className="text-lg font-semibold text-white">MSP Service Types</h3>
               </div>
               <div className="flex flex-wrap gap-2 mb-6">
-                {sapCompanyData.expertise.serviceTypes.map((type, index) => (
+                {proCloudCompanyData.expertise.serviceTypes.map((type, index) => (
                   <span key={index} className="px-2 py-1 bg-emerald-500/10 text-emerald-300 rounded text-xs border border-emerald-500/20">
                     {type}
                   </span>
@@ -557,10 +640,10 @@ const Profile = () => {
               <div className="mt-6 pt-6 border-t border-emerald-500/10">
                 <div className="flex items-center gap-3 mb-4">
                   <MdSecurity className="text-2xl text-emerald-500" />
-                  <h3 className="text-lg font-semibold text-white">Certifications</h3>
+                  <h3 className="text-lg font-semibold text-white">Certifications & Partnerships</h3>
                 </div>
                 <div>
-                  {sapCompanyData.expertise.certifications.map((cert, index) => (
+                  {proCloudCompanyData.expertise.certifications.map((cert, index) => (
                     <div key={index} className="text-sm mb-3 bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10">
                       <span className="text-white/90">{cert}</span>
                     </div>
@@ -569,14 +652,14 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* Solutions - Moved to right column */}
+            {/* MSP Solutions - Moved to right column */}
             <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
               <div className="flex items-center gap-3 mb-3">
                 <MdCloud className="text-2xl text-emerald-500" />
-                <h3 className="text-lg font-semibold text-white">Solutions</h3>
+                <h3 className="text-lg font-semibold text-white">Managed Solutions</h3>
               </div>
               <div>
-                {sapCompanyData.sapServices.solutions.map((solution, index) => (
+                {proCloudCompanyData.mspServices.solutions.map((solution, index) => (
                   <div key={index} className="text-sm space-y-2 mb-4 last:mb-0 bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10">
                     <div className="font-semibold text-white">{solution.name}</div>
                     <div className="text-white/80 text-xs">{solution.description}</div>

@@ -199,55 +199,65 @@ const EditProfile = () => {
 
   // Company Info State
   const [companyInfo, setCompanyInfo] = useState({
-    name: "Imperium SAP Solutions",
-    address: "118 South Montclair Avenue, Glen Ellyn, IL 60137",
-    phone: "(630) 555-0123",
-    email: "contact@imperiumsap.com",
-    website: "www.imperiumsap.com"
+    name: "SecureEdge MSP Solutions",
+    address: "789 Cyber Defense Boulevard, Security Plaza, TX 75201",
+    phone: "(469) 555-7890",
+    email: "contact@secureedgemsp.com",
+    website: "www.secureedgemsp.com"
   });
 
-  // SAP Services State
+  // MSP Services State
   const [implementations, setImplementations] = useState([
     {
-      name: "SAP S/4HANA Migration",
-      description: "End-to-end migration services from legacy systems to SAP S/4HANA",
-      features: ["System assessment", "Data migration", "Customization", "Testing", "Go-live support"]
+      name: "24/7 SOC Implementation",
+      description: "Complete Security Operations Center setup with real-time threat monitoring and incident response",
+      features: ["Threat Detection", "Incident Response", "SIEM Integration", "24/7 Monitoring", "Threat Intelligence"]
     },
     {
-      name: "SAP ECC Support",
-      description: "Comprehensive support and maintenance for SAP ECC systems",
-      features: ["24/7 monitoring", "Performance optimization", "Security updates", "User training"]
+      name: "Microsoft 365 Security Suite",
+      description: "Comprehensive M365 security implementation including Advanced Threat Protection and compliance setup",
+      features: ["Email Security", "Identity Protection", "Data Loss Prevention", "Compliance Reporting", "Multi-Factor Authentication"]
+    },
+    {
+      name: "Zero Trust Architecture",
+      description: "Implementation of comprehensive zero trust security framework for modern enterprises",
+      features: ["Identity Verification", "Device Compliance", "Network Segmentation", "Access Controls", "Continuous Monitoring"]
     }
   ]);
 
   // Solutions State
   const [solutions, setSolutions] = useState([
     {
-      name: "SAP Business One",
-      description: "Complete ERP solution for small and medium enterprises",
-      features: ["Financial management", "Sales and CRM", "Inventory control", "Reporting"]
+      name: "Endpoint Security Management",
+      description: "Advanced endpoint detection and response with automated threat remediation",
+      features: ["EDR Implementation", "Patch Management", "Device Compliance", "Remote Monitoring", "Threat Hunting"]
     },
     {
-      name: "SAP Business ByDesign",
-      description: "Cloud-based ERP solution for mid-market companies",
-      features: ["Cloud deployment", "Multi-tenant architecture", "Built-in analytics", "Mobile access"]
+      name: "Cloud Security Posture",
+      description: "Comprehensive cloud security assessment and continuous compliance monitoring",
+      features: ["Cloud Configuration", "Vulnerability Scanning", "Access Management", "Cost Optimization", "Compliance Audits"]
+    },
+    {
+      name: "Backup & Disaster Recovery",
+      description: "Enterprise-grade backup solutions with tested disaster recovery procedures",
+      features: ["Automated Backups", "Recovery Testing", "Business Continuity", "Compliance Documentation", "RTO/RPO Optimization"]
     }
   ]);
 
   // Expertise State
   const [expertise, setExpertise] = useState({
-    maxProjectSize: "Enterprise-wide",
-    typicalProjectSize: "Department to Full Enterprise",
-    serviceTypes: ["Implementation", "Migration", "Support", "Consulting", "Training"],
-    certifications: ["SAP Gold Partner", "SAP Certified", "ISO 27001", "CMMI Level 5"],
+    maxProjectSize: "Enterprise-wide Security",
+    typicalProjectSize: "Small Business to Enterprise",
+    serviceTypes: ["Cybersecurity Services", "Managed SOC", "Cloud Security", "Microsoft 365 Management", "Endpoint Protection", "Compliance Management", "Penetration Testing", "IT Helpdesk & Support"],
+    certifications: ["CISSP - Certified Information Systems Security Professional", "CompTIA Security+ Enterprise Certification", "Microsoft 365 Certified: Security Administrator Expert", "SOC 2 Type II Compliance Certified", "ISO 27001 Information Security Management", "CISA - Certified Information Systems Auditor"],
     serviceArea: ["North America", "Europe", "Asia Pacific", "Middle East"]
   });
 
   // Performance Metrics State
   const [performance, setPerformance] = useState({
-    completedProjects: 250,
-    totalClients: 180,
-    averageImplementation: "6-12 months",
+    completedProjects: 245,
+    totalClients: 168,
+    averageImplementation: "2.8 months",
     customerSatisfaction: 4.9
   });
 
@@ -357,7 +367,7 @@ const EditProfile = () => {
 
       {/* Header Section */}
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">Edit Company Profile</h2>
+        <h2 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">Edit MSP Company Profile</h2>
         <div className="flex gap-4">
           <button
             onClick={() => navigate('/profile')}
@@ -645,7 +655,7 @@ const EditProfile = () => {
             <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
               <div className="flex items-center gap-3 mb-3">
                 <MdStorage className="text-2xl text-emerald-500" />
-                <h3 className="text-lg font-semibold text-white">Regions You Operate In</h3>
+                <h3 className="text-lg font-semibold text-white">Service Coverage Areas</h3>
               </div>
               
               {/* Selected regions display */}
@@ -910,14 +920,14 @@ const EditProfile = () => {
                   />
                 </div>
                 <div>
-                  <p className="text-white/60 text-sm">Implementation</p>
-                      <input
-                        type="text"
+                  <p className="text-white/60 text-sm">Deployment</p>
+                  <input
+                    type="text"
                     value={performance.averageImplementation}
                     onChange={(e) => setPerformance({...performance, averageImplementation: e.target.value})}
                     className="input input-sm bg-[#28292b]/40 backdrop-blur-md border-emerald-500/20 text-white placeholder-white/40 w-full mt-1"
-                      />
-                    </div>
+                  />
+                </div>
                 <div>
                   <p className="text-white/60 text-sm">Satisfaction</p>
                   <input
@@ -933,12 +943,12 @@ const EditProfile = () => {
                 </div>
           </div>
 
-            {/* Service Types with Certifications */}
+            {/* Security Solutions */}
             <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <MdSettings className="text-2xl text-emerald-500" />
-                  <h3 className="text-lg font-semibold text-white">Service Types</h3>
+                  <MdSecurity className="text-2xl text-emerald-500" />
+                  <h3 className="text-lg font-semibold text-white">Security Solutions</h3>
                 </div>
                     <button
                   onClick={addServiceType}
@@ -962,7 +972,7 @@ const EditProfile = () => {
                             });
                           }}
                       className="bg-transparent border-none text-emerald-300 text-xs w-24 focus:outline-none"
-                          placeholder="Type"
+                          placeholder="Service Type"
                         />
                         <button
                       onClick={() => removeServiceType(index)}
@@ -974,141 +984,183 @@ const EditProfile = () => {
                     ))}
           </div>
 
-              {/* Certifications section inside service types */}
-              <div className="mt-6 pt-6 border-t border-emerald-500/10">
+              {/* MSP Service Types with Certifications */}
+              <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <MdSecurity className="text-2xl text-emerald-500" />
-                    <h3 className="text-lg font-semibold text-white">Certifications</h3>
-              </div>
+                    <MdSettings className="text-2xl text-emerald-500" />
+                    <h3 className="text-lg font-semibold text-white">MSP Service Types</h3>
+                  </div>
+                  <button
+                    onClick={addServiceType}
+                    className="btn btn-circle btn-xs bg-gradient-to-br from-emerald-500/20 via-emerald-600/20 to-green-600/20 text-emerald-400 border border-emerald-500/20"
+                  >
+                    <HiPlus className="text-lg" />
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {expertise.serviceTypes.map((type, index) => (
+                    <div key={index} className="flex items-center gap-1 bg-emerald-500/10 rounded border border-emerald-500/20 pl-2 pr-1 py-1">
+                      <input
+                        type="text"
+                        value={type}
+                        onChange={(e) => {
+                          const newTypes = [...expertise.serviceTypes];
+                          newTypes[index] = e.target.value;
+                          setExpertise({
+                            ...expertise,
+                            serviceTypes: newTypes
+                          });
+                        }}
+                        className="bg-transparent border-none text-emerald-300 text-xs w-24 focus:outline-none"
+                        placeholder="Service Type"
+                      />
+                      <button
+                        onClick={() => removeServiceType(index)}
+                        className="text-emerald-300/60 hover:text-emerald-300"
+                      >
+                        <HiXMark className="text-xs" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Security Certifications section inside service types */}
+                <div className="mt-6 pt-6 border-t border-emerald-500/10">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <MdSecurity className="text-2xl text-emerald-500" />
+                      <h3 className="text-lg font-semibold text-white">Security Certifications</h3>
+                    </div>
                     <button
                       onClick={addCertification}
-                    className="btn btn-circle btn-xs bg-gradient-to-br from-emerald-500/20 via-emerald-600/20 to-green-600/20 text-emerald-400 border border-emerald-500/20"
+                      className="btn btn-circle btn-xs bg-gradient-to-br from-emerald-500/20 via-emerald-600/20 to-green-600/20 text-emerald-400 border border-emerald-500/20"
                     >
-                    <HiPlus className="text-lg" />
+                      <HiPlus className="text-lg" />
                     </button>
                   </div>
-                <div>
-                  {expertise.certifications.map((cert, index) => (
-                    <div key={index} className="flex items-center bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10 relative mb-3">
+                  <div>
+                    {expertise.certifications.map((cert, index) => (
+                      <div key={index} className="flex items-center bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10 relative mb-3">
                         <input
                           type="text"
                           value={cert}
                           onChange={(e) => {
-                          const newCerts = [...expertise.certifications];
+                            const newCerts = [...expertise.certifications];
                             newCerts[index] = e.target.value;
-                          setExpertise({
-                            ...expertise,
+                            setExpertise({
+                              ...expertise,
                               certifications: newCerts
                             });
                           }}
-                        className="bg-transparent border-none text-white/90 w-full focus:outline-none"
-                        placeholder="Certification"
+                          className="bg-transparent border-none text-white/90 w-full focus:outline-none"
+                          placeholder="Certification"
                         />
                         <button
                           onClick={() => removeCertification(index)}
-                        className="absolute -top-2 -right-2 btn btn-circle btn-xs bg-red-500/20 text-red-400 border border-red-500/20"
+                          className="absolute -top-2 -right-2 btn btn-circle btn-xs bg-red-500/20 text-red-400 border border-red-500/20"
                         >
-                        <HiXMark />
+                          <HiXMark />
                         </button>
                       </div>
                     ))}
                   </div>
-            </div>
-          </div>
-
-            {/* Solutions */}
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <MdCloud className="text-2xl text-emerald-500" />
-                  <h3 className="text-lg font-semibold text-white">Solutions</h3>
                 </div>
-                <button
-                  onClick={addSolution}
-                  className="btn btn-circle btn-xs bg-gradient-to-br from-emerald-500/20 via-emerald-600/20 to-green-600/20 text-emerald-400 border border-emerald-500/20"
-                >
-                  <HiPlus className="text-lg" />
-                </button>
+              </div>
+
+              {/* Managed Solutions */}
+              <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/80 via-[#28292b]/50 to-[rgba(40,41,43,0.2)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-emerald-500/15 p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <MdCloud className="text-2xl text-emerald-500" />
+                    <h3 className="text-lg font-semibold text-white">Managed Solutions</h3>
+                  </div>
+                  <button
+                    onClick={addSolution}
+                    className="btn btn-circle btn-xs bg-gradient-to-br from-emerald-500/20 via-emerald-600/20 to-green-600/20 text-emerald-400 border border-emerald-500/20"
+                  >
+                    <HiPlus className="text-lg" />
+                  </button>
                 </div>
                 <div>
-                {solutions.map((solution, index) => (
-                  <div key={index} className="bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10 relative mb-3">
-                    <button
-                      onClick={() => removeSolution(index)}
-                      className="absolute -top-2 -right-2 btn btn-circle btn-xs bg-red-500/20 text-red-400 border border-red-500/20"
-                    >
-                      <HiXMark />
-                    </button>
-                    <div className="space-y-2">
-                      <div className="font-semibold">
-                        <input
-                          type="text"
-                          value={solution.name}
-                          onChange={(e) => {
-                            const newSolutions = [...solutions];
-                            newSolutions[index].name = e.target.value;
-                            setSolutions(newSolutions);
-                          }}
-                          className="input input-sm w-full bg-[#28292b]/40 backdrop-blur-md border-emerald-500/20 text-white placeholder-white/40"
-                          placeholder="Solution name"
-                        />
+                  {solutions.map((solution, index) => (
+                    <div key={index} className="bg-[#28292b]/40 backdrop-blur-md rounded-lg p-3 border border-emerald-500/10 relative mb-3">
+                      <button
+                        onClick={() => removeSolution(index)}
+                        className="absolute -top-2 -right-2 btn btn-circle btn-xs bg-red-500/20 text-red-400 border border-red-500/20"
+                      >
+                        <HiXMark />
+                      </button>
+                      <div className="space-y-2">
+                        <div className="font-semibold">
+                          <input
+                            type="text"
+                            value={solution.name}
+                            onChange={(e) => {
+                              const newSolutions = [...solutions];
+                              newSolutions[index].name = e.target.value;
+                              setSolutions(newSolutions);
+                            }}
+                            className="input input-sm w-full bg-[#28292b]/40 backdrop-blur-md border-emerald-500/20 text-white placeholder-white/40"
+                            placeholder="Solution name"
+                          />
+                        </div>
+                        <div>
+                          <textarea
+                            value={solution.description}
+                            onChange={(e) => {
+                              const newSolutions = [...solutions];
+                              newSolutions[index].description = e.target.value;
+                              setSolutions(newSolutions);
+                            }}
+                            className="textarea textarea-sm w-full bg-[#28292b]/40 backdrop-blur-md border-emerald-500/20 text-white placeholder-white/40"
+                            placeholder="Description"
+                            rows={2}
+                          />
+                        </div>
+                        <div className="mt-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-white/60 text-sm">Features:</span>
+                            <button
+                              onClick={() => addFeature('solution', index)}
+                              className="btn btn-xs bg-gradient-to-br from-emerald-500/20 via-emerald-600/20 to-green-600/20 text-emerald-400 border border-emerald-500/20"
+                            >
+                              <HiPlus className="text-sm" />
+                            </button>
+                          </div>
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {solution.features.map((feature, featureIndex) => (
+                              <div key={featureIndex} className="flex items-center gap-1 bg-emerald-500/10 rounded border border-emerald-500/20 pl-2 pr-1 py-1">
+                                <input
+                                  type="text"
+                                  value={feature}
+                                  onChange={(e) => {
+                                    const newSolutions = [...solutions];
+                                    newSolutions[index].features[featureIndex] = e.target.value;
+                                    setSolutions(newSolutions);
+                                  }}
+                                  className="bg-transparent border-none text-emerald-300 text-xs w-24 focus:outline-none"
+                                  placeholder="Feature"
+                                />
+                                <button
+                                  onClick={() => removeFeature('solution', index, featureIndex)}
+                                  className="text-emerald-300/60 hover:text-emerald-300"
+                                >
+                                  <HiXMark className="text-xs" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <textarea
-                          value={solution.description}
-                          onChange={(e) => {
-                            const newSolutions = [...solutions];
-                            newSolutions[index].description = e.target.value;
-                            setSolutions(newSolutions);
-                          }}
-                          className="textarea textarea-sm w-full bg-[#28292b]/40 backdrop-blur-md border-emerald-500/20 text-white placeholder-white/40"
-                          placeholder="Description"
-                          rows={2}
-                        />
-                      </div>
-                      <div className="mt-2">
-                        <div className="flex items-center justify-between">
-                          <span className="text-white/60 text-sm">Features:</span>
-                          <button
-                            onClick={() => addFeature('solution', index)}
-                            className="btn btn-xs bg-gradient-to-br from-emerald-500/20 via-emerald-600/20 to-green-600/20 text-emerald-400 border border-emerald-500/20"
-                    >
-                      <HiPlus className="text-sm" />
-                    </button>
-                  </div>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {solution.features.map((feature, featureIndex) => (
-                            <div key={featureIndex} className="flex items-center gap-1 bg-emerald-500/10 rounded border border-emerald-500/20 pl-2 pr-1 py-1">
-                        <input
-                          type="text"
-                                value={feature}
-                          onChange={(e) => {
-                                  const newSolutions = [...solutions];
-                                  newSolutions[index].features[featureIndex] = e.target.value;
-                                  setSolutions(newSolutions);
-                                }}
-                                className="bg-transparent border-none text-emerald-300 text-xs w-24 focus:outline-none"
-                                placeholder="Feature"
-                        />
-                        <button
-                                onClick={() => removeFeature('solution', index, featureIndex)}
-                                className="text-emerald-300/60 hover:text-emerald-300"
-                        >
-                          <HiXMark className="text-xs" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-                    ))}
           </div>
         </div>
-              </div>
-            </div>
-          </div>
+      </div>
 
       {/* Danger Zone */}
       <div className="mt-8">

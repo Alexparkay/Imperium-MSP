@@ -17,19 +17,19 @@ interface Enterprise {
   analysis: {
     enterpriseType: string;
     employees: number;
-    sapUserRate: number;
-    systemComplexity: number;
+    endpointRate: number;
+    securityComplexity: number;
   };
   operationalAssessment: {
     annualCost: number;
     annualMaintenance: number;
   };
-  migrationPotential: {
+  securityPotential: {
     calculated: boolean;
-    totalUsers: number;
+    totalEndpoints: number;
     selectedSystemType: string;
     annualSavings: number;
-    migrationCost: number;
+    implementationCost: number;
     operationalSavings: number;
     paybackPeriod: number;
     roi: number;
@@ -63,7 +63,7 @@ const whatsappFlow: WhatsAppMessage[] = [
     id: 'initial',
     type: 'initial',
     name: 'Initial Contact',
-    message: "Hello [name], I'm reaching out regarding [company]'s SAP migration potential. Our analysis shows significant cost savings opportunities. Would you be interested in a brief discussion?",
+    message: "Hello [name], I'm reaching out regarding [company]'s cybersecurity optimization potential. Our analysis shows significant cost savings and security improvements. Would you be interested in a brief discussion?",
     day: 0
   },
   {
@@ -103,155 +103,162 @@ const EmailAutomation = () => {
   const [activeTab, setActiveTab] = useState<TabType>('email');
   const [selectedMessage, setSelectedMessage] = useState<WhatsAppMessage | null>(null);
   
-  // Email templates
+  // Email templates - MSP/Cybersecurity focused
   const templates = [
     {
       id: 'ai_highest_initial',
-      name: 'AI Highest Rated: Initial Contact',
-      subject: "Insights from Wood's training technology presentation at TechEd Houston",
-      rating: 98.7,
+      name: 'AI Highest Performing: Initial Contact',
+      subject: "Cybersecurity optimization potential at {{company}}",
+      rating: 94.7,
       sequence: 'sequence_1',
       sequencePosition: 1,
       ai_metrics: {
-        openRate: 78.4,
-        responseRate: 42.1,
-        conversionRate: 31.5
+        openRate: 78.2,
+        responseRate: 42.8,
+        conversionRate: 29.6
       },
-      body: `Dear Kyle,
+      body: `Hi {{name}},
 
-I attended your recent presentation at the Houston TechEd conference where you discussed Wood's approach to integrating digital solutions into professional training. Your insights about leveraging technology while maintaining high-touch learning experiences particularly stood out.
+I hope you're doing well. I came across your profile and {{company}}'s recent growth in your sector. Given the increasing cybersecurity threats facing organizations of your size, I thought you might find our recent analysis interesting.
 
-This prompted our team to analyze aspects of your SAP infrastructure. Based on industry benchmarks for professional training organizations of comparable scale (42-50 IT staff, 15+ training centers), we estimate that modernizing your current SAP ECC environment to S/4HANA Cloud could potentially reduce operational costs by approximately 23.4% annually, translating to roughly $712,000 in savings for a company of Wood's size.
+We've been helping companies like {{company}} optimize their security infrastructure while reducing operational costs. Through our comprehensive MSP security services, similar organizations have achieved:
 
-Our preliminary calculations suggest an implementation timeframe of 6.5 months for training companies, with ROI beginning at month 14 post-implementation. With SAP ECC support ending in 2027, this timeline puts you well ahead of critical deadlines.
+• 68.5% reduction in annual security operational costs
+• 94.2% improvement in threat detection and response times
+• 92% decrease in security incident resolution time
+• Full SOC coverage with 24/7 monitoring
 
-These projections derive from analysis of 8 similar migrations across professional training organizations with comparable data complexity and certification tracking requirements.
+Based on your company's profile (approximately {{estimated_employees}} employees), implementing our managed security services could potentially save {{company}} around $1,894,250 annually while significantly enhancing your security posture.
 
-Hope this perspective proves useful for your IT modernization planning.
+Would you be interested in a brief conversation to explore how this could work specifically for {{company}}?
 
-Regards,
-Alex Peterson`
+Best regards,
+{{sender_name}}`
     },
     {
       id: 'ai_highest_followup1',
-      name: 'AI Highest Rated: Follow-up 1',
-      subject: "Quick follow-up: Wood's SAP migration potential",
-      rating: 97.9,
+      name: 'AI Highest Performing: Follow-up 1',
+      subject: "Quick follow-up: {{company}}'s cybersecurity cost optimization",
+      rating: 91.3,
       sequence: 'sequence_1',
       sequencePosition: 2,
       ai_metrics: {
-        openRate: 82.1,
-        responseRate: 38.4,
-        conversionRate: 26.9
+        openRate: 72.4,
+        responseRate: 38.9,
+        conversionRate: 26.1
       },
-      body: `Hi Kyle,
+      body: `Hi {{name}},
 
-Following up briefly on my previous email about Wood's potential SAP migration benefits.
+I wanted to follow up on my previous email about {{company}}'s cybersecurity optimization potential.
 
-I wanted to share that our recent analysis of training sector implementations shows particularly strong results for companies that integrate their training certification tracking with S/4HANA. Organizations similar to Wood have seen 43% faster processing of certification data and 37% reduction in compliance reporting time.
+I understand you're likely evaluating multiple security solutions, but the data I mentioned is quite compelling:
 
-If you're interested in these findings, I'd be happy to forward our industry benchmark report.
+• Current estimated annual security costs: ~$2.9M
+• Potential with MSP optimization: ~$1M
+• Annual savings: ~$1.9M (68.5% reduction)
+• Enhanced 24/7 SOC monitoring included
+
+This analysis is based on {{company}}'s industry sector and approximate company size. Would a 15-minute call to discuss the specifics be valuable for you?
+
+I'm available {{availability}} this week.
 
 Best,
-Alex`
+{{sender_name}}`
     },
     {
       id: 'ai_highest_followup2',
-      name: 'AI Highest Rated: Follow-up 2',
-      subject: "Final thoughts on Wood's SAP migration opportunity",
-      rating: 96.2,
+      name: 'AI Highest Performing: Follow-up 2',
+      subject: "{{company}}: Last follow-up on $1.9M security savings potential",
+      rating: 87.9,
       sequence: 'sequence_1',
       sequencePosition: 3,
       ai_metrics: {
-        openRate: 79.6,
-        responseRate: 31.2,
-        conversionRate: 18.7
+        openRate: 68.1,
+        responseRate: 34.7,
+        conversionRate: 22.8
       },
-      body: `Dear Kyle,
+      body: `{{name}},
 
-I'm reaching out one final time regarding the SAP migration analysis we conducted for Wood.
+This will be my last follow-up on the cybersecurity optimization analysis for {{company}}.
 
-Since my last email, we've completed an additional study of professional training companies who recently underwent SAP migrations. The data revealed three particularly relevant findings for your Houston operations:
+The potential annual savings of $1.9M through managed security services optimization is significant enough that I wanted to ensure you had the opportunity to review it.
 
-1. Training companies with sophisticated certification tracking requirements (which we understand is central to Wood's business model) achieved 28% greater ROI compared to general industry averages.
+If the timing isn't right now, I completely understand. Feel free to reach out when {{company}}'s cybersecurity strategy planning becomes a priority.
 
-2. The implementation timeline for companies that maintained parallel systems during migration averaged just 5.7 months - nearly 40% faster than standard approaches.
+If you'd like to explore this briefly, I'm available for a quick call {{availability}}.
 
-3. Integration with virtual training environments (which featured prominently in your TechEd presentation) was completed with minimal disruption, with 92% of companies reporting zero downtime for learner-facing systems.
-
-The full dataset encompasses 14 professional training organizations across North America, with an average size of 750-1,200 employees and annual IT budgets of $4.2-7.1M.
-
-Should these findings align with your current modernization priorities, our complete analysis remains available.
-
-Wishing you continued success with Wood's digital initiatives.
-
-Regards,
-Alex Peterson`
+Best wishes,
+{{sender_name}}`
     },
     {
-      id: 'sequence2_initial',
-      name: 'Value-Focused: Initial Contact',
-      subject: "Wood training technology modernization - potential $712K annual savings",
-      rating: 92.4,
+      id: 'value_proposition_initial',
+      name: 'Value Proposition: Security ROI Focus',
+      subject: "Reduce {{company}}'s security costs by 68.5% while improving protection",
+      rating: 89.2,
       sequence: 'sequence_2',
       sequencePosition: 1,
       ai_metrics: {
-        openRate: 71.3,
-        responseRate: 36.8,
-        conversionRate: 24.5
+        openRate: 74.6,
+        responseRate: 36.4,
+        conversionRate: 24.2
       },
-      body: `Dear Kyle,
+      body: `Dear {{name}},
 
-Your recent interview in Training Technology Quarterly about Wood's learning platform innovations caught my attention, particularly your emphasis on creating seamless digital experiences for professional certifications.
+Organizations in your sector are achieving remarkable results by optimizing their cybersecurity through managed security services:
 
-After reviewing your technical infrastructure based on publicly available information, our team has identified potential optimization opportunities within your SAP environment. For professional training organizations like Wood with 5+ years on ECC systems, migration to S/4HANA typically yields annual operational savings between $650K-850K, with an implementation timeline of 6-8 months.
+**Typical Results:**
+→ 68.5% reduction in annual security operational costs
+→ 94.2% improvement in threat detection speed
+→ 24/7 SOC monitoring with expert threat hunters
+→ 92% faster incident response and resolution
 
-Key areas of improvement specific to training companies include:
-• 67% faster certification processing and validation
-• 73% reduction in manual data entry requirements
-• 42% more efficient compliance reporting for regulated industries
-• Enhanced integration with virtual learning environments
+**For {{company}} specifically:**
+→ Estimated current annual security costs: $2.9M
+→ Optimized costs with MSP services: $1M
+→ Potential annual savings: $1.9M
 
-With SAP ECC end-of-support approaching in 2027, organizations in your sector are typically allowing 12-18 months for complete transition. Based on Wood's scale and complexity, our projected implementation would complete by Q2 2026, providing a comfortable buffer before support expires.
+This isn't just cost reduction - it's about getting enterprise-grade security capabilities that most companies your size can't afford to build in-house.
 
-These insights come from our analysis of 14 similar migrations within professional training and education companies during 2021-2023.
+Would you be interested in a brief discussion about how this could apply to {{company}}'s specific situation?
 
-I hope this information proves valuable as you evaluate your technology roadmap.
-
-Regards,
-Alex Peterson`
+Best regards,
+{{sender_name}}`
     },
     {
-      id: 'sequence2_followup1',
-      name: 'Value-Focused: Follow-up 1',
-      subject: "RE: Wood's SAP environment - specific training industry findings",
-      rating: 89.5,
+      id: 'value_proposition_followup',
+      name: 'Value Proposition: Threat Protection Focus',
+      subject: "Enterprise-grade cybersecurity for {{company}} at 68.5% lower cost",
+      rating: 85.7,
       sequence: 'sequence_2',
       sequencePosition: 2,
       ai_metrics: {
-        openRate: 68.7,
-        responseRate: 31.4,
-        conversionRate: 19.8
+        openRate: 69.8,
+        responseRate: 32.1,
+        conversionRate: 21.4
       },
-      body: `Kyle,
+      body: `Hi {{name}},
 
-I wanted to follow up on my previous email with some additional findings specifically relevant to Wood's professional training operations in Houston.
+Following up on the cybersecurity optimization opportunity for {{company}}.
 
-In analyzing similar companies that migrated from ECC to S/4HANA:
+The key insight here isn't just cost savings - it's accessing enterprise-grade security capabilities:
 
-- Training organizations with certification requirements saw average processing time improvements of 43% for student record management
-- Companies integrating virtual classrooms experienced 87% faster data synchronization
-- Houston-based enterprises benefited from local implementation partners, reducing project timelines by 23% compared to national averages
+• Dedicated SOC analysts monitoring your environment 24/7
+• Advanced threat intelligence and machine learning
+• Incident response team with average 12-minute response time
+• Compliance management (SOC 2, ISO 27001, etc.)
+• All at 68.5% lower cost than traditional security approaches
 
-If any of these areas align with your current challenges, I'd be happy to share the detailed findings from our industry analysis.
+Most companies your size struggle to afford this level of protection in-house, but through managed services, it becomes accessible and cost-effective.
 
-Best regards,
-Alex`
+Would a brief call to discuss {{company}}'s specific security challenges be helpful?
+
+Best,
+{{sender_name}}`
     },
     {
       id: 'problem_solution',
-      name: 'Problem-Solution: Initial Contact',
-      subject: "Addressing Wood's training certification challenges with SAP modernization",
+      name: 'Problem-Solution: Cybersecurity Challenges',
+      subject: "Addressing {{company}}'s cybersecurity challenges with managed services optimization",
       rating: 86.3,
       sequence: 'sequence_3',
       sequencePosition: 1,
@@ -260,34 +267,34 @@ Alex`
         responseRate: 28.7,
         conversionRate: 17.4
       },
-      body: `Dear Kyle,
+      body: `Dear {{name}},
 
-I recently reviewed Wood's impressive growth in professional certification programs as highlighted in the Houston Business Journal. Your expansion into specialized industrial safety training particularly stands out in a competitive market.
+I recently reviewed {{company}}'s growth trajectory and impressive market position. Your expansion into new markets particularly stands out in a competitive landscape.
 
-This prompted our research team to examine how similar training organizations are addressing technology challenges during growth phases. Our industry analysis reveals that companies with comparable certification volumes (12,000-18,000 annually) face three primary challenges with legacy SAP implementations:
+This prompted our research team to examine how similar organizations are addressing cybersecurity challenges during growth phases. Our industry analysis reveals that companies with comparable scale ({{estimated_employees}} employees) face three primary security challenges:
 
-1. Certification tracking becomes increasingly manual as volume scales, with staff spending 23-37 hours weekly on data validation
+1. Security monitoring becomes increasingly complex as infrastructure scales, with teams spending 35-45 hours weekly on threat analysis and incident response
 
-2. Reporting for regulatory compliance requires extensive customization, typically costing $140K-190K annually in development resources
+2. Compliance requirements across multiple frameworks require specialized expertise, typically costing $180K-240K annually in internal resources
 
-3. Integration with modern learning management systems creates synchronization issues, with error rates averaging 4-8% in cross-platform data
+3. Advanced persistent threats require sophisticated detection capabilities, with false positive rates averaging 15-25% in traditional security tools
 
-In examining Wood's public technology footprint, we identified several indicators suggesting these challenges may be relevant to your operations. Professional training organizations that have addressed these issues through SAP modernization typically achieve:
+Based on {{company}}'s technology footprint and industry profile, these challenges may be relevant to your operations. Organizations that have addressed these issues through managed security services typically achieve:
 
-• 71% reduction in manual certification processing time
-• 83% decrease in compliance reporting development costs
-• 92% improved accuracy in cross-platform data synchronization
+• 68.5% reduction in security operational costs
+• 94.2% improvement in threat detection accuracy  
+• 92% faster incident response and resolution times
 
-These findings stem from our analysis of 17 professional training organizations that modernized legacy SAP systems between 2020-2023.
+These findings stem from our analysis of organizations that optimized their cybersecurity through MSP services between 2022-2024.
 
-I hope this perspective provides valuable context for your technology strategy.
+I hope this perspective provides valuable context for your security strategy.
 
 Regards,
-Alex Peterson`
+{{sender_name}}`
     }
   ];
   
-  // Contact data - SAP/Cloud leadership contacts
+  // Contact data - Cybersecurity/CISO leadership contacts
   const contacts = [
     {
       id: 1,
@@ -295,7 +302,7 @@ Alex Peterson`
       email: "k.flynn@wood.com",
       company: "Wood",
       location: "Houston, Texas",
-      position: "Head of IT Infrastructure and Operations",
+      position: "Chief Information Security Officer (CISO)",
       phone: "+1 (713) 555-1234"
     },
     {
@@ -304,7 +311,7 @@ Alex Peterson`
       email: "w.shammout@ips.com",
       company: "IPS",
       location: "Rutherford, New Jersey",
-      position: "Vice President, Head of Information Technology",
+      position: "VP of Cybersecurity and Risk Management",
       phone: "+1 (201) 555-2345"
     },
     {
@@ -313,7 +320,7 @@ Alex Peterson`
       email: "s.sharma@ipgphotonics.com",
       company: "IPG Photonics",
       location: "Framingham, Massachusetts",
-      position: "Head of Information Technology - Info",
+      position: "Head of Information Security",
       phone: "+1 (508) 555-3456"
     },
     {
@@ -322,7 +329,7 @@ Alex Peterson`
       email: "l.sullivan@henkel.com",
       company: "Henkel",
       location: "Watchung, New Jersey",
-      position: "Head of IT application Engineering",
+      position: "Director of Cybersecurity Operations",
       phone: "+1 (908) 555-4567"
     },
     {
@@ -331,7 +338,7 @@ Alex Peterson`
       email: "b.partout@strive.com",
       company: "Strive",
       location: "Denver, Colorado",
-      position: "Head of Information Technology",
+      position: "Chief Security Officer (CSO)",
       phone: "+1 (303) 555-5678"
     },
     {
@@ -340,7 +347,7 @@ Alex Peterson`
       email: "h.ifiuscati@libertymutual.com",
       company: "Liberty Mutual Insurance",
       location: "Boston, Massachusetts",
-      position: "Head of Information Technology",
+      position: "Head of Cybersecurity and Compliance",
       phone: "+1 (617) 555-6789"
     },
     {
@@ -349,7 +356,7 @@ Alex Peterson`
       email: "b.thielen@fivescinetic.com",
       company: "Fives Cinetic Corp.",
       location: "Farmington, Michigan",
-      position: "Head of Information Technology",
+      position: "Director of Information Security",
       phone: "+1 (248) 555-7890"
     },
     {
@@ -358,7 +365,7 @@ Alex Peterson`
       email: "t.oshoel@holcim.com",
       company: "Holcim",
       location: "Washington, District of Columbia",
-      position: "Head of Information Technology",
+      position: "Head of Security and Risk Management",
       phone: "+1 (202) 555-8901"
     }
   ];
@@ -369,9 +376,9 @@ Alex Peterson`
     name: 'LinkedIn Voice Message',
     message: `Hi {{name}},
 
-I noticed your recent post about {{company}}'s SAP migration journey and was particularly impressed by your insights on balancing legacy systems with innovation.
+I noticed your recent post about {{company}}'s cybersecurity modernization journey and was particularly impressed by your insights on balancing threat protection with operational efficiency.
 
-After analyzing your current SAP environment, I've identified some compelling opportunities for optimization. Specifically, with your 1,250 SAP users, a migration to S/4HANA Cloud could reduce your annual operational costs by approximately $894,250 - that's a 73.5% reduction.
+After analyzing your current security environment, I've identified some compelling opportunities for optimization. Specifically, with your 9,000 managed endpoints, implementing comprehensive MSP security services could reduce your annual operational costs by approximately $1,894,250 - that's a 68.5% reduction while significantly improving threat protection.
 
 I'd love to share a detailed analysis of how this could work for {{company}}. Would you be open to a brief conversation?
 
@@ -384,12 +391,12 @@ Best regards,
     {
       id: 'initial_contact',
       name: 'Initial Contact',
-      message: "Hello [name], I'm reaching out regarding [company]'s SAP migration potential. Our analysis shows significant cost savings opportunities. Would you be interested in a brief discussion?"
+      message: "Hello [name], I'm reaching out regarding [company]'s cybersecurity optimization potential. Our analysis shows significant cost savings and security improvements. Would you be interested in a brief discussion?"
     },
     {
       id: 'follow_up',
       name: 'Follow-up',
-      message: "Hi [name], just following up on the SAP migration analysis for [company]. The potential annual savings of $894,250 (73.5% reduction) might be of interest. When would be a good time to discuss?"
+      message: "Hi [name], just following up on the cybersecurity analysis for [company]. The potential annual savings of $1,894,250 (68.5% reduction) and enhanced threat protection might be of interest. When would be a good time to discuss?"
     }
   ];
 

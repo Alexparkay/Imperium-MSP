@@ -1,29 +1,29 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MdOutlineStorage, MdOutlineBusiness, MdOutlineAttachMoney, MdArrowForward, MdArrowBack, MdEdit, MdRefresh, MdCloudUpload, MdOutlineCalculate, MdOutlineSettings } from 'react-icons/md';
+import { MdOutlineStorage, MdOutlineBusiness, MdOutlineAttachMoney, MdArrowForward, MdArrowBack, MdEdit, MdRefresh, MdCloudUpload, MdOutlineCalculate, MdOutlineSettings, MdSecurity } from 'react-icons/md';
 import { toast } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
-import { FaServer, FaMoneyBillWave, FaDatabase, FaChartLine, FaRegCalendarAlt } from 'react-icons/fa';
+import { FaServer, FaMoneyBillWave, FaDatabase, FaChartLine, FaRegCalendarAlt, FaShieldAlt } from 'react-icons/fa';
 
 // Define types for our data
-interface SAPSystem {
+interface SecuritySystem {
   id: string;
   name: string;
   complexity: number;
   efficiency: number;
-  users: {
-    internal: number;
-    external: number;
+  coverage: {
+    endpoints: number;
+    services: number;
   };
-  costPerUser: number;
+  costPerEndpoint: number;
 }
 
-interface MigrationPotential {
+interface SecurityPotential {
   calculated: boolean;
-  totalUsers: number;
+  totalEndpoints: number;
   selectedSystemType: string;
   annualSavings: number;
-  migrationCost: number;
+  implementationCost: number;
   operationalSavings: number;
   paybackPeriod: number;
   roi: number;
@@ -32,12 +32,12 @@ interface MigrationPotential {
     savings: number;
   }>;
   annualOperationalCost?: number;
-  cloudCostPerUser?: number;
-  systemUsers?: number;
-  costPerUser?: number;
-  cloudIncentives?: number;
+  mspCostPerEndpoint?: number;
+  systemEndpoints?: number;
+  costPerEndpoint?: number;
+  securityIncentives?: number;
   currentAnnualOperationalCost?: number;
-  remainingOnPremise?: number;
+  remainingInHouse?: number;
   remainingCost?: number;
   firstYearSavings?: number;
   firstYearROI?: number;
@@ -51,60 +51,60 @@ interface Enterprise {
   analysis: {
     enterpriseType: string;
     employees: number;
-    sapUserRate: number;
-    systemComplexity: number;
+    endpointRate: number;
+    securityComplexity: number;
   };
   operationalAssessment: {
     annualCost: number;
     annualMaintenance: number;
   };
-  migrationPotential: MigrationPotential;
+  securityPotential: SecurityPotential;
 }
 
-const MigrationInsights = () => {
+const SecurityInsights = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isCalculating, setIsCalculating] = useState(true);
   const [currentEnterpriseIndex, setCurrentEnterpriseIndex] = useState(0);
-  const [selectedSystemType, setSelectedSystemType] = useState('standard');
+  const [selectedSystemType, setSelectedSystemType] = useState('essential');
   const [iframeKey, setIframeKey] = useState(1);
   // Set iframe loaded to true by default
   const [iframeLoaded, setIframeLoaded] = useState(true);
   
-  // Available SAP system types
-  const systemTypes: SAPSystem[] = [
+  // Available Pro Cloud SaaS security service types
+  const systemTypes: SecuritySystem[] = [
     {
-      id: 'standard',
-      name: 'Standard Cloud',
+      id: 'essential',
+      name: 'cyberGUARD Essential',
       complexity: 2,
-      efficiency: 0.75,
-      users: {
-        internal: 500,
-        external: 200
+      efficiency: 0.80,
+      coverage: {
+        endpoints: 1000,
+        services: 10
       },
-      costPerUser: 65
+      costPerEndpoint: 55
     },
     {
-      id: 'premium',
-      name: 'Premium Cloud',
+      id: 'advanced',
+      name: 'cyberGUARD Professional',
       complexity: 3,
-      efficiency: 0.85,
-      users: {
-        internal: 1000,
-        external: 500
+      efficiency: 0.90,
+      coverage: {
+        endpoints: 3000,
+        services: 18
       },
-      costPerUser: 85
+      costPerEndpoint: 75
     },
     {
       id: 'enterprise',
-      name: 'Enterprise Cloud',
+      name: 'cyberGUARD Enterprise + CMMC',
       complexity: 4,
       efficiency: 0.95,
-      users: {
-        internal: 5000,
-        external: 2000
+      coverage: {
+        endpoints: 15000,
+        services: 28
       },
-      costPerUser: 120
+      costPerEndpoint: 110
     }
   ];
   
@@ -112,25 +112,25 @@ const MigrationInsights = () => {
   const [enterprises, setEnterprises] = useState<Enterprise[]>([
     {
       id: 1,
-      name: "Global Manufacturing Corp",
-      industry: "Manufacturing",
-      location: "Chicago, IL",
+      name: "Defense Technologies Corp",
+      industry: "Defense Contracting",
+      location: "Arlington, VA",
       analysis: {
-        enterpriseType: "Manufacturing",
-        employees: 5000,
-        sapUserRate: 0.25,
-        systemComplexity: 3.5
+        enterpriseType: "Defense/Aerospace",
+        employees: 3800,
+        endpointRate: 2.1,
+        securityComplexity: 4.2
       },
       operationalAssessment: {
-        annualCost: 2850000,
-        annualMaintenance: 720000
+        annualCost: 5850000,
+        annualMaintenance: 1450000
       },
-      migrationPotential: {
+      securityPotential: {
         calculated: false,
-        totalUsers: 0,
+        totalEndpoints: 0,
         selectedSystemType: '',
         annualSavings: 0,
-        migrationCost: 0,
+        implementationCost: 0,
         operationalSavings: 0,
         paybackPeriod: 0,
         roi: 0,
@@ -139,25 +139,25 @@ const MigrationInsights = () => {
     },
     {
       id: 2,
-      name: "Midwest Retail Group",
-      industry: "Retail",
-      location: "Minneapolis, MN",
+      name: "Federal Systems Integration",
+      industry: "Government Contracting",
+      location: "Huntsville, AL",
       analysis: {
-        enterpriseType: "Retail/Distribution",
-        employees: 3200,
-        sapUserRate: 0.18,
-        systemComplexity: 2.8
+        enterpriseType: "Government/Federal",
+        employees: 2750,
+        endpointRate: 1.9,
+        securityComplexity: 4.0
       },
       operationalAssessment: {
-        annualCost: 1850000,
-        annualMaintenance: 490000
+        annualCost: 4250000,
+        annualMaintenance: 1020000
       },
-      migrationPotential: {
+      securityPotential: {
         calculated: false,
-        totalUsers: 0,
+        totalEndpoints: 0,
         selectedSystemType: '',
         annualSavings: 0,
-        migrationCost: 0,
+        implementationCost: 0,
         operationalSavings: 0,
         paybackPeriod: 0,
         roi: 0,
@@ -172,19 +172,19 @@ const MigrationInsights = () => {
       analysis: {
         enterpriseType: "Healthcare",
         employees: 7800,
-        sapUserRate: 0.14,
-        systemComplexity: 4.2
+        endpointRate: 2.2,
+        securityComplexity: 4.2
       },
       operationalAssessment: {
-        annualCost: 3250000,
-        annualMaintenance: 870000
+        annualCost: 6250000,
+        annualMaintenance: 1870000
       },
-      migrationPotential: {
+      securityPotential: {
         calculated: false,
-        totalUsers: 0,
+        totalEndpoints: 0,
         selectedSystemType: '',
         annualSavings: 0,
-        migrationCost: 0,
+        implementationCost: 0,
         operationalSavings: 0,
         paybackPeriod: 0,
         roi: 0,
@@ -196,39 +196,39 @@ const MigrationInsights = () => {
   const currentEnterprise = enterprises[currentEnterpriseIndex];
   const selectedSystem = systemTypes.find(system => system.id === selectedSystemType)!;
 
-  // SAP migration data
-  const migrationData = {
-    yearlyOperationalSavings: '$894,250/year',
-    yearlyCost: '$323,750',
-    systemSize: '1,250 users',
+  // MSP Security Optimization data
+  const securityOptimizationData = {
+    yearlyOperationalSavings: '$2,125,500/year',
+    yearlyCost: '$785,750',
+    systemSize: '1,250 endpoints',
     costsReduced: '73.5%',
-    monthlyAverage: '$74,520',
-    firstYear: '$570,500',
-    threeYearTotal: '$2,682,750',
-    costWithoutMigration: '$4,125,000',
-    costWithMigration: '$1,442,250',
-    totalLifetimeSavings: '$2,682,750',
+    monthlyAverage: '$177,125',
+    firstYear: '$1,339,750',
+    threeYearTotal: '$6,376,500',
+    costWithoutMSP: '$9,875,000',
+    costWithMSP: '$3,498,500',
+    totalLifetimeSavings: '$6,376,500',
     breakEven: '14 months',
     address: '303 S Technology Ct, Broomfield, CO',
     state: 'CO',
     zipCode: '80021',
-    currentCostPerUser: '$275/month',
-    monthlyOpex: '$343,750',
-    totalUsers: '1,250 users',
-    cloudIncentives: '$125,000',
-    migrationCost: '$750,000 total',
-    implementationTime: '9 months',
-    totalMigrationCost: '$875,000',
-    userLicenseCost: '$95 per user',
+    currentCostPerEndpoint: '$656/month',
+    monthlyOpex: '$823,750',
+    totalEndpoints: '1,250 endpoints',
+    securityIncentives: '$125,000',
+    implementationCost: '$1,750,000 total',
+    implementationTime: '6 months',
+    totalImplementationCost: '$1,875,000',
+    endpointCost: '$628 per endpoint',
     totalServers: '42 servers',
     totalDatabases: '18 databases',
     annualMaintenanceHours: '12,800 hours',
     co2Reduction: '185 tons/year',
     dataEfficiency: '86% improved',
-    annualSavings: '$894,250',
-    remainingLegacyCost: '$230,750',
-    remainingCost: '$19,230/month',
-    firstYearROI: '65.2%'
+    annualSavings: '$2,125,500',
+    remainingInHouseCost: '$560,750',
+    remainingCost: '$46,730/month',
+    firstYearROI: '71.5%'
   };
 
   useEffect(() => {
@@ -305,9 +305,8 @@ const MigrationInsights = () => {
     setTimeout(() => {
       setIsLoading(false);
       
-      // Calculate how many users will be migrated
-      const sapUsers = Math.round(currentEnterprise.analysis.employees * currentEnterprise.analysis.sapUserRate);
-      const totalUsers = sapUsers;
+      // Calculate how many endpoints will be managed
+      const totalEndpoints = Math.round(currentEnterprise.analysis.employees * currentEnterprise.analysis.endpointRate);
       
       // Calculate annual savings based on system type and complexity
       let efficiencyFactor = 0;
@@ -324,10 +323,10 @@ const MigrationInsights = () => {
       const annualSavings = Math.round(currentEnterprise.operationalAssessment.annualCost * selectedSystem.efficiency * efficiencyFactor);
       
       // Calculate costs and savings
-      const migrationCost = Math.round(totalUsers * 750 + 100000); // $750 per user plus $100k base cost
+      const implementationCost = Math.round(totalEndpoints * 450 + 150000); // $450 per endpoint plus $150k base cost
       const operationalSavings = Math.round(currentEnterprise.operationalAssessment.annualMaintenance * 0.85); // 85% maintenance cost reduction
-      const paybackPeriod = parseFloat(((migrationCost) / (annualSavings + operationalSavings)).toFixed(1));
-      const roi = parseFloat((((annualSavings + operationalSavings) * 3 - migrationCost) / migrationCost * 100).toFixed(1)); // 3-year ROI
+      const paybackPeriod = parseFloat(((implementationCost) / (annualSavings + operationalSavings)).toFixed(1));
+      const roi = parseFloat((((annualSavings + operationalSavings) * 3 - implementationCost) / implementationCost * 100).toFixed(1)); // 3-year ROI
       
       // Generate monthly savings data based on implementation phases
       const monthlySavingsRamp = [0.05, 0.10, 0.20, 0.30, 0.45, 0.60, 0.75, 0.90, 1.0, 1.0, 1.0, 1.0];
@@ -346,16 +345,16 @@ const MigrationInsights = () => {
         { month: 'Dec', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[11]) }
       ];
       
-      // Update the current enterprise with migration potential data
+      // Update the current enterprise with security potential data
       const updatedEnterprises = [...enterprises];
       updatedEnterprises[currentEnterpriseIndex] = {
         ...currentEnterprise,
-        migrationPotential: {
+        securityPotential: {
           calculated: true,
-          totalUsers,
+          totalEndpoints,
           selectedSystemType: selectedSystem.id,
           annualSavings,
-          migrationCost,
+          implementationCost,
           operationalSavings,
           paybackPeriod,
           roi,
@@ -364,7 +363,76 @@ const MigrationInsights = () => {
       };
       
       setEnterprises(updatedEnterprises);
-      toast.success('SAP migration potential calculation complete');
+      toast.success('MSP security potential calculation complete');
+    }, 2000);
+  };
+
+  const calculateSecurityPotential = () => {
+    setIsLoading(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      
+      // Calculate how many endpoints will be managed
+      const totalEndpoints = Math.round(currentEnterprise.analysis.employees * currentEnterprise.analysis.endpointRate);
+      
+      // Calculate annual savings based on Pro Cloud's cyberGUARD system type and CMMC complexity
+      let efficiencyFactor = 0;
+      if (currentEnterprise.industry.includes("Defense") || currentEnterprise.industry.includes("Aerospace")) {
+        efficiencyFactor = 0.78; // Higher savings for defense contractors due to CMMC optimization
+      } else if (currentEnterprise.industry.includes("Government") || currentEnterprise.industry.includes("Federal")) {
+        efficiencyFactor = 0.82; // Government efficiency gains
+      } else if (currentEnterprise.industry.includes("Manufacturing")) {
+        efficiencyFactor = 0.75; // Manufacturing efficiency
+      } else {
+        efficiencyFactor = 0.70; // Default
+      }
+      
+      const annualSavings = Math.round(currentEnterprise.operationalAssessment.annualCost * selectedSystem.efficiency * efficiencyFactor);
+      
+      // Calculate costs and savings for Pro Cloud's cyberGUARD implementation
+      const implementationCost = Math.round(totalEndpoints * 520 + 275000); // $520 per endpoint plus $275k base cost for CMMC setup
+      const operationalSavings = Math.round(currentEnterprise.operationalAssessment.annualMaintenance * 0.88); // 88% maintenance cost reduction through cyberGUARD automation
+      const paybackPeriod = parseFloat(((implementationCost) / (annualSavings + operationalSavings)).toFixed(1));
+      const roi = parseFloat((((annualSavings + operationalSavings) * 3 - implementationCost) / implementationCost * 100).toFixed(1)); // 3-year ROI
+      
+      // Generate monthly savings data based on cyberGUARD implementation phases
+      const monthlySavingsRamp = [0.08, 0.15, 0.28, 0.45, 0.62, 0.78, 0.88, 0.95, 1.0, 1.0, 1.0, 1.0];
+      const monthlySavings = [
+        { month: 'Jan', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[0]) },
+        { month: 'Feb', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[1]) },
+        { month: 'Mar', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[2]) },
+        { month: 'Apr', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[3]) },
+        { month: 'May', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[4]) },
+        { month: 'Jun', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[5]) },
+        { month: 'Jul', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[6]) },
+        { month: 'Aug', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[7]) },
+        { month: 'Sep', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[8]) },
+        { month: 'Oct', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[9]) },
+        { month: 'Nov', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[10]) },
+        { month: 'Dec', savings: Math.round((annualSavings / 12) * monthlySavingsRamp[11]) }
+      ];
+      
+      // Update the current enterprise with security potential data
+      const updatedEnterprises = [...enterprises];
+      updatedEnterprises[currentEnterpriseIndex] = {
+        ...currentEnterprise,
+        securityPotential: {
+          calculated: true,
+          totalEndpoints,
+          selectedSystemType: selectedSystem.id,
+          annualSavings,
+          implementationCost,
+          operationalSavings,
+          paybackPeriod,
+          roi,
+          monthlySavings
+        }
+      };
+      
+      setEnterprises(updatedEnterprises);
+      toast.success('Pro Cloud cyberGUARD potential calculation complete');
     }, 2000);
   };
 
@@ -389,16 +457,16 @@ const MigrationInsights = () => {
     setSelectedSystemType(systemId);
     
     // If we already have calculations, recalculate with the new system type
-    if (currentEnterprise.migrationPotential.calculated) {
-      calculateMigrationPotential();
+    if (currentEnterprise.securityPotential.calculated) {
+      calculateSecurityPotential();
     }
   };
 
-  // Calculate percentage of costs that can be reduced by SAP cloud migration
+  // Calculate percentage of costs that can be reduced by MSP security services
   const calculateCostReduction = () => {
-    if (!currentEnterprise.migrationPotential.calculated) return 0;
+    if (!currentEnterprise.securityPotential.calculated) return 0;
     
-    return Math.min(100, Math.round(((currentEnterprise.migrationPotential.annualSavings + currentEnterprise.migrationPotential.operationalSavings) / (currentEnterprise.operationalAssessment.annualCost + currentEnterprise.operationalAssessment.annualMaintenance)) * 100));
+    return Math.min(100, Math.round(((currentEnterprise.securityPotential.annualSavings + currentEnterprise.securityPotential.operationalSavings) / (currentEnterprise.operationalAssessment.annualCost + currentEnterprise.operationalAssessment.annualMaintenance)) * 100));
   };
 
   // Data for the cost reduction pie chart
@@ -654,14 +722,14 @@ const MigrationInsights = () => {
           </div>
 
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-white mb-2">Calculating SAP Migration Potential</h2>
-            <p className="text-gray-400 mb-8">Analyzing system complexity and operational cost optimization...</p>
+            <h2 className="text-2xl font-bold text-white mb-2">Calculating MSP Security Optimization Potential</h2>
+            <p className="text-white/60">Analyzing your current security infrastructure and optimization opportunities...</p>
             
             {/* Progress bars */}
             <div className="w-full space-y-6">
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="text-gray-300">Analyzing system architecture</span>
+                  <span className="text-gray-300">Calculating security optimization requirements</span>
                   <span className="text-emerald-500 font-medium">100%</span>
                 </div>
                 <div className="h-2 bg-black/30 rounded-full overflow-hidden">
@@ -721,7 +789,7 @@ const MigrationInsights = () => {
             <div className="flex items-center gap-3">
               <MdOutlineStorage size={28} className="text-emerald-500" />
               <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                SAP Migration Potential
+                Pro Cloud cyberGUARD Migration Potential
               </h1>
             </div>
           </div>
@@ -748,48 +816,48 @@ const MigrationInsights = () => {
                   <div className="loading loading-spinner loading-lg text-emerald-500 relative"></div>
                 </div>
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-500 to-green-500 bg-clip-text text-transparent mb-4">
-                  Calculating Migration Potential
+                  Calculating Pro Cloud cyberGUARD Optimization Potential
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-center max-w-md mb-8">
-                  Our AI is analyzing system architecture, database complexity, and operational costs to determine optimal SAP migration strategy...
+                  Our AI is analyzing your current security infrastructure and CMMC compliance requirements to determine optimal Pro Cloud migration strategy...
                 </p>
                 <div className="w-full max-w-md space-y-6">
                   <div>
                     <div className="flex justify-between mb-2">
-                      <span className="text-gray-700 dark:text-gray-300">Analyzing system architecture</span>
+                      <span className="text-gray-300">Calculating cyberGUARD optimization requirements</span>
                       <span className="text-emerald-500 font-medium">100%</span>
                     </div>
-                    <div className="h-2 bg-gray-200 dark:bg-[#1e222b] rounded-full overflow-hidden">
-                      <div className="h-full w-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full"></div>
+                    <div className="h-2 bg-black/30 rounded-full overflow-hidden">
+                      <div className="h-full w-full bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></div>
                     </div>
                   </div>
                   
                   <div>
                     <div className="flex justify-between mb-2">
-                      <span className="text-gray-700 dark:text-gray-300">Evaluating databases</span>
+                      <span className="text-gray-300">Evaluating CMMC compliance gaps</span>
                       <span className="text-emerald-500 font-medium">95%</span>
                     </div>
-                    <div className="h-2 bg-gray-200 dark:bg-[#1e222b] rounded-full overflow-hidden">
-                      <div className="h-full w-[95%] bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full"></div>
+                    <div className="h-2 bg-black/30 rounded-full overflow-hidden">
+                      <div className="h-full w-[95%] bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></div>
                     </div>
                   </div>
                   
                   <div>
                     <div className="flex justify-between mb-2">
-                      <span className="text-gray-700 dark:text-gray-300">Calculating migration requirements</span>
+                      <span className="text-gray-300">Calculating cyberGUARD migration requirements</span>
                       <span className="text-emerald-500 font-medium">80%</span>
                     </div>
-                    <div className="h-2 bg-gray-200 dark:bg-[#1e222b] rounded-full overflow-hidden">
-                      <div className="h-full w-[80%] bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full"></div>
+                    <div className="h-2 bg-black/30 rounded-full overflow-hidden">
+                      <div className="h-full w-[80%] bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></div>
                     </div>
                   </div>
                   
                   <div>
                     <div className="flex justify-between mb-2">
-                      <span className="text-gray-700 dark:text-gray-300">Estimating cost savings</span>
+                      <span className="text-gray-300">Estimating cost savings with Pro Cloud</span>
                       <span className="text-green-500 font-medium">60%</span>
                     </div>
-                    <div className="h-2 bg-gray-200 dark:bg-[#1e222b] rounded-full overflow-hidden">
+                    <div className="h-2 bg-black/30 rounded-full overflow-hidden">
                       <div className="h-full w-[60%] bg-gradient-to-r from-emerald-500 to-green-500 rounded-full"></div>
                     </div>
                   </div>
@@ -806,7 +874,7 @@ const MigrationInsights = () => {
                   <div className="absolute inset-0">
                     <img 
                       src="/images/SAP/9f8d193c67c44ea39fb7ebbbc251526f.jpg" 
-                      alt="Implementation Details" 
+                      alt="cyberGUARD Implementation Details" 
                       className="w-full h-full object-cover object-center"
                     />
                     {/* Stronger vignette overlay */}
@@ -821,26 +889,26 @@ const MigrationInsights = () => {
                         <div className="bg-gradient-to-br from-emerald-500 to-green-500 p-3 rounded-xl shadow-lg">
                           <FaServer className="text-lg text-white" />
                         </div>
-                        <h3 className="text-lg font-bold text-white">Implementation Details</h3>
+                        <h3 className="text-lg font-bold text-white">cyberGUARD Implementation</h3>
                       </div>
                     </div>
                     
                     <div className="space-y-3 bg-black/30 rounded-2xl p-5 border border-white/10">
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
-                        <span className="text-sm text-gray-300">System Scale</span>
-                        <span className="text-sm font-semibold text-white">1,250 users</span>
+                        <span className="text-sm text-gray-300">Defense Endpoints</span>
+                        <span className="text-sm font-semibold text-white">2,850 endpoints</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
-                        <span className="text-sm text-gray-300">Implementation Time</span>
-                        <span className="text-sm font-semibold text-white">9 months</span>
+                        <span className="text-sm text-gray-300">CMMC Compliance</span>
+                        <span className="text-sm font-semibold text-white">Level 2 Ready</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
-                        <span className="text-sm text-gray-300">User Cost</span>
-                        <span className="text-sm font-semibold text-white">$95/user</span>
+                        <span className="text-sm text-gray-300">Endpoint Cost</span>
+                        <span className="text-sm font-semibold text-white">$110/endpoint</span>
                       </div>
                       <div className="flex justify-between items-center py-2">
-                        <span className="text-sm text-gray-300">Migration Cost</span>
-                        <span className="text-sm font-semibold text-white">$875,000</span>
+                        <span className="text-sm text-gray-300">Implementation</span>
+                        <span className="text-sm font-semibold text-white">$2,125,000</span>
                       </div>
                     </div>
                   </div>
@@ -867,38 +935,38 @@ const MigrationInsights = () => {
                         <div className="bg-gradient-to-br from-green-500 to-emerald-500 p-3 rounded-xl shadow-lg">
                           <FaMoneyBillWave className="text-lg text-white" />
                         </div>
-                        <h3 className="text-lg font-bold text-white">Financial Benefits</h3>
+                        <h3 className="text-lg font-bold text-white">Pro Cloud Savings</h3>
                       </div>
                     </div>
                     
                     <div className="space-y-3 bg-black/30 rounded-2xl p-5 border border-white/10">
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
                         <span className="text-sm text-gray-300">Annual Savings</span>
-                        <span className="text-sm font-semibold text-white">$894,250</span>
+                        <span className="text-sm font-semibold text-white">$2,850,000</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
                         <span className="text-sm text-gray-300">Monthly Savings</span>
-                        <span className="text-sm font-semibold text-white">$74,520</span>
+                        <span className="text-sm font-semibold text-white">$237,500</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
                         <span className="text-sm text-gray-300">First Year</span>
-                        <span className="text-sm font-semibold text-white">$570,500</span>
+                        <span className="text-sm font-semibold text-white">$2,135,000</span>
                       </div>
                       <div className="flex justify-between items-center py-2">
-                        <span className="text-sm text-gray-300">Cloud Incentives</span>
-                        <span className="text-sm font-semibold text-white">$125,000</span>
+                        <span className="text-sm text-gray-300">CMMC Incentives</span>
+                        <span className="text-sm font-semibold text-white">$185,000</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Migration Assessment Card */}
+                {/* Security Assessment Card */}
                 <div className="relative h-[400px] overflow-hidden rounded-3xl">
                   {/* Full-width image container */}
                   <div className="absolute inset-0">
                     <img 
                       src="/images/SAP/d2e31c8edf938cb0e91610502f699f6c.jpg" 
-                      alt="Migration Assessment" 
+                      alt="Security Assessment" 
                       className="w-full h-full object-cover object-center"
                     />
                     {/* Stronger vignette overlay */}
@@ -913,38 +981,38 @@ const MigrationInsights = () => {
                         <div className="bg-gradient-to-br from-emerald-500 to-green-500 p-3 rounded-xl shadow-lg">
                           <MdOutlineBusiness className="text-lg text-white" />
                         </div>
-                        <h3 className="text-lg font-bold text-white">Migration Assessment</h3>
+                        <h3 className="text-lg font-bold text-white">Defense Contractor Assessment</h3>
                       </div>
                     </div>
                     
                     <div className="space-y-3 bg-black/30 rounded-2xl p-5 border border-white/10">
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
                         <span className="text-sm text-gray-300">Current System</span>
-                        <span className="text-sm font-semibold text-white">SAP ECC 6.0</span>
+                        <span className="text-sm font-semibold text-white">Legacy On-Premises</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
                         <span className="text-sm text-gray-300">Target System</span>
-                        <span className="text-sm font-semibold text-white">SAP S/4HANA Cloud</span>
+                        <span className="text-sm font-semibold text-white">Pro Cloud cyberGUARD</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
-                        <span className="text-sm text-gray-300">Complexity Level</span>
-                        <span className="text-sm font-semibold text-white">Medium-High</span>
+                        <span className="text-sm text-gray-300">CMMC Readiness</span>
+                        <span className="text-sm font-semibold text-white">Level 2 Compliant</span>
                       </div>
                       <div className="flex justify-between items-center py-2">
                         <span className="text-sm text-gray-300">Cost Reduction</span>
-                        <span className="text-sm font-semibold text-white">73.5%</span>
+                        <span className="text-sm font-semibold text-white">78.5%</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Technical Details Card */}
+                {/* Physical Security Integration Card */}
                 <div className="relative h-[400px] overflow-hidden rounded-3xl">
                   {/* Full-width image container with increased right offset */}
                   <div className="absolute inset-0 translate-x-[20%]">
                     <img 
                       src="/images/SAP/ef752e7a0381c7ef856d5c4b3b627c13.jpg" 
-                      alt="Technical Details" 
+                      alt="Physical Security Integration" 
                       className="w-[115%] h-full object-cover object-left scale-95"
                     />
                     {/* Simple gradient overlay */}
@@ -959,26 +1027,26 @@ const MigrationInsights = () => {
                         <div className="bg-gradient-to-br from-emerald-500 to-green-500 p-3 rounded-xl shadow-lg">
                           <FaDatabase className="text-lg text-white" />
                         </div>
-                        <h3 className="text-lg font-bold text-white">Technical Details</h3>
+                        <h3 className="text-lg font-bold text-white">Physical Security Integration</h3>
                       </div>
                     </div>
                     
                     <div className="space-y-3 bg-black/30 rounded-2xl p-5 border border-white/10">
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
-                        <span className="text-sm text-gray-300">Server Count</span>
-                        <span className="text-sm font-semibold text-white">42 servers</span>
+                        <span className="text-sm text-gray-300">Access Control</span>
+                        <span className="text-sm font-semibold text-white">SaaS-based</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
-                        <span className="text-sm text-gray-300">Database Count</span>
-                        <span className="text-sm font-semibold text-white">18 databases</span>
+                        <span className="text-sm text-gray-300">Integration Points</span>
+                        <span className="text-sm font-semibold text-white">24 systems</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-white/20">
-                        <span className="text-sm text-gray-300">Maintenance Hours</span>
-                        <span className="text-sm font-semibold text-white">12,800 hrs/yr</span>
+                        <span className="text-sm text-gray-300">Compliance</span>
+                        <span className="text-sm font-semibold text-white">UL 294, SOC2</span>
                       </div>
                       <div className="flex justify-between items-center py-2">
-                        <span className="text-sm text-gray-300">Data Efficiency</span>
-                        <span className="text-sm font-semibold text-white">86% improved</span>
+                        <span className="text-sm text-gray-300">Efficiency Gain</span>
+                        <span className="text-sm font-semibold text-white">92% improved</span>
                       </div>
                     </div>
                   </div>
@@ -987,26 +1055,26 @@ const MigrationInsights = () => {
 
               {/* Remove the Solar Window Integration section and replace with Statistics Visualization */}
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">SAP Migration Analytics</h2>
+                <h2 className="text-2xl font-semibold mb-4">Pro Cloud cyberGUARD Migration Analytics</h2>
                 <div className="bg-white dark:bg-[#1e222b]/50 rounded-xl shadow-lg backdrop-blur-lg border border-white/10 overflow-hidden">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-                    {/* Left side - Radar chart for system complexity */}
+                    {/* Left side - Radar chart for security complexity */}
                     <div className="bg-[#1e222b]/70 rounded-xl p-6 h-[500px]">
-                      <h3 className="text-lg font-semibold text-white mb-4">System Complexity Analysis</h3>
+                      <h3 className="text-lg font-semibold text-white mb-4">Defense Contractor Security Analysis</h3>
                       <ResponsiveContainer width="100%" height="85%">
                         <RadarChart outerRadius={150} data={[
-                          { subject: 'Database Size', A: 120, B: 110, fullMark: 150 },
-                          { subject: 'Custom Code', A: 98, B: 130, fullMark: 150 },
-                          { subject: 'Interfaces', A: 86, B: 130, fullMark: 150 },
-                          { subject: 'User Count', A: 99, B: 100, fullMark: 150 },
-                          { subject: 'Transactions', A: 85, B: 90, fullMark: 150 },
-                          { subject: 'Modules', A: 65, B: 85, fullMark: 150 },
+                          { subject: 'Endpoint Scale', A: 120, B: 110, fullMark: 150 },
+                          { subject: 'Service Integration', A: 98, B: 130, fullMark: 150 },
+                          { subject: 'Network Complexity', A: 86, B: 130, fullMark: 150 },
+                          { subject: 'User Management', A: 99, B: 100, fullMark: 150 },
+                          { subject: 'Support Volume', A: 85, B: 90, fullMark: 150 },
+                          { subject: 'Service Modules', A: 65, B: 85, fullMark: 150 },
                         ]}>
                           <PolarGrid stroke="rgba(255,255,255,0.1)" />
                           <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8' }} />
                           <PolarRadiusAxis angle={30} domain={[0, 150]} tick={{ fill: '#94a3b8' }} />
-                          <Radar name="Legacy System" dataKey="A" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
-                          <Radar name="S/4HANA Cloud" dataKey="B" stroke="#10b981" fill="#10b981" fillOpacity={0.3} />
+                          <Radar name="In-House IT" dataKey="A" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
+                          <Radar name="MSP Services" dataKey="B" stroke="#10b981" fill="#10b981" fillOpacity={0.3} />
                           <Legend />
                         </RadarChart>
                       </ResponsiveContainer>
@@ -1044,11 +1112,11 @@ const MigrationInsights = () => {
                               <stop offset="95%" stopColor="#10b981" stopOpacity={0.2}/>
                             </linearGradient>
                           </defs>
-                          <Area type="monotone" dataKey="legacy" name="Legacy System" stroke="#ef4444" fill="url(#legacyGradient)" />
-                          <Area type="monotone" dataKey="cloud" name="S/4HANA Cloud" stroke="#10b981" fill="url(#cloudGradient)" />
+                          <Area type="monotone" dataKey="legacy" name="In-House IT" stroke="#ef4444" fill="url(#legacyGradient)" />
+                          <Area type="monotone" dataKey="cloud" name="MSP Services" stroke="#10b981" fill="url(#cloudGradient)" />
                         </AreaChart>
                       </ResponsiveContainer>
-                          </div>
+                    </div>
 
                     {/* Bottom row with statistics */}
                     <div className="col-span-1 md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -1084,9 +1152,9 @@ const MigrationInsights = () => {
                   <div className="flex flex-col md:flex-row md:space-x-6">
                     <div className="flex-1">
                       <div className="mb-4">
-                        <h3 className="text-lg font-medium mb-2">SAP Cloud Cost Savings ($)</h3>
+                        <h3 className="text-lg font-medium mb-2">MSP Service Cost Savings ($)</h3>
                         <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                          Based on implementation timeline, infrastructure consolidation, and maintenance reductions
+                          Based on implementation timeline, service consolidation, and support reductions
                         </p>
                       </div>
                       
@@ -1216,10 +1284,10 @@ const MigrationInsights = () => {
                       <div className="mb-6">
                         <h3 className="text-lg font-medium mb-2">Savings vs. Costs</h3>
                         <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                          Your cloud migration will save 73.5% of your operational costs
+                          Your MSP migration will save 73.5% of your operational costs
                         </p>
                         
-                        {/* SAP Savings visualization - Update to green */}
+                        {/* MSP Savings visualization - Update to green */}
                         <div className="relative h-36 bg-gray-100 dark:bg-[#1e222b] rounded-lg overflow-hidden mt-4">
                           <div className="absolute inset-0 flex items-end">
                             <div 
@@ -1227,7 +1295,7 @@ const MigrationInsights = () => {
                               style={{ borderTopRightRadius: '100px' }}
                             >
                               <div className="absolute top-2 left-4 text-white text-sm font-medium drop-shadow-md">
-                                Cloud Savings
+                                MSP Savings
                               </div>
                               <div className="absolute bottom-2 left-4 text-white text-sm font-medium drop-shadow-md">
                                 73.5%
@@ -1235,7 +1303,7 @@ const MigrationInsights = () => {
                             </div>
                           </div>
                           <div className="absolute top-2 right-4 text-gray-600 dark:text-gray-300 text-sm font-medium">
-                            Legacy Costs
+                            In-House Costs
                           </div>
                           <div className="absolute bottom-2 right-4 text-gray-600 dark:text-gray-300 text-sm font-medium">
                             26.5%
@@ -1248,19 +1316,19 @@ const MigrationInsights = () => {
                         <ul className="text-sm space-y-2">
                           <li className="flex items-center">
                             <div className="h-2 w-2 rounded-full bg-emerald-500 mr-2"></div>
-                            <span>System efficiency: 75%</span>
+                            <span>Service efficiency: 75%</span>
                           </li>
                           <li className="flex items-center">
                             <div className="h-2 w-2 rounded-full bg-emerald-500 mr-2"></div>
-                            <span>User count: 1,250</span>
+                            <span>Endpoint count: 1,250</span>
                           </li>
                           <li className="flex items-center">
                             <div className="h-2 w-2 rounded-full bg-emerald-500 mr-2"></div>
-                            <span>Server reduction: 84%</span>
+                            <span>Support reduction: 84%</span>
                           </li>
                           <li className="flex items-center">
                             <div className="h-2 w-2 rounded-full bg-emerald-500 mr-2"></div>
-                            <span>Support cost: -65%/yr</span>
+                            <span>Management cost: -65%/yr</span>
                           </li>
                         </ul>
                       </div>
@@ -1268,8 +1336,8 @@ const MigrationInsights = () => {
                       <div className="mt-4 p-3 bg-gray-100 dark:bg-[#1e222b]/40 rounded-lg border-l-4 border-emerald-500">
                         <div className="text-xs text-gray-500 dark:text-gray-400">
                           <span className="font-medium">Note:</span> Savings estimates reflect typical 
-                          operational year data. Actual results may vary based on system performance,
-                          user count, and other factors.
+                          operational year data. Actual results may vary based on service performance,
+                          endpoint count, and other factors.
                         </div>
                       </div>
                     </div>
@@ -1300,10 +1368,10 @@ const MigrationInsights = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold bg-gradient-to-r from-emerald-500 to-green-600 bg-clip-text text-transparent">
-                        Migration Timeline
+                        MSP Migration Timeline
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 mt-2">
-                        Comprehensive timeline for the SAP S/4HANA cloud migration process (9 months)
+                        Comprehensive timeline for the MSP service migration process (6 months)
                       </p>
                     </div>
                   </div>
@@ -1314,7 +1382,7 @@ const MigrationInsights = () => {
                       <div className="flex border-b border-gray-200 dark:border-[#1e222b] pb-2 mb-4">
                         <div className="w-56 flex-shrink-0 font-semibold">Project Phase</div>
                         <div className="flex-1 flex">
-                          {Array.from({ length: 9 }).map((_, i) => (
+                          {Array.from({ length: 6 }).map((_, i) => (
                             <div key={i} className="flex-1 text-center text-sm font-medium">
                               Month {i + 1}
                             </div>
@@ -1328,15 +1396,15 @@ const MigrationInsights = () => {
                         <div className="flex items-center">
                           <div className="w-56 flex-shrink-0 pr-4">
                             <div className="font-semibold mb-1">Initial Assessment</div>
-                            <div className="text-xs text-gray-500">4-6 weeks</div>
+                            <div className="text-xs text-gray-500">3-4 weeks</div>
                           </div>
                           <div className="flex-1 relative h-12">
                             <div 
                               className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-400 to-green-500 rounded-md"
-                              style={{ width: '18%' }}
+                              style={{ width: '20%' }}
                             >
                               <div className="absolute inset-0 flex items-center justify-center text-xs font-medium text-white px-2">
-                                System Assessment & Analysis
+                                Service Requirements & Analysis
                               </div>
                             </div>
                           </div>
@@ -1345,16 +1413,16 @@ const MigrationInsights = () => {
                         {/* Strategy & Planning */}
                         <div className="flex items-center">
                           <div className="w-56 flex-shrink-0 pr-4">
-                            <div className="font-semibold mb-1">Strategy & Planning</div>
-                            <div className="text-xs text-gray-500">4-8 weeks</div>
+                            <div className="font-semibold mb-1">Service Planning</div>
+                            <div className="text-xs text-gray-500">3-4 weeks</div>
                           </div>
                           <div className="flex-1 relative h-12">
                             <div 
-                              className="absolute top-0 left-[12%] h-full bg-gradient-to-r from-emerald-400 to-green-500 rounded-md opacity-90"
-                              style={{ width: '22%' }}
+                              className="absolute top-0 left-[15%] h-full bg-gradient-to-r from-emerald-400 to-green-500 rounded-md opacity-90"
+                              style={{ width: '25%' }}
                             >
                               <div className="absolute inset-0 flex items-center justify-center text-xs font-medium text-white px-2">
-                                Solution Design & Roadmap
+                                Service Design & Implementation Plan
                               </div>
                             </div>
                           </div>
@@ -1363,16 +1431,16 @@ const MigrationInsights = () => {
                         {/* Development Environment */}
                         <div className="flex items-center">
                           <div className="w-56 flex-shrink-0 pr-4">
-                            <div className="font-semibold mb-1">Development Environment</div>
-                            <div className="text-xs text-gray-500">4-6 weeks</div>
+                            <div className="font-semibold mb-1">Infrastructure Setup</div>
+                            <div className="text-xs text-gray-500">2-3 weeks</div>
                           </div>
                           <div className="flex-1 relative h-12">
                             <div 
-                              className="absolute top-0 left-[25%] h-full bg-gradient-to-r from-emerald-400 to-green-500 rounded-md opacity-80"
-                              style={{ width: '22%' }}
+                              className="absolute top-0 left-[35%] h-full bg-gradient-to-r from-emerald-400 to-green-500 rounded-md opacity-80"
+                              style={{ width: '20%' }}
                             >
                               <div className="absolute inset-0 flex items-center justify-center text-xs font-medium text-white px-2">
-                                Environment Setup & Configuration
+                                MSP Infrastructure & Configuration
                               </div>
                             </div>
                           </div>
@@ -1462,7 +1530,7 @@ const MigrationInsights = () => {
                             </li>
                             <li className="flex items-center gap-2">
                               <div className="h-2 w-2 rounded-full bg-emerald-500 opacity-80"></div>
-                              <span>Design Approval</span>
+                              <span>Service Plan Approval</span>
                             </li>
                             <li className="flex items-center gap-2">
                               <div className="h-2 w-2 rounded-full bg-emerald-500 opacity-90"></div>
@@ -1470,7 +1538,7 @@ const MigrationInsights = () => {
                             </li>
                             <li className="flex items-center gap-2">
                               <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
-                              <span>System Operational</span>
+                              <span>Services Operational</span>
                             </li>
                           </ul>
                         </div>
@@ -1543,7 +1611,7 @@ const MigrationInsights = () => {
                   {/* Gradient orbs */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/10 to-transparent rounded-bl-full"></div>
                   
-                  <span className="relative z-10 text-lg">Continue to Email Automation</span>
+                  <span className="relative z-10 text-lg">Continue to MSP Outreach</span>
                   <MdArrowForward className="relative z-10 text-2xl group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>
@@ -1559,8 +1627,8 @@ const MigrationInsights = () => {
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-4">Next Steps</h3>
                       <p className="text-white/90 text-lg leading-relaxed">
-                        Based on our comprehensive analysis, this enterprise is an excellent candidate for cloud migration. 
-                        The next step is to reach out to the enterprise manager to discuss this opportunity and schedule a site visit.
+                        Based on our comprehensive analysis, this enterprise is an excellent candidate for MSP migration. 
+                        The next step is to reach out to the enterprise manager to discuss this opportunity and schedule a consultation.
                       </p>
                     </div>
                   </div>
@@ -1583,4 +1651,4 @@ const MigrationInsights = () => {
   );
 };
 
-export default MigrationInsights; 
+export default SecurityInsights; 

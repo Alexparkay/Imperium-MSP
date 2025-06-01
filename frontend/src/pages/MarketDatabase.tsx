@@ -54,33 +54,107 @@ import {
   MdOutlineDataUsage,
   MdBusinessCenter,
   MdOutlineStarOutline,
+  MdSecurity,
+  MdShield,
+  MdVpnKey,
+  MdAccountBalance,
+  MdTrendingDown,
+  MdPeople,
+  MdMonetizationOn,
+  MdVerifiedUser,
+  MdBusiness,
+  MdPublic,
+  MdWorkspacePremium,
 } from 'react-icons/md';
 import { toast } from 'react-hot-toast';
 import { FaLinkedin, FaFilter } from 'react-icons/fa';
 
-// Add company types
-const companyTypes = [
-  "Manufacturing", 
-  "Distribution", 
-  "Retail", 
-  "Professional Services", 
-  "Healthcare", 
-  "Financial Services", 
-  "Public Sector", 
-  "Utilities", 
-  "Education", 
-  "Hospitality"
+// Cybersecurity/MSP focused filter options - streamlined for higher ROI
+const regions = [
+  "North America", "Europe", "Asia Pacific", "United States", "Canada", "United Kingdom"
 ];
+
+const cyberTechStacks = [
+  "Microsoft 365 Defender", "CrowdStrike Falcon", "SentinelOne", "Palo Alto Networks",
+  "Fortinet FortiGate", "Cisco Security", "Splunk", "Microsoft Sentinel", "Okta", "CyberArk"
+];
+
+const industries = [
+  "Financial Services", "Healthcare", "Manufacturing", "Technology", "Government", 
+  "Energy & Utilities", "Professional Services", "Education"
+];
+
+const revenueRanges = [
+  "$10M - $50M", "$50M - $100M", "$100M - $500M", "$500M - $1B", "Over $1B"
+];
+
+const employeeCountRanges = [
+  "50-200 employees", "200-500 employees", "500-1,000 employees",
+  "1,000-5,000 employees", "5,000+ employees"
+];
+
+const headcountGrowthRanges = [
+  "Stable (0-5% growth)", "Growing (5-15% growth)", "Fast Growing (15%+ growth)"
+];
+
+const fundingStages = [
+  "Bootstrapped", "Series A", "Series B", "Series C+", "IPO", "Private Equity"
+];
+
+const complianceFrameworks = [
+  "SOC 2 Type II", "ISO 27001", "HIPAA", "PCI DSS", "NIST Framework"
+];
+
+const securityMaturityLevels = [
+  "Basic (Email Security)", "Standard (EDR + Email)", "Advanced (SIEM + SOC)", "Enterprise (Full Stack)"
+];
+
+// Define filter interface - simplified
+interface FilterState {
+  companyName: string;
+  region: string;
+  industry: string;
+  employeeCount: string;
+  revenue: string;
+  headcountGrowth: string;
+  fundingStage: string;
+  cyberTechStack: string;
+  hasCISO: boolean;
+  hasInHouseIT: boolean;
+  complianceFramework: string;
+  securityMaturity: string;
+  verifiedEmail: boolean;
+  verifiedPhone: boolean;
+}
 
 const MarketDatabase = () => {
   const navigate = useNavigate();
   const { filters, setFilter, clearFilters, activeFilterCount } = useFilters();
   const [selectedCompanies, setSelectedCompanies] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showDashboard, setShowDashboard] = useState(false); // Change back to false to hide the table initially
+  const [showDashboard, setShowDashboard] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  // Centralized filter state
+  const [filterState, setFilterState] = useState<FilterState>({
+    companyName: '',
+    region: '',
+    industry: '',
+    employeeCount: '',
+    revenue: '',
+    headcountGrowth: '',
+    fundingStage: '',
+    cyberTechStack: '',
+    hasCISO: false,
+    hasInHouseIT: false,
+    complianceFramework: '',
+    securityMaturity: '',
+    verifiedEmail: false,
+    verifiedPhone: false,
+  });
+  
   const [companiesStats, setCompaniesStats] = useState({
-    total: 426000, // Updated back to 426,000 as requested
+    total: 426000,
     filtered: 14, 
     small: 283000,
     medium: 106500,
@@ -91,88 +165,11 @@ const MarketDatabase = () => {
   
   const [pagination, setPagination] = useState({
     currentPage: 1,
-    totalPages: 230, // Make it look like we have many pages
+    totalPages: 230,
     itemsPerPage: 10
   });
 
-  // State options for dropdown
-  const usStates = [
-    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", 
-    "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", 
-    "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", 
-    "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", 
-    "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
-    "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
-  ];
-
-  // Industry/sector options
-  const sectors = [
-    "Manufacturing", "Technology", "Healthcare", "Retail", "Wholesale Distribution", "Energy", 
-    "Financial Services", "Education", "Food & Beverage", "Automotive", "Electronics", 
-    "Pharmaceuticals", "Logistics", "Aerospace", "Telecommunications"
-  ];
-
-  // Revenue ranges
-  const revenueRanges = [
-    "Under $10M annual revenue",
-    "$10M - $50M annual revenue",
-    "$50M - $100M annual revenue", 
-    "$100M - $500M annual revenue",
-    "$500M - $1B annual revenue",
-    "Over $1B annual revenue"
-  ];
-
-  // ERP modules ranges
-  const erpModulesRanges = [
-    "Basic (FI/CO only)",
-    "Standard (FI/CO, MM, SD)",
-    "Advanced (FI/CO, MM, SD, PP, QM)",
-    "Enterprise (Full SAP Suite)"
-  ];
-
-  // Cost ranges for filters
-  const annualSpendRanges = [
-    "Under $100,000",
-    "$100,000 - $250,000",
-    "$250,000 - $500,000",
-    "$500,000 - $1,000,000",
-    "$1,000,000 - $2,500,000",
-    "Over $2,500,000"
-  ];
-
-  const implementationSizeRanges = [
-    "Small (< 50 users)",
-    "Medium (50 - 200 users)",
-    "Large (200 - 500 users)",
-    "Enterprise (> 500 users)"
-  ];
-
-  const dealSizeRanges = [
-    "Under $250,000",
-    "$250,000 - $500,000",
-    "$500,000 - $1,000,000",
-    "$1,000,000 - $2,500,000",
-    "Over $2,500,000"
-  ];
-
-  // Add employee count ranges
-  const employeeCountRanges = [
-    "1-50 employees",
-    "51-200 employees",
-    "201-500 employees",
-    "501-1,000 employees",
-    "1,001-5,000 employees",
-    "5,001-10,000 employees",
-    "10,000+ employees"
-  ];
-
-  // Add employee count filter state
-  const [employeeCountFilter, setEmployeeCountFilter] = useState('');
-  const [companyNameFilter, setCompanyNameFilter] = useState('');
-  const [verifiedEmailFilter, setVerifiedEmailFilter] = useState(false);
-  const [verifiedPhoneFilter, setVerifiedPhoneFilter] = useState(false);
-
-  // Sample company data
+  // Extended sample company data with cyber-relevant fields
   const [companies, setCompanies] = useState([
     {
       id: 2,
@@ -182,10 +179,22 @@ const MarketDatabase = () => {
       emails: true,
       phoneNumbers: true,
       location: "Houston, Texas",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 36000,
-      industry: "Professional Training & Coaching"
+      revenue: "$1B - $5B",
+      industry: "Professional Services",
+      headcountGrowth: "Growing (5-15% growth)",
+      fundingStage: "IPO",
+      cyberTechStack: "Microsoft 365 Defender",
+      hasCISO: true,
+      hasInHouseIT: true,
+      complianceFramework: "SOC 2 Type II",
+      securityMaturity: "Advanced (SIEM + SOC)",
+      recentCyberIncident: false,
+      cloudFirst: true,
+      remoteWorkforce: true
     },
     {
       id: 3,
@@ -195,10 +204,22 @@ const MarketDatabase = () => {
       emails: true,
       phoneNumbers: true,
       location: "Rutherford, New Jersey",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 3400,
-      industry: "Information Services"
+      revenue: "$100M - $500M",
+      industry: "Technology",
+      headcountGrowth: "Fast Growing (15%+ growth)",
+      fundingStage: "Series B",
+      cyberTechStack: "CrowdStrike Falcon",
+      hasCISO: true,
+      hasInHouseIT: true,
+      complianceFramework: "ISO 27001",
+      securityMaturity: "Standard (EDR + Email)",
+      recentCyberIncident: false,
+      cloudFirst: true,
+      remoteWorkforce: true
     },
     {
       id: 4,
@@ -208,10 +229,22 @@ const MarketDatabase = () => {
       emails: true,
       phoneNumbers: true,
       location: "Framingham, Massachusetts",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 1600,
-      industry: "Electrical/Electronic Manufacturing"
+      revenue: "$500M - $1B",
+      industry: "Manufacturing",
+      headcountGrowth: "Stable (0-5% growth)",
+      fundingStage: "IPO",
+      cyberTechStack: "Palo Alto Networks",
+      hasCISO: false,
+      hasInHouseIT: true,
+      complianceFramework: "NIST Framework",
+      securityMaturity: "Standard (EDR + Email)",
+      recentCyberIncident: true,
+      cloudFirst: false,
+      remoteWorkforce: false
     },
     {
       id: 5,
@@ -221,10 +254,22 @@ const MarketDatabase = () => {
       emails: true,
       phoneNumbers: true,
       location: "Watchung, New Jersey",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 48000,
-      industry: "Mechanical Or Industrial Engineering"
+      revenue: "Over $1B",
+      industry: "Manufacturing",
+      headcountGrowth: "Growing (5-15% growth)",
+      fundingStage: "IPO",
+      cyberTechStack: "Fortinet FortiGate",
+      hasCISO: true,
+      hasInHouseIT: true,
+      complianceFramework: "ISO 27001",
+      securityMaturity: "Enterprise (Full Stack)",
+      recentCyberIncident: false,
+      cloudFirst: true,
+      remoteWorkforce: true
     },
     {
       id: 6,
@@ -234,10 +279,19 @@ const MarketDatabase = () => {
       emails: true,
       phoneNumbers: true,
       location: "Denver, Colorado",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 160,
-      industry: "Chemicals - Research"
+      revenue: "$10M - $50M",
+      industry: "Financial Services",
+      headcountGrowth: "Fast Growing (15%+ growth)",
+      fundingStage: "Series A",
+      cyberTechStack: "SentinelOne",
+      hasCISO: false,
+      hasInHouseIT: true,
+      complianceFramework: "SOC 2 Type II",
+      securityMaturity: "Advanced (SIEM + SOC)"
     },
     {
       id: 7,
@@ -247,10 +301,22 @@ const MarketDatabase = () => {
       emails: true,
       phoneNumbers: true,
       location: "Boston, Massachusetts",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 45000,
-      industry: "Insurance - Financial Services"
+      revenue: "Over $5B",
+      industry: "Financial Services",
+      headcountGrowth: "Stable (-5% to +5%)",
+      fundingStage: "No Recent Funding",
+      cyberTechStack: "IBM QRadar",
+      hasCISO: true,
+      hasInHouseIT: true,
+      complianceFramework: "PCI DSS",
+      securityMaturity: "Expert (Full Security Stack)",
+      recentCyberIncident: false,
+      cloudFirst: false,
+      remoteWorkforce: false
     },
     {
       id: 8,
@@ -260,88 +326,160 @@ const MarketDatabase = () => {
       emails: true,
       phoneNumbers: true,
       location: "Farmington, Michigan",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 2600,
-      industry: "Machinery"
+      revenue: "$100M - $500M",
+      industry: "Manufacturing",
+      headcountGrowth: "Growing (5-15% growth)",
+      fundingStage: "Private Equity",
+      cyberTechStack: "Cisco Security",
+      hasCISO: false,
+      hasInHouseIT: true,
+      complianceFramework: "NIST Framework",
+      securityMaturity: "Standard (EDR + Email)"
     },
     {
       id: 9,
       name: "Tayo Oshoei",
-      jobTitle: "Head of Information Technology",
+      jobTitle: "Head of Security and Risk",
       company: "Holcim",
       emails: true,
       phoneNumbers: true,
       location: "Washington, District of Columbia",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 10100,
-      industry: "Building Materials"
+      revenue: "Over $1B",
+      industry: "Manufacturing",
+      headcountGrowth: "Stable (0-5% growth)",
+      fundingStage: "IPO",
+      cyberTechStack: "Microsoft Sentinel",
+      hasCISO: true,
+      hasInHouseIT: true,
+      complianceFramework: "ISO 27001",
+      securityMaturity: "Advanced (SIEM + SOC)"
     },
     {
       id: 10,
       name: "Rahul Chaudhary",
-      jobTitle: "Head of Information Technology",
+      jobTitle: "IT Security Director",
       company: "TEK Inspirations LLC",
       emails: true,
       phoneNumbers: true,
       location: "Frisco, Texas",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 440,
-      industry: "Information Technology & Services"
+      revenue: "$50M - $100M",
+      industry: "Technology",
+      headcountGrowth: "Fast Growing (15%+ growth)",
+      fundingStage: "Series A",
+      cyberTechStack: "Okta",
+      hasCISO: true,
+      hasInHouseIT: true,
+      complianceFramework: "SOC 2 Type II",
+      securityMaturity: "Advanced (SIEM + SOC)"
     },
     {
       id: 11,
       name: "Vidyasagar Gurupalli",
-      jobTitle: "Senior Information Technology Manager",
+      jobTitle: "Senior Cybersecurity Analyst",
       company: "MSRcosmos LLC",
       emails: true,
       phoneNumbers: true,
       location: "United States",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 480,
-      industry: "Information Technology & Services"
+      revenue: "$50M - $100M",
+      industry: "Technology",
+      headcountGrowth: "Growing (5-15% growth)",
+      fundingStage: "Series B",
+      cyberTechStack: "CyberArk",
+      hasCISO: false,
+      hasInHouseIT: true,
+      complianceFramework: "NIST Framework",
+      securityMaturity: "Advanced (SIEM + SOC)"
     },
     {
       id: 12,
       name: "Jose Pastor",
-      jobTitle: "Head of Information Technology",
+      jobTitle: "Chief Information Security Officer",
       company: "MAPFRE",
       emails: true,
       phoneNumbers: true,
       location: "Miami, Florida",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 36000,
-      industry: "Insurance"
+      revenue: "Over $1B",
+      industry: "Financial Services",
+      headcountGrowth: "Stable (0-5% growth)",
+      fundingStage: "IPO",
+      cyberTechStack: "Splunk",
+      hasCISO: true,
+      hasInHouseIT: true,
+      complianceFramework: "PCI DSS",
+      securityMaturity: "Expert (Full Security Stack)",
+      recentCyberIncident: false,
+      cloudFirst: true,
+      remoteWorkforce: false
     },
     {
       id: 13,
       name: "Don Lebert",
-      jobTitle: "Head of IT & Security",
+      jobTitle: "Head of IT Security and Compliance",
       company: "Pinecone",
       emails: true,
       phoneNumbers: true,
       location: "Winterport, Maine",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 150,
-      industry: "Information Technology & Services"
+      revenue: "$10M - $50M",
+      industry: "Technology",
+      headcountGrowth: "Rapidly Growing (30%+)",
+      fundingStage: "Series C+",
+      cyberTechStack: "Okta",
+      hasCISO: false,
+      hasInHouseIT: true,
+      complianceFramework: "SOC 2 Type II",
+      securityMaturity: "Advanced (Zero Trust + AI)",
+      recentCyberIncident: false,
+      cloudFirst: true,
+      remoteWorkforce: true
     },
     {
       id: 14,
       name: "Chris Webster",
-      jobTitle: "Head of IT - Americas",
+      jobTitle: "Director of Cybersecurity - Americas",
       company: "Lendlease",
       emails: true,
       phoneNumbers: true,
       location: "Charlotte, North Carolina",
+      region: "North America",
       enriched: true,
       verified: true,
       employeeCount: 11000,
-      industry: "Real Estate - Construction"
+      revenue: "$1B - $5B",
+      industry: "Real Estate",
+      headcountGrowth: "Growing (5% to 15%)",
+      fundingStage: "IPO",
+      cyberTechStack: "CyberArk",
+      hasCISO: true,
+      hasInHouseIT: true,
+      complianceFramework: "ISO 27001",
+      securityMaturity: "Advanced (Zero Trust + AI)",
+      recentCyberIncident: true,
+      cloudFirst: false,
+      remoteWorkforce: true
     }
   ]);
 
@@ -438,12 +576,6 @@ const MarketDatabase = () => {
     );
   };
 
-  const [activeFilters, setActiveFilters] = useState<{[key: string]: string | boolean}>({});
-  const [stateFilter, setStateFilter] = useState('');
-  const [sectorFilter, setSectorFilter] = useState('');
-  const [revenueFilter, setRevenueFilter] = useState('');
-  const [erpModulesFilter, setErpModulesFilter] = useState('');
-
   // Toggle filter sections
   const toggleSection = (section: string) => {
     if (expandedSection === section) {
@@ -471,34 +603,52 @@ const MarketDatabase = () => {
     // Update the corresponding state variable
     switch (category) {
       case 'companyName':
-        setCompanyNameFilter(value as string);
+        setFilterState(prev => ({ ...prev, companyName: value as string }));
+        break;
+      case 'region':
+        setFilterState(prev => ({ ...prev, region: value as string }));
+        break;
+      case 'industry':
+        setFilterState(prev => ({ ...prev, industry: value as string }));
         break;
       case 'employeeCount':
-        setEmployeeCountFilter(value as string);
-        break;
-      case 'state':
-        setStateFilter(value as string);
-        break;
-      case 'sector':
-        setSectorFilter(value as string);
+        setFilterState(prev => ({ ...prev, employeeCount: value as string }));
         break;
       case 'revenue':
-        setRevenueFilter(value as string);
+        setFilterState(prev => ({ ...prev, revenue: value as string }));
         break;
-      case 'erpModules':
-        setErpModulesFilter(value as string);
+      case 'headcountGrowth':
+        setFilterState(prev => ({ ...prev, headcountGrowth: value as string }));
+        break;
+      case 'fundingStage':
+        setFilterState(prev => ({ ...prev, fundingStage: value as string }));
+        break;
+      case 'cyberTechStack':
+        setFilterState(prev => ({ ...prev, cyberTechStack: value as string }));
+        break;
+      case 'hasCISO':
+        setFilterState(prev => ({ ...prev, hasCISO: value as boolean }));
+        break;
+      case 'hasInHouseIT':
+        setFilterState(prev => ({ ...prev, hasInHouseIT: value as boolean }));
+        break;
+      case 'complianceFramework':
+        setFilterState(prev => ({ ...prev, complianceFramework: value as string }));
+        break;
+      case 'securityMaturity':
+        setFilterState(prev => ({ ...prev, securityMaturity: value as string }));
         break;
       case 'verifiedEmail':
-        setVerifiedEmailFilter(value as boolean);
+        setFilterState(prev => ({ ...prev, verifiedEmail: value as boolean }));
         break;
       case 'verifiedPhone':
-        setVerifiedPhoneFilter(value as boolean);
+        setFilterState(prev => ({ ...prev, verifiedPhone: value as boolean }));
         break;
     }
     
     // Calculate how many filters are applied (excluding empty string filters)
     const activeFilterCount = Object.entries({ 
-      ...activeFilters, 
+      ...filterState, 
       [category]: value 
     }).filter(([_, val]) => {
       if (typeof val === 'string') return val !== '';
@@ -569,14 +719,23 @@ const MarketDatabase = () => {
 
   // Update the clearAllFilters function
   const clearAllFilters = () => {
-    setCompanyNameFilter('');
-    setEmployeeCountFilter('');
-    setStateFilter('');
-    setSectorFilter('');
-    setRevenueFilter('');
-    setErpModulesFilter('');
-    setVerifiedEmailFilter(false);
-    setVerifiedPhoneFilter(false);
+    setFilterState({
+      companyName: '',
+      region: '',
+      industry: '',
+      employeeCount: '',
+      revenue: '',
+      headcountGrowth: '',
+      fundingStage: '',
+      cyberTechStack: '',
+      hasCISO: false,
+      hasInHouseIT: false,
+      complianceFramework: '',
+      securityMaturity: '',
+      verifiedEmail: false,
+      verifiedPhone: false,
+    });
+    
     setActiveFilters({});
     
     // Reset filtered count to total, but keep highPotential fixed at 1964
@@ -609,52 +768,76 @@ const MarketDatabase = () => {
       let searchDescription = filters.companyType;
       
       // Add filter details to the search description
-      if (filters.state) {
-        searchDescription += ` in ${filters.state}`;
+      if (filterState.region) {
+        searchDescription += ` in ${filterState.region}`;
       }
-      if (filters.sector) {
-        searchDescription += ` (${filters.sector} sector)`;
+      if (filterState.industry) {
+        searchDescription += ` (${filterState.industry} industry)`;
       }
-      if (filters.revenue) {
-        searchDescription += ` with ${filters.revenue}`;
+      if (filterState.revenue) {
+        searchDescription += ` with ${filterState.revenue}`;
       }
-      if (filters.erpModules) {
-        searchDescription += ` using ${filters.erpModules}`;
+      if (filterState.cyberTechStack) {
+        searchDescription += ` using ${filterState.cyberTechStack}`;
       }
-      if (filters.showVerifiedOnly) {
+      if (filterState.verifiedEmail || filterState.verifiedPhone) {
         searchDescription += " with verified contacts";
       }
       
       toast.success(`Company data for ${searchDescription} scraped successfully`);
       
-      // Add new companies with required employeeCount and industry properties
+      // Add new companies with all required properties to match the interface
       setCompanies(prev => [
         ...prev,
         {
           id: 15,
-          name: "Company O",
-          jobTitle: "Head of IT",
+          name: "Sarah Johnson",
+          jobTitle: "Head of IT Security",
           company: "Enterprise Corp",
           emails: true,
           phoneNumbers: true,
           location: "Austin, TX",
+          region: "North America",
           enriched: true,
           verified: true,
           employeeCount: 3500,
-          industry: "Technology"
+          revenue: "$100M - $500M",
+          industry: "Technology",
+          headcountGrowth: "Fast Growing (15% to 30%)",
+          fundingStage: "Series B",
+          cyberTechStack: "Microsoft 365 Defender",
+          hasCISO: true,
+          hasInHouseIT: true,
+          complianceFramework: "SOC 2 Type II",
+          securityMaturity: "Advanced (Zero Trust + AI)",
+          recentCyberIncident: false,
+          cloudFirst: true,
+          remoteWorkforce: true
         },
         {
           id: 16,
-          name: "Company P",
-          jobTitle: "Head of IT",
+          name: "Michael Chen",
+          jobTitle: "Director of Information Security",
           company: "Tech Solutions Inc",
           emails: true,
           phoneNumbers: true,
           location: "Chandler, AZ",
+          region: "North America",
           enriched: true,
           verified: true,
           employeeCount: 1200,
-          industry: "Software"
+          revenue: "$50M - $100M",
+          industry: "Technology",
+          headcountGrowth: "Rapidly Growing (30%+)",
+          fundingStage: "Series A",
+          cyberTechStack: "CrowdStrike Falcon",
+          hasCISO: false,
+          hasInHouseIT: true,
+          complianceFramework: "NIST Framework",
+          securityMaturity: "Managed (SIEM + SOC)",
+          recentCyberIncident: false,
+          cloudFirst: true,
+          remoteWorkforce: true
         }
       ]);
       setCompaniesStats(prev => ({
@@ -741,10 +924,94 @@ const MarketDatabase = () => {
     return patterns[Math.floor(Math.random() * patterns.length)];
   };
 
-  // Function to get filtered companies
+  // Function to get filtered companies with proper filtering logic
   const getFilteredCompanies = () => {
-    // Return all companies by default
-    return companies;
+    return companies.filter(company => {
+      // Company name filter
+      if (filterState.companyName && filterState.companyName !== '') {
+        const searchTerm = filterState.companyName.toLowerCase();
+        if (!company.name.toLowerCase().includes(searchTerm) && 
+            !company.company.toLowerCase().includes(searchTerm)) {
+          return false;
+        }
+      }
+
+      // Region filter
+      if (filterState.region && filterState.region !== '') {
+        if (company.region !== filterState.region) {
+          return false;
+        }
+      }
+
+      // Industry filter
+      if (filterState.industry && filterState.industry !== '') {
+        if (company.industry !== filterState.industry) {
+          return false;
+        }
+      }
+
+      // Employee count filter
+      if (filterState.employeeCount && filterState.employeeCount !== '') {
+        const range = filterState.employeeCount;
+        const employeeCount = company.employeeCount;
+        
+        if (range === "50-200 employees" && (employeeCount < 50 || employeeCount > 200)) return false;
+        if (range === "200-500 employees" && (employeeCount < 200 || employeeCount > 500)) return false;
+        if (range === "500-1,000 employees" && (employeeCount < 500 || employeeCount > 1000)) return false;
+        if (range === "1,000-5,000 employees" && (employeeCount < 1000 || employeeCount > 5000)) return false;
+        if (range === "5,000+ employees" && employeeCount < 5000) return false;
+      }
+
+      // Revenue filter
+      if (filterState.revenue && filterState.revenue !== '') {
+        if (company.revenue !== filterState.revenue) {
+          return false;
+        }
+      }
+
+      // Headcount growth filter
+      if (filterState.headcountGrowth && filterState.headcountGrowth !== '') {
+        if (company.headcountGrowth !== filterState.headcountGrowth) {
+          return false;
+        }
+      }
+
+      // Funding stage filter
+      if (filterState.fundingStage && filterState.fundingStage !== '') {
+        if (company.fundingStage !== filterState.fundingStage) {
+          return false;
+        }
+      }
+
+      // Cyber tech stack filter
+      if (filterState.cyberTechStack && filterState.cyberTechStack !== '') {
+        if (company.cyberTechStack !== filterState.cyberTechStack) {
+          return false;
+        }
+      }
+
+      // Compliance framework filter
+      if (filterState.complianceFramework && filterState.complianceFramework !== '') {
+        if (company.complianceFramework !== filterState.complianceFramework) {
+          return false;
+        }
+      }
+
+      // Security maturity filter
+      if (filterState.securityMaturity && filterState.securityMaturity !== '') {
+        if (company.securityMaturity !== filterState.securityMaturity) {
+          return false;
+        }
+      }
+
+      // Boolean filters
+      if (filterState.hasCISO && !company.hasCISO) return false;
+      if (filterState.hasInHouseIT && !company.hasInHouseIT) return false;
+      if (filterState.verifiedEmail && !company.emails) return false;
+      if (filterState.verifiedPhone && !company.phoneNumbers) return false;
+
+      return true;
+    });
   };
 
   // Get filtered companies
@@ -855,7 +1122,7 @@ const MarketDatabase = () => {
       
       // Store current filters to localStorage for persistence
       try {
-        localStorage.setItem('companyFilters', JSON.stringify(filters));
+        localStorage.setItem('companyFilters', JSON.stringify(filterState));
       } catch (error) {
         console.error('Error saving filters to localStorage', error);
       }
@@ -881,17 +1148,17 @@ const MarketDatabase = () => {
       }
       
       // Add filter details to the search description
-      if (filters.state) {
-        searchDescription += ` in ${filters.state}`;
+      if (filterState.region) {
+        searchDescription += ` in ${filterState.region}`;
       }
-      if (filters.sector) {
-        searchDescription += ` (${filters.sector} sector)`;
+      if (filterState.industry) {
+        searchDescription += ` (${filterState.industry} industry)`;
       }
-      if (filters.revenue) {
-        searchDescription += ` with ${filters.revenue}`;
+      if (filterState.revenue) {
+        searchDescription += ` with ${filterState.revenue}`;
       }
-      if (filters.erpModules) {
-        searchDescription += ` using ${filters.erpModules}`;
+      if (filterState.cyberTechStack) {
+        searchDescription += ` using ${filterState.cyberTechStack}`;
       }
       
       toast.success(`Searching for ${searchDescription}`);
@@ -906,10 +1173,11 @@ const MarketDatabase = () => {
       }));
       
       // Also set the verified filters state
-      setVerifiedEmailFilter(true);
-      setVerifiedPhoneFilter(true);
+      setFilterState(prev => ({ ...prev, verifiedEmail: true, verifiedPhone: true }));
     }, 5000); // 5 second delay
   };
+
+  const [activeFilters, setActiveFilters] = useState<{[key: string]: string | boolean}>({});
 
   return (
     <div className="w-full px-32 py-12 bg-[#020305] min-h-screen relative">
@@ -931,7 +1199,7 @@ const MarketDatabase = () => {
           {showDashboard && (
             <div className="text-white/70 text-sm flex items-center gap-2">
               <MdInfoOutline className="text-[#10ba82]" />
-              <span>Showing <span className="text-[#10ba82] font-medium">{formatNumber(companiesStats.filtered)}</span> of {formatNumber(companiesStats.total)} companies</span>
+              <span>Showing <span className="text-[#10ba82] font-medium">{formatNumber(filteredCompanies.length)}</span> of {formatNumber(companiesStats.total)} companies</span>
               
               <button 
                 onClick={clearAllFilters}
@@ -1011,7 +1279,7 @@ const MarketDatabase = () => {
                         <MdOutlineBusiness className="text-[#10ba82]" />
                       </div>
                     <span className="font-medium">Company Name</span>
-                    {companyNameFilter && companyNameFilter !== '' && (
+                    {filterState.companyName && filterState.companyName !== '' && (
                         <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
                         Active
                       </span>
@@ -1026,7 +1294,7 @@ const MarketDatabase = () => {
                       <input
                         type="text"
                         placeholder="Search company name..."
-                        value={companyNameFilter}
+                        value={filterState.companyName}
                         onChange={(e) => handleFilterChange('companyName', e.target.value)}
                           className="w-full py-2 px-3 rounded-lg border border-white/20 bg-[#28292b] backdrop-blur-sm text-white focus:ring-2 focus:ring-[#10ba82] focus:border-transparent transition-all"
                       />
@@ -1047,7 +1315,7 @@ const MarketDatabase = () => {
                         <MdBusinessCenter className="text-[#10ba82]" />
                       </div>
                     <span className="font-medium">Company Size</span>
-                    {employeeCountFilter && employeeCountFilter !== '' && (
+                    {filterState.employeeCount && filterState.employeeCount !== '' && (
                         <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
                         Active
                       </span>
@@ -1059,7 +1327,7 @@ const MarketDatabase = () => {
                   <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'employeeCount' ? 'max-h-[200px]' : 'max-h-0'}`}>
                   <div className="p-3 bg-[rgba(40,41,43,0.2)]">
                     <CustomSelect
-                      value={employeeCountFilter}
+                      value={filterState.employeeCount}
                       onChange={(value) => handleFilterChange('employeeCount', value)}
                       options={employeeCountRanges.map(range => ({ value: range, label: range }))}
                       placeholder="Select company size..."
@@ -1079,7 +1347,7 @@ const MarketDatabase = () => {
                         <MdLocationOn className="text-[#10ba82]" />
                       </div>
                     <span className="font-medium">Location</span>
-                    {stateFilter && stateFilter !== '' && (
+                    {filterState.region && filterState.region !== '' && (
                         <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
                         Active
                       </span>
@@ -1091,9 +1359,9 @@ const MarketDatabase = () => {
                   <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'location' ? 'max-h-[200px]' : 'max-h-0'}`}>
                   <div className="p-3 bg-[rgba(40,41,43,0.2)]">
                     <CustomSelect
-                      value={stateFilter}
-                      onChange={(value) => handleFilterChange('state', value)}
-                      options={usStates.map(state => ({ value: state, label: state }))}
+                      value={filterState.region}
+                      onChange={(value) => handleFilterChange('region', value)}
+                      options={regions.map(region => ({ value: region, label: region }))}
                       placeholder="Select location..."
                     />
                   </div>
@@ -1111,7 +1379,7 @@ const MarketDatabase = () => {
                         <MdFactory className="text-[#10ba82]" />
                       </div>
                     <span className="font-medium">Industry/Sector</span>
-                    {sectorFilter && sectorFilter !== '' && (
+                    {filterState.industry && filterState.industry !== '' && (
                         <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
                         Active
                       </span>
@@ -1123,9 +1391,9 @@ const MarketDatabase = () => {
                   <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'sector' ? 'max-h-[200px]' : 'max-h-0'}`}>
                   <div className="p-3 bg-[rgba(40,41,43,0.2)]">
                     <CustomSelect
-                      value={sectorFilter}
-                      onChange={(value) => handleFilterChange('sector', value)}
-                      options={sectors.map(sector => ({ value: sector, label: sector }))}
+                      value={filterState.industry}
+                      onChange={(value) => handleFilterChange('industry', value)}
+                      options={industries.map(industry => ({ value: industry, label: industry }))}
                       placeholder="Select industry/sector..."
                     />
                   </div>
@@ -1143,7 +1411,7 @@ const MarketDatabase = () => {
                         <MdAttachMoney className="text-[#10ba82]" />
                       </div>
                     <span className="font-medium">Revenue</span>
-                    {revenueFilter && revenueFilter !== '' && (
+                    {filterState.revenue && filterState.revenue !== '' && (
                         <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
                         Active
                       </span>
@@ -1155,84 +1423,431 @@ const MarketDatabase = () => {
                   <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'revenue' ? 'max-h-[200px]' : 'max-h-0'}`}>
                   <div className="p-3 bg-[rgba(40,41,43,0.2)]">
                     <CustomSelect
-                      value={revenueFilter}
+                      value={filterState.revenue}
                       onChange={(value) => handleFilterChange('revenue', value)}
                       options={revenueRanges.map(range => ({ value: range, label: range }))}
                       placeholder="Select revenue range..."
                     />
                   </div>
                   </div>
+                </div>
+                
+                {/* Collapsible Headcount Growth Filter */}
+                  <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                  <button
+                    onClick={() => toggleSection('headcountGrowth')}
+                      className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                        <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                          <MdTrendingUp className="text-[#10ba82]" />
+                        </div>
+                      <span className="font-medium">Headcount Growth</span>
+                      {filterState.headcountGrowth && filterState.headcountGrowth !== '' && (
+                          <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                          Active
+                        </span>
+                      )}
+                    </div>
+                    <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'headcountGrowth' ? 'rotate-90' : ''}`} />
+                  </button>
+                  
+                    <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'headcountGrowth' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                    <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                      <CustomSelect
+                        value={filterState.headcountGrowth}
+                        onChange={(value) => handleFilterChange('headcountGrowth', value)}
+                        options={headcountGrowthRanges.map(range => ({ value: range, label: range }))}
+                        placeholder="Select headcount growth..."
+                      />
+                    </div>
+                    </div>
+                </div>
+                
+                {/* Collapsible Funding Stage Filter */}
+                  <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                  <button
+                    onClick={() => toggleSection('fundingStage')}
+                      className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                        <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                          <MdPieChart className="text-[#10ba82]" />
+                        </div>
+                      <span className="font-medium">Funding Stage</span>
+                      {filterState.fundingStage && filterState.fundingStage !== '' && (
+                          <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                          Active
+                        </span>
+                      )}
+                    </div>
+                    <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'fundingStage' ? 'rotate-90' : ''}`} />
+                  </button>
+                  
+                    <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'fundingStage' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                    <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                      <CustomSelect
+                        value={filterState.fundingStage}
+                        onChange={(value) => handleFilterChange('fundingStage', value)}
+                        options={fundingStages.map(stage => ({ value: stage, label: stage }))}
+                        placeholder="Select funding stage..."
+                      />
+                    </div>
+                    </div>
+                </div>
+                
+                {/* Collapsible Cyber Tech Stack Filter */}
+                  <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                  <button
+                    onClick={() => toggleSection('cyberTechStack')}
+                      className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                        <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                          <MdSecurity className="text-[#10ba82]" />
+                        </div>
+                      <span className="font-medium">Cyber Tech Stack</span>
+                      {filterState.cyberTechStack && filterState.cyberTechStack !== '' && (
+                          <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                          Active
+                        </span>
+                      )}
+                    </div>
+                    <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'cyberTechStack' ? 'rotate-90' : ''}`} />
+                  </button>
+                  
+                    <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'cyberTechStack' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                    <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                      <CustomSelect
+                        value={filterState.cyberTechStack}
+                        onChange={(value) => handleFilterChange('cyberTechStack', value)}
+                        options={cyberTechStacks.map(stack => ({ value: stack, label: stack }))}
+                        placeholder="Select cyber tech stack..."
+                      />
+                    </div>
+                    </div>
+                </div>
+                
+                {/* Collapsible CISO Filter */}
+                  <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                  <button
+                    onClick={() => toggleSection('hasCISO')}
+                      className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                        <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                          <MdSecurity className="text-[#10ba82]" />
+                        </div>
+                      <span className="font-medium">CISO</span>
+                      {filterState.hasCISO && (
+                          <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                          Active
+                        </span>
+                      )}
+                    </div>
+                    <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'hasCISO' ? 'rotate-90' : ''}`} />
+                  </button>
+                  
               </div>
               
-              {/* Collapsible ERP Modules Filter */}
+              {/* Collapsible Headcount Growth Filter */}
                 <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
                 <button
-                  onClick={() => toggleSection('erpModules')}
+                  onClick={() => toggleSection('headcountGrowth')}
                     className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                       <div className="bg-[#10ba82]/20 p-2 rounded-lg">
-                        <MdStorage className="text-[#10ba82]" />
+                        <MdTrendingUp className="text-[#10ba82]" />
                       </div>
-                    <span className="font-medium">ERP Modules</span>
-                    {erpModulesFilter && erpModulesFilter !== '' && (
+                    <span className="font-medium">Headcount Growth</span>
+                    {filterState.headcountGrowth && filterState.headcountGrowth !== '' && (
                         <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
                         Active
                       </span>
                     )}
                   </div>
-                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'erpModules' ? 'rotate-90' : ''}`} />
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'headcountGrowth' ? 'rotate-90' : ''}`} />
                 </button>
                 
-                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'erpModules' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'headcountGrowth' ? 'max-h-[200px]' : 'max-h-0'}`}>
                   <div className="p-3 bg-[rgba(40,41,43,0.2)]">
                     <CustomSelect
-                      value={erpModulesFilter}
-                      onChange={(value) => handleFilterChange('erpModules', value)}
-                      options={erpModulesRanges.map(range => ({ value: range, label: range }))}
-                      placeholder="Select ERP modules..."
+                      value={filterState.headcountGrowth}
+                      onChange={(value) => handleFilterChange('headcountGrowth', value)}
+                      options={headcountGrowthRanges.map(range => ({ value: range, label: range }))}
+                      placeholder="Select headcount growth..."
                     />
                   </div>
                   </div>
               </div>
               
-              {/* Collapsible Verification Filter */}
+              {/* Collapsible Funding Stage Filter */}
                 <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
                 <button
-                  onClick={() => toggleSection('verification')}
+                  onClick={() => toggleSection('fundingStage')}
                     className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
                 >
                   <div className="flex items-center gap-2">
                       <div className="bg-[#10ba82]/20 p-2 rounded-lg">
-                        <MdCheck className="text-[#10ba82]" />
+                        <MdPieChart className="text-[#10ba82]" />
                       </div>
-                    <span className="font-medium">Verification</span>
-                    {(verifiedEmailFilter || verifiedPhoneFilter) && (
+                    <span className="font-medium">Funding Stage</span>
+                    {filterState.fundingStage && filterState.fundingStage !== '' && (
                         <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
                         Active
                       </span>
                     )}
                   </div>
-                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'verification' ? 'rotate-90' : ''}`} />
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'fundingStage' ? 'rotate-90' : ''}`} />
                 </button>
                 
-                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'verification' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'fundingStage' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                    <CustomSelect
+                      value={filterState.fundingStage}
+                      onChange={(value) => handleFilterChange('fundingStage', value)}
+                      options={fundingStages.map(stage => ({ value: stage, label: stage }))}
+                      placeholder="Select funding stage..."
+                    />
+                  </div>
+                  </div>
+              </div>
+              
+              {/* Collapsible Cyber Tech Stack Filter */}
+                <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                <button
+                  onClick={() => toggleSection('cyberTechStack')}
+                    className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                      <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                        <MdSecurity className="text-[#10ba82]" />
+                      </div>
+                    <span className="font-medium">Cyber Tech Stack</span>
+                    {filterState.cyberTechStack && filterState.cyberTechStack !== '' && (
+                        <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                        Active
+                      </span>
+                    )}
+                  </div>
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'cyberTechStack' ? 'rotate-90' : ''}`} />
+                </button>
+                
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'cyberTechStack' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                    <CustomSelect
+                      value={filterState.cyberTechStack}
+                      onChange={(value) => handleFilterChange('cyberTechStack', value)}
+                      options={cyberTechStacks.map(stack => ({ value: stack, label: stack }))}
+                      placeholder="Select cyber tech stack..."
+                    />
+                  </div>
+                  </div>
+              </div>
+              
+              {/* Collapsible CISO Filter */}
+                <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                <button
+                  onClick={() => toggleSection('hasCISO')}
+                    className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                      <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                        <MdSecurity className="text-[#10ba82]" />
+                      </div>
+                    <span className="font-medium">CISO</span>
+                    {filterState.hasCISO && (
+                        <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                        Active
+                      </span>
+                    )}
+                  </div>
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'hasCISO' ? 'rotate-90' : ''}`} />
+                </button>
+                
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'hasCISO' ? 'max-h-[200px]' : 'max-h-0'}`}>
                   <div className="p-3 bg-[rgba(40,41,43,0.2)]">
                     <div className="flex flex-col gap-2">
                       <label className="flex items-center gap-2 text-white">
                         <input
                           type="checkbox"
-                          checked={verifiedEmailFilter}
+                          checked={filterState.hasCISO}
+                          onChange={(e) => handleFilterChange('hasCISO', e.target.checked)}
+                            className="rounded border-[#10ba82] text-[#10ba82] focus:ring-[#10ba82] h-4 w-4 bg-white/10"
+                        />
+                        <span>Has CISO</span>
+                      </label>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              
+              {/* Collapsible In-House IT Filter */}
+                <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                <button
+                  onClick={() => toggleSection('hasInHouseIT')}
+                    className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                      <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                        <MdSecurity className="text-[#10ba82]" />
+                      </div>
+                    <span className="font-medium">In-House IT</span>
+                    {filterState.hasInHouseIT && (
+                        <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                        Active
+                      </span>
+                    )}
+                  </div>
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'hasInHouseIT' ? 'rotate-90' : ''}`} />
+                </button>
+                
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'hasInHouseIT' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                    <div className="flex flex-col gap-2">
+                      <label className="flex items-center gap-2 text-white">
+                        <input
+                          type="checkbox"
+                          checked={filterState.hasInHouseIT}
+                          onChange={(e) => handleFilterChange('hasInHouseIT', e.target.checked)}
+                            className="rounded border-[#10ba82] text-[#10ba82] focus:ring-[#10ba82] h-4 w-4 bg-white/10"
+                        />
+                        <span>Has In-House IT</span>
+                      </label>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              
+              {/* Collapsible Compliance Framework Filter */}
+                <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                <button
+                  onClick={() => toggleSection('complianceFramework')}
+                    className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                      <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                        <MdSecurity className="text-[#10ba82]" />
+                      </div>
+                    <span className="font-medium">Compliance Framework</span>
+                    {filterState.complianceFramework && filterState.complianceFramework !== '' && (
+                        <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                        Active
+                      </span>
+                    )}
+                  </div>
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'complianceFramework' ? 'rotate-90' : ''}`} />
+                </button>
+                
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'complianceFramework' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                    <CustomSelect
+                      value={filterState.complianceFramework}
+                      onChange={(value) => handleFilterChange('complianceFramework', value)}
+                      options={complianceFrameworks.map(framework => ({ value: framework, label: framework }))}
+                      placeholder="Select compliance framework..."
+                    />
+                  </div>
+                  </div>
+              </div>
+              
+              {/* Collapsible Security Maturity Filter */}
+                <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                <button
+                  onClick={() => toggleSection('securityMaturity')}
+                    className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                      <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                        <MdSecurity className="text-[#10ba82]" />
+                      </div>
+                    <span className="font-medium">Security Maturity</span>
+                    {filterState.securityMaturity && filterState.securityMaturity !== '' && (
+                        <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                        Active
+                      </span>
+                    )}
+                  </div>
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'securityMaturity' ? 'rotate-90' : ''}`} />
+                </button>
+                
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'securityMaturity' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                    <CustomSelect
+                      value={filterState.securityMaturity}
+                      onChange={(value) => handleFilterChange('securityMaturity', value)}
+                      options={securityMaturityLevels.map(level => ({ value: level, label: level }))}
+                      placeholder="Select security maturity..."
+                    />
+                  </div>
+                  </div>
+              </div>
+              
+              {/* Collapsible Verified Email Filter */}
+                <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                <button
+                  onClick={() => toggleSection('verifiedEmail')}
+                    className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                      <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                        <MdVerifiedUser className="text-[#10ba82]" />
+                      </div>
+                    <span className="font-medium">Verified Emails</span>
+                    {filterState.verifiedEmail && (
+                        <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                        Active
+                      </span>
+                    )}
+                  </div>
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'verifiedEmail' ? 'rotate-90' : ''}`} />
+                </button>
+                
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'verifiedEmail' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                    <div className="flex flex-col gap-2">
+                      <label className="flex items-center gap-2 text-white">
+                        <input
+                          type="checkbox"
+                          checked={filterState.verifiedEmail}
                           onChange={(e) => handleFilterChange('verifiedEmail', e.target.checked)}
                             className="rounded border-[#10ba82] text-[#10ba82] focus:ring-[#10ba82] h-4 w-4 bg-white/10"
                         />
                         <span>Verified Emails</span>
                       </label>
-                      
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              
+              {/* Collapsible Verified Phone Filter */}
+                <div className="mb-3 bg-[rgba(40,41,43,0.4)] rounded-lg overflow-hidden border border-white/5 hover:border-[#10ba82]/20 transition-colors">
+                <button
+                  onClick={() => toggleSection('verifiedPhone')}
+                    className="w-full p-3.5 flex justify-between items-center text-white hover:bg-[#10ba82]/10 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                      <div className="bg-[#10ba82]/20 p-2 rounded-lg">
+                        <MdShield className="text-[#10ba82]" />
+                      </div>
+                    <span className="font-medium">Verified Phone Numbers</span>
+                    {filterState.verifiedPhone && (
+                        <span className="text-xs bg-[#10ba82]/20 text-[#10ba82] px-2 py-0.5 rounded-full">
+                        Active
+                      </span>
+                    )}
+                  </div>
+                  <MdKeyboardArrowRight className={`transition-transform duration-300 ${expandedSection === 'verifiedPhone' ? 'rotate-90' : ''}`} />
+                </button>
+                
+                  <div className={`overflow-hidden transition-all duration-300 ${expandedSection === 'verifiedPhone' ? 'max-h-[200px]' : 'max-h-0'}`}>
+                  <div className="p-3 bg-[rgba(40,41,43,0.2)]">
+                    <div className="flex flex-col gap-2">
                       <label className="flex items-center gap-2 text-white">
                         <input
                           type="checkbox"
-                          checked={verifiedPhoneFilter}
+                          checked={filterState.verifiedPhone}
                           onChange={(e) => handleFilterChange('verifiedPhone', e.target.checked)}
                             className="rounded border-[#10ba82] text-[#10ba82] focus:ring-[#10ba82] h-4 w-4 bg-white/10"
                         />
@@ -1469,7 +2084,7 @@ const MarketDatabase = () => {
                   <p className="flex items-center gap-2">
                     <FaFilter className="text-[#10ba82] text-sm" />
                     <span className="text-sm">Criteria: <span className="font-medium text-white">Head of IT</span> at companies with <span className="font-medium text-white">&gt;100 employees</span> with <span className="font-medium text-white">verified emails</span>, <span className="font-medium text-white">verified phone numbers</span>, location: <span className="font-medium text-white">United States</span></span>
-                    <span className="ml-auto text-[#10ba82] font-medium">14 Back end data points</span>
+                    <span className="ml-auto text-[#10ba82] font-medium">{filteredCompanies.length} matching records</span>
                   </p>
                 </div>
               
@@ -1477,7 +2092,7 @@ const MarketDatabase = () => {
                 <div className="grid grid-cols-3 gap-4 mb-4">
                   <StatsCard
                     title="Total Contacts"
-                    value="2.3K"
+                    value={formatNumber(filteredCompanies.length)}
                     change="+2.5% this month"
                     icon={<MdBusinessCenter className="text-white text-xl" />}
                     colorClass="bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c]"
@@ -1517,12 +2132,12 @@ const MarketDatabase = () => {
                               className="rounded border-[#10ba82] text-[#10ba82] focus:ring-[#10ba82] h-4 w-4 bg-white/10"
                               onChange={(e) => {
                                 if (e.target.checked) {
-                                  setSelectedCompanies(companies.map(f => f.id));
+                                  setSelectedCompanies(filteredCompanies.map(f => f.id));
                                 } else {
                                   setSelectedCompanies([]);
                                 }
                               }}
-                              checked={selectedCompanies.length === companies.length && companies.length > 0}
+                              checked={selectedCompanies.length === filteredCompanies.length && filteredCompanies.length > 0}
                             />
                           </th>
                           <th className="py-3 px-2 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
@@ -1535,7 +2150,7 @@ const MarketDatabase = () => {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-white/10">
-                        {companies.map((company) => (
+                        {filteredCompanies.map((company) => (
                             <tr key={company.id} className={`${
                               selectedCompanies.includes(company.id) 
                               ? "bg-[#10ba82]/20" 
@@ -1567,7 +2182,7 @@ const MarketDatabase = () => {
                                     onClick={() => {
                                       // Store the filtered companies in localStorage so SignalScanner can use them
                                       try {
-                                      localStorage.setItem('filteredCompanies', JSON.stringify(companies));
+                                      localStorage.setItem('filteredCompanies', JSON.stringify(filteredCompanies));
                                       } catch (error) {
                                         console.error('Error saving filtered companies to localStorage', error);
                                       }
@@ -1589,7 +2204,7 @@ const MarketDatabase = () => {
                 {/* Add pagination at the bottom */}
                 <div className="flex justify-between items-center mt-6 mb-3">
                   <div className="text-white/70 text-sm">
-                    Showing <span className="text-white">1-{companies.length}</span> of <span className="text-white">{formatNumber(companiesStats.total)}</span> contacts
+                    Showing <span className="text-white">1-{filteredCompanies.length}</span> of <span className="text-white">{formatNumber(companiesStats.total)}</span> contacts
                   </div>
                   <div className="flex gap-1">
                       <button 
@@ -1617,7 +2232,7 @@ const MarketDatabase = () => {
                     onClick={() => {
                       // Store the filtered companies in localStorage so SignalScanner can use them
                       try {
-                        localStorage.setItem('filteredCompanies', JSON.stringify(companies));
+                        localStorage.setItem('filteredCompanies', JSON.stringify(filteredCompanies));
                       } catch (error) {
                         console.error('Error saving filtered companies to localStorage', error);
                       }

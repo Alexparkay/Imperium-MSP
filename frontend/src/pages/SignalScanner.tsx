@@ -38,33 +38,33 @@ const enrichedEnterprises = [
     verified: true,
     email: "k.flynn-kasaba@example.com",
     phone: "(713) 555-6789",
-    systemType: "ERP System",
+    systemType: "Managed Security Services",
     userCount: 36000,
     implementationYear: 2019,
     serverCount: 2300,
-    annualTransactions: 34250000,
-    licenseRate: 0.095, // $ per transaction
-    peakLoad: 8450, // transactions per second
+    monthlySecurityEvents: 34250000,
+    licenseRate: 175, // $ per user per month
+    peakThreatLoad: 8450, // threats per second
     industryAvg: {
-      transactionVolume: 28, // per user
-      sapAdoption: 8, // percentage
-      costPerUser: 215, // $
-      implementationTime: 9.8, // months
+      securityIncidents: 285, // per month
+      mspAdoption: 68, // percentage
+      costPerUser: 195, // $
+      implementationTime: 3.2, // months
     },
-    sapMetrics: {
-      maxThroughput: 9850, // transactions per second
-      annualProcessing: 39750000, // transactions
-      systemCoverage: 44.1, // percentage
-      implementationCost: 7740000, // $
-      totalCost: 5418000, // $ after optimizations
-      savings: 2322000, // $
-      costWithoutOptimization: 3253750, // $ per year
-      costWithOptimization: 1771790, // $ per year
-      annualSavings: 1481960, // $ per year
-      monthlySavings: 123497, // $ per month
-      optimizationTime: 11.8, // months
-      roi: 8.5, // percentage
-      performanceImprovement: 261, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 9850, // threats per second
+      monthlyIncidents: 285, // security incidents
+      systemCoverage: 94.1, // percentage
+      implementationCost: 1240000, // $
+      totalCost: 7418000, // $ annual managed services cost
+      savings: 3322000, // $ vs in-house security
+      costWithoutMSP: 10740000, // $ per year in-house
+      costWithMSP: 7418000, // $ per year managed
+      annualSavings: 3322000, // $ per year
+      monthlySavings: 276833, // $ per month
+      optimizationTime: 3.8, // months
+      roi: 267, // percentage
+      securityImprovement: 341, // percentage threat detection improvement
     },
     industry: "Professional Training & Coaching"
   },
@@ -80,33 +80,33 @@ const enrichedEnterprises = [
     verified: true,
     email: "w.shammout@example.com",
     phone: "(201) 555-9012",
-    systemType: "ERP System",
+    systemType: "SOC-as-a-Service",
     userCount: 3400,
-    implementationYear: 2016,
+    implementationYear: 2020,
     serverCount: 320,
-    annualTransactions: 9250000,
-    licenseRate: 0.112, // $ per transaction
-    peakLoad: 980, // transactions per second
+    monthlySecurityEvents: 12750000,
+    licenseRate: 165, // $ per user per month
+    peakThreatLoad: 2980, // threats per second
     industryAvg: {
-      transactionVolume: 32, // per user
-      sapAdoption: 21, // percentage
-      costPerUser: 228, // $
-      implementationTime: 10.1, // months
+      securityIncidents: 96, // per month
+      mspAdoption: 72, // percentage
+      costPerUser: 185, // $
+      implementationTime: 2.8, // months
     },
-    sapMetrics: {
-      maxThroughput: 1250, // transactions per second
-      annualProcessing: 4750000, // transactions
-      systemCoverage: 51.3, // percentage
-      implementationCost: 3887500, // $
-      totalCost: 2721250, // $ after optimizations
-      savings: 1166250, // $
-      costWithoutOptimization: 1036000, // $ per year
-      costWithOptimization: 503960, // $ per year
-      annualSavings: 532040, // $ per year
-      monthlySavings: 44337, // $ per month
-      optimizationTime: 6.1, // months
-      roi: 19.6, // percentage
-      performanceImprovement: 75.8, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 3250, // threats per second
+      monthlyIncidents: 96, // security incidents
+      systemCoverage: 91.3, // percentage
+      implementationCost: 887500, // $
+      totalCost: 2721250, // $ annual managed services cost
+      savings: 1166250, // $ vs in-house security
+      costWithoutMSP: 3887500, // $ per year in-house
+      costWithMSP: 2721250, // $ per year managed
+      annualSavings: 1166250, // $ per year
+      monthlySavings: 97188, // $ per month
+      optimizationTime: 2.8, // months
+      roi: 128, // percentage
+      securityImprovement: 185, // percentage threat detection improvement
     },
     industry: "Information Services"
   },
@@ -122,33 +122,33 @@ const enrichedEnterprises = [
     verified: true,
     email: "s.sharma@example.com",
     phone: "(508) 555-3456",
-    systemType: "Manufacturing System",
+    systemType: "Endpoint Security Management",
     userCount: 1600,
-    implementationYear: 2014,
+    implementationYear: 2021,
     serverCount: 95,
-    annualTransactions: 3250000,
-    licenseRate: 0.145, // $ per transaction
-    peakLoad: 680, // transactions per second
+    monthlySecurityEvents: 5250000,
+    licenseRate: 155, // $ per user per month
+    peakThreatLoad: 1680, // threats per second
     industryAvg: {
-      transactionVolume: 18, // per user
-      sapAdoption: 12, // percentage
-      costPerUser: 225, // $
-      implementationTime: 8.5, // months
+      securityIncidents: 48, // per month
+      mspAdoption: 65, // percentage
+      costPerUser: 175, // $
+      implementationTime: 2.5, // months
     },
-    sapMetrics: {
-      maxThroughput: 850, // transactions per second
-      annualProcessing: 2750000, // transactions
-      systemCoverage: 84.6, // percentage
-      implementationCost: 2937500, // $
-      totalCost: 2056250, // $ after optimizations
-      savings: 881250, // $
-      costWithoutOptimization: 471250, // $ per year
-      costWithOptimization: 242088, // $ per year
-      annualSavings: 229162, // $ per year
-      monthlySavings: 19097, // $ per month
-      optimizationTime: 8.8, // months
-      roi: 11.1, // percentage
-      performanceImprovement: 48.6, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 1850, // threats per second
+      monthlyIncidents: 32, // security incidents
+      systemCoverage: 96.6, // percentage
+      implementationCost: 437500, // $
+      totalCost: 1756250, // $ annual managed services cost
+      savings: 681250, // $ vs in-house security
+      costWithoutMSP: 2437500, // $ per year in-house
+      costWithMSP: 1756250, // $ per year managed
+      annualSavings: 681250, // $ per year
+      monthlySavings: 56771, // $ per month
+      optimizationTime: 2.5, // months
+      roi: 156, // percentage
+      securityImprovement: 225, // percentage threat detection improvement
     },
     industry: "Electrical/Electronic Manufacturing"
   },
@@ -164,33 +164,33 @@ const enrichedEnterprises = [
     verified: true,
     email: "l.sullivan@example.com",
     phone: "(908) 555-7890",
-    systemType: "ERP System",
+    systemType: "Comprehensive Security Suite",
     userCount: 48000,
     implementationYear: 2020,
     serverCount: 1820,
-    annualTransactions: 25650000,
-    licenseRate: 0.102, // $ per transaction
-    peakLoad: 4250, // transactions per second
+    monthlySecurityEvents: 45650000,
+    licenseRate: 185, // $ per user per month
+    peakThreatLoad: 14250, // threats per second
     industryAvg: {
-      transactionVolume: 32, // per user
-      sapAdoption: 9, // percentage
-      costPerUser: 318, // $
-      implementationTime: 6.3, // months
+      securityIncidents: 425, // per month
+      mspAdoption: 71, // percentage
+      costPerUser: 205, // $
+      implementationTime: 4.2, // months
     },
-    sapMetrics: {
-      maxThroughput: 5620, // transactions per second
-      annualProcessing: 29750000, // transactions
-      systemCoverage: 67.5, // percentage
-      implementationCost: 15275000, // $
-      totalCost: 10692500, // $ after optimizations
-      savings: 4582500, // $
-      costWithoutOptimization: 2616300, // $ per year
-      costWithOptimization: 1308150, // $ per year
-      annualSavings: 1308150, // $ per year
-      monthlySavings: 109013, // $ per month
-      optimizationTime: 9.4, // months
-      roi: 10.7, // percentage
-      performanceImprovement: 63.2, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 15620, // threats per second
+      monthlyIncidents: 285, // security incidents
+      systemCoverage: 97.5, // percentage
+      implementationCost: 2275000, // $
+      totalCost: 10692500, // $ annual managed services cost
+      savings: 4582500, // $ vs in-house security
+      costWithoutMSP: 15275000, // $ per year in-house
+      costWithMSP: 10692500, // $ per year managed
+      annualSavings: 4582500, // $ per year
+      monthlySavings: 381875, // $ per month
+      optimizationTime: 4.2, // months
+      roi: 201, // percentage
+      securityImprovement: 295, // percentage threat detection improvement
     },
     industry: "Mechanical Or Industrial Engineering"
   },
@@ -206,33 +206,33 @@ const enrichedEnterprises = [
     verified: true,
     email: "b.partout@example.com",
     phone: "(720) 555-0123",
-    systemType: "ERP System",
+    systemType: "Cloud Security Management",
     userCount: 160,
-    implementationYear: 2019,
+    implementationYear: 2022,
     serverCount: 22,
-    annualTransactions: 950000,
-    licenseRate: 0.108, // $ per transaction
-    peakLoad: 280, // transactions per second
+    monthlySecurityEvents: 950000,
+    licenseRate: 145, // $ per user per month
+    peakThreatLoad: 280, // threats per second
     industryAvg: {
-      transactionVolume: 12, // per user
-      sapAdoption: 10, // percentage
-      costPerUser: 322, // $
-      implementationTime: 5.8, // months
+      securityIncidents: 18, // per month
+      mspAdoption: 58, // percentage
+      costPerUser: 165, // $
+      implementationTime: 1.8, // months
     },
-    sapMetrics: {
-      maxThroughput: 430, // transactions per second
-      annualProcessing: 1372000, // transactions
-      systemCoverage: 144.4, // percentage
-      implementationCost: 875600, // $
-      totalCost: 612920, // $ after optimizations
-      savings: 262680, // $
-      costWithoutOptimization: 102600, // $ per year
-      costWithOptimization: 33816, // $ per year
-      annualSavings: 68784, // $ per year
-      monthlySavings: 5732, // $ per month
-      optimizationTime: 8.9, // months
-      roi: 11.2, // percentage
-      performanceImprovement: 67.0, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 430, // threats per second
+      monthlyIncidents: 12, // security incidents
+      systemCoverage: 98.4, // percentage
+      implementationCost: 75600, // $
+      totalCost: 312920, // $ annual managed services cost
+      savings: 162680, // $ vs in-house security
+      costWithoutMSP: 475600, // $ per year in-house
+      costWithMSP: 312920, // $ per year managed
+      annualSavings: 162680, // $ per year
+      monthlySavings: 13557, // $ per month
+      optimizationTime: 1.8, // months
+      roi: 215, // percentage
+      securityImprovement: 385, // percentage threat detection improvement
     },
     industry: "Chemicals - Research"
   },
@@ -248,33 +248,33 @@ const enrichedEnterprises = [
     verified: true,
     email: "h.ifiuscati@example.com",
     phone: "(617) 555-4567",
-    systemType: "Finance System",
+    systemType: "Financial Services Security",
     userCount: 45000,
-    implementationYear: 2015,
+    implementationYear: 2019,
     serverCount: 3580,
-    annualTransactions: 41250000,
-    licenseRate: 0.115, // $ per transaction
-    peakLoad: 9800, // transactions per second
+    monthlySecurityEvents: 61250000,
+    licenseRate: 225, // $ per user per month
+    peakThreatLoad: 19800, // threats per second
     industryAvg: {
-      transactionVolume: 21, // per user
-      sapAdoption: 14, // percentage
-      costPerUser: 229, // $
-      implementationTime: 12.7, // months
+      securityIncidents: 485, // per month
+      mspAdoption: 78, // percentage
+      costPerUser: 245, // $
+      implementationTime: 5.7, // months
     },
-    sapMetrics: {
-      maxThroughput: 11300, // transactions per second
-      annualProcessing: 57250000, // transactions
-      systemCoverage: 122.7, // percentage
-      implementationCost: 10325000, // $
-      totalCost: 7227500, // $ after optimizations
-      savings: 3097500, // $
-      costWithoutOptimization: 4743750, // $ per year
-      costWithOptimization: 1895500, // $ per year
-      annualSavings: 2848250, // $ per year
-      monthlySavings: 237354, // $ per month
-      optimizationTime: 3.8, // months
-      roi: 26.1, // percentage
-      performanceImprovement: 67.5, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 21300, // threats per second
+      monthlyIncidents: 325, // security incidents
+      systemCoverage: 96.7, // percentage
+      implementationCost: 2325000, // $
+      totalCost: 12727500, // $ annual managed services cost
+      savings: 7097500, // $ vs in-house security
+      costWithoutMSP: 19825000, // $ per year in-house
+      costWithMSP: 12727500, // $ per year managed
+      annualSavings: 7097500, // $ per year
+      monthlySavings: 591458, // $ per month
+      optimizationTime: 5.7, // months
+      roi: 305, // percentage
+      securityImprovement: 425, // percentage threat detection improvement
     },
     industry: "Insurance - Financial Services"
   },
@@ -290,40 +290,40 @@ const enrichedEnterprises = [
     verified: true,
     email: "b.thielen@example.com",
     phone: "(248) 555-8901",
-    systemType: "Manufacturing System",
+    systemType: "Industrial Security Suite",
     userCount: 2600,
-    implementationYear: 2017,
+    implementationYear: 2021,
     serverCount: 270,
-    annualTransactions: 6500000,
-    licenseRate: 0.121, // $ per transaction
-    peakLoad: 1120, // transactions per second
+    monthlySecurityEvents: 8500000,
+    licenseRate: 175, // $ per user per month
+    peakThreatLoad: 3120, // threats per second
     industryAvg: {
-      transactionVolume: 18, // per user
-      sapAdoption: 13, // percentage
-      costPerUser: 245, // $
-      implementationTime: 10.1, // months
+      securityIncidents: 78, // per month
+      mspAdoption: 62, // percentage
+      costPerUser: 195, // $
+      implementationTime: 3.1, // months
     },
-    sapMetrics: {
-      maxThroughput: 1850, // transactions per second
-      annualProcessing: 8740000, // transactions
-      systemCoverage: 134.5, // percentage
-      implementationCost: 3900000, // $
-      totalCost: 2730000, // $ after optimizations
-      savings: 1170000, // $
-      costWithoutOptimization: 786500, // $ per year
-      costWithOptimization: 327590, // $ per year
-      annualSavings: 458910, // $ per year
-      monthlySavings: 38243, // $ per month
-      optimizationTime: 7.1, // months
-      roi: 14.2, // percentage
-      performanceImprovement: 65.1, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 3850, // threats per second
+      monthlyIncidents: 52, // security incidents
+      systemCoverage: 95.5, // percentage
+      implementationCost: 590000, // $
+      totalCost: 2730000, // $ annual managed services cost
+      savings: 1170000, // $ vs in-house security
+      costWithoutMSP: 3900000, // $ per year in-house
+      costWithMSP: 2730000, // $ per year managed
+      annualSavings: 1170000, // $ per year
+      monthlySavings: 97500, // $ per month
+      optimizationTime: 3.1, // months
+      roi: 198, // percentage
+      securityImprovement: 265, // percentage threat detection improvement
     },
     industry: "Machinery"
   },
   {
     id: 9,
     name: "Tayo Oshoei",
-    jobTitle: "Head of Information Technology",
+    jobTitle: "Head of Security and Risk",
     company: "Holcim",
     emails: true,
     phoneNumbers: true,
@@ -332,40 +332,40 @@ const enrichedEnterprises = [
     verified: true,
     email: "t.oshoei@example.com",
     phone: "(202) 555-2345",
-    systemType: "ERP System",
+    systemType: "Enterprise Security Management",
     userCount: 10100,
-    implementationYear: 2016,
+    implementationYear: 2020,
     serverCount: 825,
-    annualTransactions: 19750000,
-    licenseRate: 0.118, // $ per transaction
-    peakLoad: 3750, // transactions per second
+    monthlySecurityEvents: 29750000,
+    licenseRate: 195, // $ per user per month
+    peakThreatLoad: 8750, // threats per second
     industryAvg: {
-      transactionVolume: 24, // per user
-      sapAdoption: 16, // percentage
-      costPerUser: 212, // $
-      implementationTime: 13.5, // months
+      securityIncidents: 285, // per month
+      mspAdoption: 69, // percentage
+      costPerUser: 215, // $
+      implementationTime: 4.5, // months
     },
-    sapMetrics: {
-      maxThroughput: 4950, // transactions per second
-      annualProcessing: 26780000, // transactions
-      systemCoverage: 126.1, // percentage
-      implementationCost: 6060000, // $
-      totalCost: 4242000, // $ after optimizations
-      savings: 1818000, // $
-      costWithoutOptimization: 2330500, // $ per year
-      costWithOptimization: 889130, // $ per year
-      annualSavings: 1441370, // $ per year
-      monthlySavings: 120114, // $ per month
-      optimizationTime: 5.2, // months
-      roi: 19.3, // percentage
-      performanceImprovement: 32.0, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 9950, // threats per second
+      monthlyIncidents: 195, // security incidents
+      systemCoverage: 94.1, // percentage
+      implementationCost: 1560000, // $
+      totalCost: 6242000, // $ annual managed services cost
+      savings: 2818000, // $ vs in-house security
+      costWithoutMSP: 9060000, // $ per year in-house
+      costWithMSP: 6242000, // $ per year managed
+      annualSavings: 2818000, // $ per year
+      monthlySavings: 234833, // $ per month
+      optimizationTime: 4.5, // months
+      roi: 181, // percentage
+      securityImprovement: 245, // percentage threat detection improvement
     },
     industry: "Building Materials"
   },
   {
     id: 10,
     name: "Rahul Chaudhary",
-    jobTitle: "Head of Information Technology",
+    jobTitle: "IT Security Director",
     company: "TEK Inspirations LLC",
     emails: true,
     phoneNumbers: true,
@@ -374,33 +374,33 @@ const enrichedEnterprises = [
     verified: true,
     email: "r.chaudhary@example.com",
     phone: "(469) 555-6789",
-    systemType: "ERP System",
+    systemType: "SMB Security Services",
     userCount: 440,
-    implementationYear: 2020,
+    implementationYear: 2022,
     serverCount: 45,
-    annualTransactions: 1850000,
-    licenseRate: 0.135, // $ per transaction
-    peakLoad: 380, // transactions per second
+    monthlySecurityEvents: 1850000,
+    licenseRate: 155, // $ per user per month
+    peakThreatLoad: 380, // threats per second
     industryAvg: {
-      transactionVolume: 17, // per user
-      sapAdoption: 12, // percentage
-      costPerUser: 198, // $
-      implementationTime: 5.8, // months
+      securityIncidents: 24, // per month
+      mspAdoption: 54, // percentage
+      costPerUser: 175, // $
+      implementationTime: 1.8, // months
     },
-    sapMetrics: {
-      maxThroughput: 540, // transactions per second
-      annualProcessing: 2240000, // transactions
-      systemCoverage: 121.1, // percentage
-      implementationCost: 1320000, // $
-      totalCost: 924000, // $ after optimizations
-      savings: 396000, // $
-      costWithoutOptimization: 249750, // $ per year
-      costWithOptimization: 104895, // $ per year
-      annualSavings: 144855, // $ per year
-      monthlySavings: 12071, // $ per month
-      optimizationTime: 6.8, // months
-      roi: 14.7, // percentage
-      performanceImprovement: 42.1, // percentage
+    securityMetrics: {
+      maxThreatCapacity: 540, // threats per second
+      monthlyIncidents: 16, // security incidents
+      systemCoverage: 97.1, // percentage
+      implementationCost: 120000, // $
+      totalCost: 524000, // $ annual managed services cost
+      savings: 296000, // $ vs in-house security
+      costWithoutMSP: 820000, // $ per year in-house
+      costWithMSP: 524000, // $ per year managed
+      annualSavings: 296000, // $ per year
+      monthlySavings: 24667, // $ per month
+      optimizationTime: 1.8, // months
+      roi: 247, // percentage
+      securityImprovement: 325, // percentage threat detection improvement
     },
     industry: "Information Technology & Services"
   }
@@ -423,28 +423,28 @@ const SignalScanner = () => {
   // Total enterprises in the database (showing 2,300 to match MarketDatabase)
   const totalEnterprisesInDatabase = 2300;
   
-  // SAP system data
-  const sapData = {
-    yearlyTransactions: '24,908,730',
-    yearlyCost: '$772,170.80',
-    systemSize: '155.7 TB',
-    processesCovered: '82%',
-    monthlyAverage: '$39,910.10',
-    firstYear: '$478,920.00',
-    tenYearTotal: '$4,286,000.00',
-    costWithoutOptimization: '$613,052.90',
-    costWithOptimization: '$215,718.36',
-    totalLifetimeSavings: '$5,544,130.70',
-    breakEven: '26 months',
-    location: '303 S Technology Ct, Broomfield, CO',
+  // MSP system data
+  const mspData = {
+    monthlySecurityIncidents: '2,845',
+    yearlyCost: '$8,247,500',
+    systemCoverage: '2,300 endpoints',
+    threatsBlocked: '94.8%',
+    monthlyAverage: '$687,292',
+    firstYear: '$8,970,000',
+    fiveYearTotal: '$42,375,000',
+    costWithoutMSP: '$13,875,000/yr',
+    costWithMSP: '$8,247,500/yr',
+    totalLifetimeSavings: '$28,137,500',
+    breakEven: '4.2 months',
+    location: '789 Cyber Defense Boulevard, Security Plaza, TX',
     region: 'AMERICAS',
-    systemId: 'PRD-SAP-001',
-    licenseRate: '$0.31/transaction',
-    monthlyMaintenance: '$30,000.00',
-    moduleCount: '12 modules',
-    sapSupport: '$70,000.00/yr',
-    implementationCost: '$4.00M',
-    systemCapacity: '250 TB'
+    systemId: 'MSP-SEC-001',
+    avgPricePerUser: '$195/user/month',
+    monthlyMaintenance: '$68,750.00',
+    serviceCount: '12 security services',
+    supportLevel: '24/7 SOC',
+    implementationCost: '$1.25M',
+    clientCapacity: '2,500 endpoints'
   };
 
   // Update the CSS animations in the useEffect to include the new animations
@@ -505,7 +505,7 @@ const SignalScanner = () => {
         if (filteredCompaniesString) {
           const marketDatabaseCompanies = JSON.parse(filteredCompaniesString);
           
-          // Enrich the companies with SAP metrics for visualization
+          // Enrich the companies with MSP metrics for visualization
           const enrichedMarketCompanies = marketDatabaseCompanies.map((company: Company) => {
             // Find if we have any existing enriched data for this company
             const existingEnriched = enrichedEnterprises.find(e => 
@@ -516,33 +516,33 @@ const SignalScanner = () => {
             // Use existing enriched data or generate some default values
             return {
               ...company,
-              systemType: existingEnriched?.systemType || "ERP System",
+              systemType: existingEnriched?.systemType || "Managed Security Services",
               userCount: company.employeeCount || 100,
               implementationYear: existingEnriched?.implementationYear || 2019,
               serverCount: existingEnriched?.serverCount || Math.round((company.employeeCount || 100) * 0.15),
-              annualTransactions: existingEnriched?.annualTransactions || Math.round((company.employeeCount || 100) * 2500),
-              licenseRate: existingEnriched?.licenseRate || 0.115,
-              peakLoad: existingEnriched?.peakLoad || Math.round((company.employeeCount || 100) * 0.5),
+              monthlySecurityEvents: existingEnriched?.monthlySecurityEvents || Math.round((company.employeeCount || 100) * 25000),
+              licenseRate: existingEnriched?.licenseRate || 175,
+              peakThreatLoad: existingEnriched?.peakThreatLoad || Math.round((company.employeeCount || 100) * 0.5),
               industryAvg: existingEnriched?.industryAvg || {
-                transactionVolume: 22,
-                sapAdoption: 15,
-                costPerUser: 235,
-                implementationTime: 8.2,
+                securityIncidents: 22,
+                mspAdoption: 68,
+                costPerUser: 185,
+                implementationTime: 3.2,
               },
-              sapMetrics: existingEnriched?.sapMetrics || {
-                maxThroughput: Math.round((company.employeeCount || 100) * 0.7),
-                annualProcessing: Math.round((company.employeeCount || 100) * 2000),
-                systemCoverage: Math.round(65 + Math.random() * 30),
-                implementationCost: Math.round((company.employeeCount || 100) * 1500),
-                totalCost: Math.round((company.employeeCount || 100) * 1050),
-                savings: Math.round((company.employeeCount || 100) * 450),
-                costWithoutOptimization: Math.round((company.employeeCount || 100) * 280),
-                costWithOptimization: Math.round((company.employeeCount || 100) * 150),
-                annualSavings: Math.round((company.employeeCount || 100) * 130),
-                monthlySavings: Math.round((company.employeeCount || 100) * 10.8),
-                optimizationTime: Math.round(6 + Math.random() * 6),
-                roi: Math.round(10 + Math.random() * 15),
-                performanceImprovement: Math.round(45 + Math.random() * 50),
+              securityMetrics: existingEnriched?.securityMetrics || {
+                maxThreatCapacity: Math.round((company.employeeCount || 100) * 0.7),
+                monthlyIncidents: Math.round((company.employeeCount || 100) * 0.02),
+                systemCoverage: Math.round(85 + Math.random() * 15),
+                implementationCost: Math.round((company.employeeCount || 100) * 800),
+                totalCost: Math.round((company.employeeCount || 100) * 1850),
+                savings: Math.round((company.employeeCount || 100) * 650),
+                costWithoutMSP: Math.round((company.employeeCount || 100) * 2500),
+                costWithMSP: Math.round((company.employeeCount || 100) * 1850),
+                annualSavings: Math.round((company.employeeCount || 100) * 650),
+                monthlySavings: Math.round((company.employeeCount || 100) * 54),
+                optimizationTime: Math.round(2 + Math.random() * 4),
+                roi: Math.round(150 + Math.random() * 100),
+                securityImprovement: Math.round(200 + Math.random() * 150),
               }
             };
           });
@@ -624,7 +624,7 @@ const SignalScanner = () => {
         setShowLoadingAnimation(false);
         setShowEnriched(true);
         setEnrichedData(true);
-        toast.success("SAP system data enrichment complete!");
+        toast.success("MSP system data enrichment complete!");
       }, 5000);
     } else {
       // Toggle visibility of already-enriched data
@@ -679,8 +679,8 @@ const SignalScanner = () => {
         </div>
         
         {/* Animated gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-green-500/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-emerald-500/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-emerald-500/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
         
         <div className="relative z-10 flex flex-col items-center gap-8">
           <div className="relative">
@@ -688,8 +688,8 @@ const SignalScanner = () => {
             <div className="loading loading-spinner loading-lg text-green-500 relative"></div>
           </div>
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-white mb-2">Loading SAP System Data</h2>
-            <p className="text-gray-400">Preparing comprehensive system analysis and performance metrics...</p>
+            <h2 className="text-2xl font-bold text-white mb-2">Loading Cybersecurity System Data</h2>
+            <p className="text-gray-400">Preparing comprehensive security analysis and threat detection metrics...</p>
           </div>
         </div>
       </div>
@@ -702,8 +702,8 @@ const SignalScanner = () => {
   return (
     <div className="w-full px-32 py-2 bg-[#020305] min-h-screen min-w-full relative">
       {/* Background gradient orbs */}
-      <div className="fixed top-20 right-40 w-96 h-96 bg-gradient-to-br from-[#10ba82]/5 to-transparent rounded-full blur-3xl transform rotate-12 opacity-70 pointer-events-none"></div>
-      <div className="fixed bottom-40 left-20 w-80 h-80 bg-gradient-to-tr from-[#10ba82]/5 to-transparent rounded-full blur-3xl transform -rotate-12 opacity-60 pointer-events-none"></div>
+      <div className="fixed top-20 right-40 w-96 h-96 bg-gradient-to-br from-emerald-500/5 to-transparent rounded-full blur-3xl transform rotate-12 opacity-70 pointer-events-none"></div>
+      <div className="fixed bottom-40 left-20 w-80 h-80 bg-gradient-to-tr from-emerald-500/5 to-transparent rounded-full blur-3xl transform -rotate-12 opacity-60 pointer-events-none"></div>
 
       {/* Loading Animation Modal */}
       {showLoadingAnimation && (
@@ -778,7 +778,7 @@ const SignalScanner = () => {
                     <span className="text-white/50">[00:00.12]</span> Initializing AI data extraction modules...
                   </div>
                   <div className="text-[#10ba82] animate-fadeIn" style={{ animationDelay: '300ms' }}>
-                    <span className="text-white/50">[00:00.35]</span> Establishing secure connection to SAP databases <BsShieldLock className="inline" />
+                    <span className="text-white/50">[00:00.35]</span> Establishing secure connection to MSP databases <BsShieldLock className="inline" />
                   </div>
                   <div className="text-[#10ba82] animate-fadeIn" style={{ animationDelay: '800ms' }}>
                     <span className="text-white/50">[00:01.08]</span> Scraping enterprise profile data from <TbWorldSearch className="inline" /> market intelligence APIs
@@ -827,7 +827,7 @@ const SignalScanner = () => {
                     {Array.from({ length: 4 }).map((_, i) => (
                       <div key={i} className="relative">
                         <div className="flex justify-between text-xs text-white/50 mb-1">
-                          <span>{['SAP API', 'Financial Data', 'Market Intel', 'System Metrics'][i]}</span>
+                          <span>{['MSP API', 'Financial Data', 'Market Intel', 'System Metrics'][i]}</span>
                           <span className="text-[#10ba82]">
                             {Math.floor(Math.random() * 1000)} req/s
                           </span>
@@ -1016,9 +1016,9 @@ const SignalScanner = () => {
                   <div className="relative z-10 p-6">
                     <div className="flex justify-between items-start">
                       <div>
-                        <p className="text-sm font-medium text-white/90 mb-1">Avg. SAP ROI</p>
+                        <p className="text-sm font-medium text-white/90 mb-1">Avg. MSP ROI</p>
                         <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                          {(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.sapMetrics.roi, 0) / selectedEnterprises.length).toFixed(1)}%
+                          {(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.securityMetrics.roi, 0) / selectedEnterprises.length).toFixed(1)}%
                         </h3>
                       </div>
                       <div className="rounded-2xl p-3 bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c] shadow-lg shadow-[#10ba82]/20 backdrop-blur-md border border-white/20">
@@ -1044,7 +1044,7 @@ const SignalScanner = () => {
                       <div>
                         <p className="text-sm font-medium text-white/90 mb-1">Total Transactions</p>
                         <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                          {(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.annualTransactions, 0) / 1000000).toFixed(1)}M
+                          {(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.monthlySecurityEvents, 0) / 1000000).toFixed(1)}M
                         </h3>
                       </div>
                       <div className="rounded-2xl p-3 bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c] shadow-lg shadow-[#10ba82]/20 backdrop-blur-md border border-white/20">
@@ -1070,7 +1070,7 @@ const SignalScanner = () => {
                       <div>
                         <p className="text-sm font-medium text-white/90 mb-1">Total Savings</p>
                         <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                          ${(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.sapMetrics.annualSavings, 0) / 1000).toFixed(0)}K/yr
+                          ${(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.securityMetrics.savings, 0) / 1000).toFixed(0)}K/yr
                         </h3>
                       </div>
                       <div className="rounded-2xl p-3 bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c] shadow-lg shadow-[#10ba82]/20 backdrop-blur-md border border-white/20">
@@ -1170,26 +1170,26 @@ const SignalScanner = () => {
                             <td className="px-2 py-2 text-white text-xs">{enterprise.location}</td>
                             <td className="px-2 py-2 text-white text-xs">{enterprise.systemType}</td>
                             <td className="px-2 py-2 text-white text-xs">{enterprise.userCount.toLocaleString()}</td>
-                            <td className="px-2 py-2 text-white text-xs">{(enterprise.annualTransactions/1000000).toFixed(2)}M</td>
+                            <td className="px-2 py-2 text-white text-xs">{(enterprise.monthlySecurityEvents/1000000).toFixed(2)}M</td>
                             <td className="px-2 py-2 text-white text-xs">${enterprise.licenseRate.toFixed(3)}</td>
                             
                             {showEnriched ? (
                               <>
-                                <td className="px-2 py-2 text-white text-xs">{enterprise.sapMetrics.maxThroughput} tps</td>
+                                <td className="px-2 py-2 text-white text-xs">{enterprise.securityMetrics.maxThreatCapacity} tps</td>
                                 <td className="px-2 py-2 text-xs">
                                   <div className="flex items-center">
                                     <div className="w-8 bg-gray-200 rounded-full h-1.5 mr-1">
-                                      <div className="bg-[#10ba82] h-1.5 rounded-full" style={{ width: `${Math.min(100, enterprise.sapMetrics.systemCoverage)}%` }}></div>
+                                      <div className="bg-[#10ba82] h-1.5 rounded-full" style={{ width: `${Math.min(100, enterprise.securityMetrics.systemCoverage)}%` }}></div>
                                     </div>
-                                    <span className="text-white">{enterprise.sapMetrics.systemCoverage.toFixed(0)}%</span>
+                                    <span className="text-white">{enterprise.securityMetrics.systemCoverage.toFixed(0)}%</span>
                                   </div>
                                 </td>
-                                <td className="px-2 py-2 text-white text-xs">${(enterprise.sapMetrics.costWithoutOptimization/1000).toFixed(0)}K</td>
-                                <td className="px-2 py-2 text-white text-xs">${(enterprise.sapMetrics.costWithOptimization/1000).toFixed(0)}K</td>
-                                <td className="px-2 py-2 text-[#10ba82] text-xs">${(enterprise.sapMetrics.annualSavings/1000).toFixed(0)}K</td>
-                                <td className="px-2 py-2 text-white text-xs">{enterprise.sapMetrics.roi.toFixed(1)}%</td>
-                                <td className="px-2 py-2 text-white text-xs">{enterprise.sapMetrics.optimizationTime.toFixed(1)} mo</td>
-                                <td className="px-2 py-2 text-white text-xs">{enterprise.sapMetrics.performanceImprovement}%</td>
+                                <td className="px-2 py-2 text-white text-xs">${(enterprise.securityMetrics.costWithoutMSP/1000).toFixed(0)}K</td>
+                                <td className="px-2 py-2 text-white text-xs">${(enterprise.securityMetrics.costWithMSP/1000).toFixed(0)}K</td>
+                                <td className="px-2 py-2 text-[#10ba82] text-xs">${(enterprise.securityMetrics.savings/1000).toFixed(0)}K</td>
+                                <td className="px-2 py-2 text-white text-xs">{enterprise.securityMetrics.roi.toFixed(1)}%</td>
+                                <td className="px-2 py-2 text-white text-xs">{enterprise.securityMetrics.optimizationTime.toFixed(1)} mo</td>
+                                <td className="px-2 py-2 text-white text-xs">{enterprise.securityMetrics.securityImprovement}%</td>
                                 <td className="px-2 py-2 text-xs">
                                   <button 
                                     className="bg-gradient-to-r from-[#10ba82] to-[#0c9a6c] text-white rounded-lg px-2 py-1 text-xs font-medium hover:from-[#0c9a6c] hover:to-[#0a8a5c] transition-all"
@@ -1203,7 +1203,7 @@ const SignalScanner = () => {
                               <td colSpan={9} className="px-2 py-2 text-white/50 text-xs">
                                 <div className="flex items-center gap-1">
                                   <MdOutlineWarning size={12} />
-                                  <span>SAP system analysis data not yet displayed</span>
+                                  <span>MSP system analysis data not yet displayed</span>
                                 </div>
                               </td>
                             )}
@@ -1257,7 +1257,7 @@ const SignalScanner = () => {
       <dialog id="visualization-modal" className="modal modal-bottom sm:modal-middle bg-transparent">
         <div className="backdrop-blur-2xl bg-gradient-to-br from-[#28292b]/90 via-[#28292b]/80 to-[rgba(40,41,43,0.7)] rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-[#10ba82]/15 p-6 max-w-2xl mx-auto">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-xl font-bold text-white">SAP System Analysis</h3>
+            <h3 className="text-xl font-bold text-white">MSP System Analysis</h3>
             <button 
               onClick={closeModal}
               className="text-white/70 hover:text-white"
@@ -1291,11 +1291,11 @@ const SignalScanner = () => {
                       </div>
                       <div>
                         <p className="text-xs text-white/50">Transactions</p>
-                        <p className="text-sm text-white">{(selectedEnterpriseForModal.annualTransactions/1000000).toFixed(2)}M</p>
+                        <p className="text-sm text-white">{(selectedEnterpriseForModal.monthlySecurityEvents/1000000).toFixed(2)}M</p>
                       </div>
                       <div>
                         <p className="text-xs text-white/50">Throughput</p>
-                        <p className="text-sm text-white">{selectedEnterpriseForModal.sapMetrics.maxThroughput} tps</p>
+                        <p className="text-sm text-white">{selectedEnterpriseForModal.securityMetrics.maxThreatCapacity} tps</p>
                       </div>
                     </div>
                   </div>
@@ -1307,7 +1307,7 @@ const SignalScanner = () => {
                     <ul className="space-y-2 text-white/70 text-sm flex-1">
                       <li className="flex items-start gap-2">
                         <div className="min-w-[20px] mt-0.5 text-[#10ba82]">•</div>
-                        <span>Transaction Performance Analysis: See how SAP processes your workload across different modules and components</span>
+                        <span>Transaction Performance Analysis: See how MSP processes your workload across different modules and components</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="min-w-[20px] mt-0.5 text-[#10ba82]">•</div>
@@ -1319,7 +1319,7 @@ const SignalScanner = () => {
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="min-w-[20px] mt-0.5 text-[#10ba82]">•</div>
-                        <span>Cost Breakdown Charts: See where your SAP budget is going and how to optimize it</span>
+                        <span>Cost Breakdown Charts: See where your MSP budget is going and how to optimize it</span>
                       </li>
                     </ul>
                   </div>
