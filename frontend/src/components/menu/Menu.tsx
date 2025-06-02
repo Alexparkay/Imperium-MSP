@@ -125,7 +125,7 @@ const Menu: React.FC = () => {
             <img 
               src="/images/SAP/Imperium_logo.png" 
               alt="Imperium Logo" 
-              className="w-10 h-10 object-contain"
+              className="w-full h-full object-cover rounded-full"
             />
             <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-[#10ba82]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
           </div>
