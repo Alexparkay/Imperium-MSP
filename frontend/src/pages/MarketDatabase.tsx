@@ -154,7 +154,7 @@ const MarketDatabase = () => {
   });
   
   const [companiesStats, setCompaniesStats] = useState({
-    total: 426000,
+    total: 2300, // Changed from 426000 to 2.3K
     filtered: 14, 
     small: 283000,
     medium: 106500,
@@ -2092,7 +2092,7 @@ const MarketDatabase = () => {
                 <div className="grid grid-cols-3 gap-4 mb-4">
                   <StatsCard
                     title="Total Contacts"
-                    value={formatNumber(filteredCompanies.length)}
+                    value="2,300"
                     change="+2.5% this month"
                     icon={<MdBusinessCenter className="text-white text-xl" />}
                     colorClass="bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c]"
