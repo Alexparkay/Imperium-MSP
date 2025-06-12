@@ -24,385 +24,821 @@ interface Company {
   [key: string]: any; // Allow for additional properties
 }
 
-// Add more companies from the MarketDatabase to enrichedEnterprises
+// ProCloud Comprehensive Enterprise Dataset - Healthcare & Finance MSP Prospects
 const enrichedEnterprises = [
+  // Healthcare Companies with MSP Enrichment
   {
-    id: 2,
-    name: "Kyle Flynn-Kasaba",
-    jobTitle: "Head of IT Infrastructure and Operations",
-    company: "Wood",
+    id: 1,
+    name: "Dr. Sarah Johnson",
+    jobTitle: "CIO",
+    company: "Kaiser Permanente",
     emails: true,
     phoneNumbers: true,
-    location: "Houston, Texas",
+    location: "Oakland, California",
+    state: "California",
     enriched: true,
     verified: true,
-    email: "k.flynn-kasaba@example.com",
-    phone: "(713) 555-6789",
-    systemType: "Managed Security Services",
-    userCount: 36000,
-    implementationYear: 2019,
-    serverCount: 2300,
-    monthlySecurityEvents: 34250000,
-    licenseRate: 175, // $ per user per month
-    peakThreatLoad: 8450, // threats per second
+    employeeCount: 375,
+    industry: "Healthcare",
+    subIndustry: "Healthcare System",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "HIPAA",
+    licenseRenewal: "Microsoft 365",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 9.2,
+    hasCurrentMSP: false,
+    techStackGaps: ["Epic EHR Integration", "Healthcare IT Security", "Compliance Reporting"],
+    lastContactAttempt: "2024-01-15",
+    emailDomain: "@kp.org",
+    phoneNumber: "(510) 555-0123",
+    website: "https://www.kaiserpermanentejobs.org",
+    currentITRoles: "IT Engineer Applications, Senior IT Engineer Applications, IT Support Technician",
+    technologyStack: "Epic EHR Microsoft Healthcare IT systems",
+    systemType: "Healthcare IT Management",
+    implementationYear: 2021,
+    serverCount: 850,
+    monthlySecurityEvents: 18750000,
+    licenseRate: 185,
+    peakThreatLoad: 6500,
     industryAvg: {
-      securityIncidents: 285, // per month
-      mspAdoption: 68, // percentage
-      costPerUser: 195, // $
-      implementationTime: 3.2, // months
+      securityIncidents: 325,
+      mspAdoption: 72,
+      costPerUser: 205,
+      implementationTime: 4.2,
     },
     securityMetrics: {
-      maxThreatCapacity: 9850, // threats per second
-      monthlyIncidents: 285, // security incidents
-      systemCoverage: 94.1, // percentage
-      implementationCost: 1240000, // $
-      totalCost: 7418000, // $ annual managed services cost
-      savings: 3322000, // $ vs in-house security
-      costWithoutMSP: 10740000, // $ per year in-house
-      costWithMSP: 7418000, // $ per year managed
-      annualSavings: 3322000, // $ per year
-      monthlySavings: 276833, // $ per month
-      optimizationTime: 3.8, // months
-      roi: 267, // percentage
-      securityImprovement: 341, // percentage threat detection improvement
+      maxThreatCapacity: 7200,
+      monthlyIncidents: 265,
+      systemCoverage: 96.8,
+      implementationCost: 1875000,
+      totalCost: 8437500,
+      savings: 3562500,
+      costWithoutMSP: 12000000,
+      costWithMSP: 8437500,
+      annualSavings: 3562500,
+      monthlySavings: 296875,
+      optimizationTime: 4.2,
+      roi: 190,
+      securityImprovement: 285,
+    }
+  },
+  {
+    id: 2,
+    name: "Dr. Michael Chen",
+    jobTitle: "Chief Clinical Information Officer",
+    company: "Northwell Health",
+    emails: true,
+    phoneNumbers: true,
+    location: "New Hyde Park, New York",
+    state: "New York",
+    enriched: true,
+    verified: true,
+    employeeCount: 450,
+    industry: "Healthcare",
+    subIndustry: "Hospital System",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "HIPAA",
+    licenseRenewal: "Microsoft 365",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 8.9,
+    hasCurrentMSP: false,
+    techStackGaps: ["Epic Integration", "Healthcare Analytics", "Network Security"],
+    lastContactAttempt: "2024-01-20",
+    emailDomain: "@northwell.edu",
+    phoneNumber: "(516) 555-0456",
+    website: "https://jobs.northwell.edu",
+    currentITRoles: "Chief Clinical Information Officer, IT Support, Information Technology positions",
+    technologyStack: "Epic Microsoft Healthcare analytics",
+    systemType: "Hospital System Management",
+    implementationYear: 2020,
+    serverCount: 1200,
+    monthlySecurityEvents: 28500000,
+    licenseRate: 195,
+    peakThreatLoad: 9500,
+    industryAvg: {
+      securityIncidents: 425,
+      mspAdoption: 75,
+      costPerUser: 215,
+      implementationTime: 4.8,
     },
-    industry: "Professional Training & Coaching"
+    securityMetrics: {
+      maxThreatCapacity: 10800,
+      monthlyIncidents: 385,
+      systemCoverage: 97.2,
+      implementationCost: 2250000,
+      totalCost: 10575000,
+      savings: 4425000,
+      costWithoutMSP: 15000000,
+      costWithMSP: 10575000,
+      annualSavings: 4425000,
+      monthlySavings: 368750,
+      optimizationTime: 4.8,
+      roi: 197,
+      securityImprovement: 315,
+    }
   },
   {
     id: 3,
-    name: "Wells Shammout",
-    jobTitle: "Vice President, Head of Information Technology",
-    company: "IPS",
+    name: "Lisa Rodriguez",
+    jobTitle: "Epic Senior IT Project Manager",
+    company: "ChristianaCare",
     emails: true,
     phoneNumbers: true,
-    location: "Rutherford, New Jersey",
+    location: "Newark, Delaware",
+    state: "Delaware",
     enriched: true,
     verified: true,
-    email: "w.shammout@example.com",
-    phone: "(201) 555-9012",
-    systemType: "SOC-as-a-Service",
-    userCount: 3400,
+    employeeCount: 400,
+    industry: "Healthcare",
+    subIndustry: "Hospital System",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "HIPAA",
+    licenseRenewal: "Microsoft 365",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 8.7,
+    hasCurrentMSP: false,
+    techStackGaps: ["Epic EHR Security", "Microsoft Office Integration", "Healthcare IT"],
+    lastContactAttempt: "2024-01-25",
+    emailDomain: "@christianacare.org",
+    phoneNumber: "(302) 555-0789",
+    website: "https://careers.christianacare.org",
+    currentITRoles: "Epic Senior IT Project Manager, IT Support positions",
+    technologyStack: "Epic EHR Microsoft Office Healthcare IT",
+    systemType: "Epic Healthcare Management",
     implementationYear: 2020,
-    serverCount: 320,
-    monthlySecurityEvents: 12750000,
-    licenseRate: 165, // $ per user per month
-    peakThreatLoad: 2980, // threats per second
+    serverCount: 720,
+    monthlySecurityEvents: 16800000,
+    licenseRate: 180,
+    peakThreatLoad: 5800,
     industryAvg: {
-      securityIncidents: 96, // per month
-      mspAdoption: 72, // percentage
-      costPerUser: 185, // $
-      implementationTime: 2.8, // months
+      securityIncidents: 315,
+      mspAdoption: 74,
+      costPerUser: 200,
+      implementationTime: 4.0,
     },
     securityMetrics: {
-      maxThreatCapacity: 3250, // threats per second
-      monthlyIncidents: 96, // security incidents
-      systemCoverage: 91.3, // percentage
-      implementationCost: 887500, // $
-      totalCost: 2721250, // $ annual managed services cost
-      savings: 1166250, // $ vs in-house security
-      costWithoutMSP: 3887500, // $ per year in-house
-      costWithMSP: 2721250, // $ per year managed
-      annualSavings: 1166250, // $ per year
-      monthlySavings: 97188, // $ per month
-      optimizationTime: 2.8, // months
-      roi: 128, // percentage
-      securityImprovement: 185, // percentage threat detection improvement
-    },
-    industry: "Information Services"
+      maxThreatCapacity: 6800,
+      monthlyIncidents: 245,
+      systemCoverage: 96.5,
+      implementationCost: 1680000,
+      totalCost: 7560000,
+      savings: 3240000,
+      costWithoutMSP: 10800000,
+      costWithMSP: 7560000,
+      annualSavings: 3240000,
+      monthlySavings: 270000,
+      optimizationTime: 4.0,
+      roi: 193,
+      securityImprovement: 275,
+    }
   },
   {
     id: 4,
-    name: "Sanjeev Sharma",
-    jobTitle: "Head of Information Technology - Info",
-    company: "IPG Photonics",
+    name: "David Kim",
+    jobTitle: "Clinical Analyst",
+    company: "Penn Medicine",
     emails: true,
     phoneNumbers: true,
-    location: "Framingham, Massachusetts",
+    location: "Philadelphia, Pennsylvania",
+    state: "Pennsylvania",
     enriched: true,
     verified: true,
-    email: "s.sharma@example.com",
-    phone: "(508) 555-3456",
-    systemType: "Endpoint Security Management",
-    userCount: 1600,
+    employeeCount: 450,
+    industry: "Healthcare",
+    subIndustry: "Hospital System",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "HIPAA",
+    licenseRenewal: "Microsoft 365",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 8.8,
+    hasCurrentMSP: false,
+    techStackGaps: ["Epic Integration", "Clinical Systems", "Microsoft Security"],
+    lastContactAttempt: "2024-01-18",
+    emailDomain: "@pennmedicine.org",
+    phoneNumber: "(215) 555-0234",
+    website: "https://careers.pennmedicine.org",
+    currentITRoles: "Clinical Analyst, Application Analyst, IT Support",
+    technologyStack: "Epic Microsoft Clinical systems",
+    systemType: "Clinical Systems Management",
     implementationYear: 2021,
-    serverCount: 95,
-    monthlySecurityEvents: 5250000,
-    licenseRate: 155, // $ per user per month
-    peakThreatLoad: 1680, // threats per second
+    serverCount: 810,
+    monthlySecurityEvents: 22050000,
+    licenseRate: 190,
+    peakThreatLoad: 7650,
     industryAvg: {
-      securityIncidents: 48, // per month
-      mspAdoption: 65, // percentage
-      costPerUser: 175, // $
-      implementationTime: 2.5, // months
+      securityIncidents: 380,
+      mspAdoption: 76,
+      costPerUser: 210,
+      implementationTime: 4.5,
     },
     securityMetrics: {
-      maxThreatCapacity: 1850, // threats per second
-      monthlyIncidents: 32, // security incidents
-      systemCoverage: 96.6, // percentage
-      implementationCost: 437500, // $
-      totalCost: 1756250, // $ annual managed services cost
-      savings: 681250, // $ vs in-house security
-      costWithoutMSP: 2437500, // $ per year in-house
-      costWithMSP: 1756250, // $ per year managed
-      annualSavings: 681250, // $ per year
-      monthlySavings: 56771, // $ per month
-      optimizationTime: 2.5, // months
-      roi: 156, // percentage
-      securityImprovement: 225, // percentage threat detection improvement
-    },
-    industry: "Electrical/Electronic Manufacturing"
+      maxThreatCapacity: 8550,
+      monthlyIncidents: 315,
+      systemCoverage: 97.0,
+      implementationCost: 2025000,
+      totalCost: 9450000,
+      savings: 4050000,
+      costWithoutMSP: 13500000,
+      costWithMSP: 9450000,
+      annualSavings: 4050000,
+      monthlySavings: 337500,
+      optimizationTime: 4.5,
+      roi: 200,
+      securityImprovement: 290,
+    }
   },
   {
     id: 5,
-    name: "Leah Sullivan",
-    jobTitle: "Head of IT application Engineering",
-    company: "Henkel",
+    name: "Jennifer Walsh",
+    jobTitle: "IT Support Technician",
+    company: "University of Utah Health",
     emails: true,
     phoneNumbers: true,
-    location: "Watchung, New Jersey",
+    location: "Salt Lake City, Utah",
+    state: "Utah",
     enriched: true,
     verified: true,
-    email: "l.sullivan@example.com",
-    phone: "(908) 555-7890",
-    systemType: "Comprehensive Security Suite",
-    userCount: 48000,
-    implementationYear: 2020,
-    serverCount: 1820,
-    monthlySecurityEvents: 45650000,
-    licenseRate: 185, // $ per user per month
-    peakThreatLoad: 14250, // threats per second
+    employeeCount: 400,
+    industry: "Healthcare",
+    subIndustry: "Healthcare System",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "HIPAA",
+    licenseRenewal: "Microsoft 365",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 8.5,
+    hasCurrentMSP: false,
+    techStackGaps: ["DevOps Security", "Epic Integration", "Healthcare IT"],
+    lastContactAttempt: "2024-01-22",
+    emailDomain: "@healthcare.utah.edu",
+    phoneNumber: "(801) 555-0567",
+    website: "https://careers-uuhc.icims.com",
+    currentITRoles: "IT Support Technician, Desktop Support, DevOps Engineer",
+    technologyStack: "Microsoft Healthcare IT Epic",
+    systemType: "Healthcare DevOps Management",
+    implementationYear: 2022,
+    serverCount: 680,
+    monthlySecurityEvents: 16000000,
+    licenseRate: 175,
+    peakThreatLoad: 5400,
     industryAvg: {
-      securityIncidents: 425, // per month
-      mspAdoption: 71, // percentage
-      costPerUser: 205, // $
-      implementationTime: 4.2, // months
+      securityIncidents: 295,
+      mspAdoption: 70,
+      costPerUser: 195,
+      implementationTime: 3.8,
     },
     securityMetrics: {
-      maxThreatCapacity: 15620, // threats per second
-      monthlyIncidents: 285, // security incidents
-      systemCoverage: 97.5, // percentage
-      implementationCost: 2275000, // $
-      totalCost: 10692500, // $ annual managed services cost
-      savings: 4582500, // $ vs in-house security
-      costWithoutMSP: 15275000, // $ per year in-house
-      costWithMSP: 10692500, // $ per year managed
-      annualSavings: 4582500, // $ per year
-      monthlySavings: 381875, // $ per month
-      optimizationTime: 4.2, // months
-      roi: 201, // percentage
-      securityImprovement: 295, // percentage threat detection improvement
-    },
-    industry: "Mechanical Or Industrial Engineering"
+      maxThreatCapacity: 6200,
+      monthlyIncidents: 225,
+      systemCoverage: 95.8,
+      implementationCost: 1520000,
+      totalCost: 7000000,
+      savings: 3000000,
+      costWithoutMSP: 10000000,
+      costWithMSP: 7000000,
+      annualSavings: 3000000,
+      monthlySavings: 250000,
+      optimizationTime: 3.8,
+      roi: 197,
+      securityImprovement: 265,
+    }
   },
+  // Finance Companies with MSP Enrichment
   {
     id: 6,
-    name: "Benjamin Partout",
-    jobTitle: "Head of Information Technology",
-    company: "Strive",
+    name: "Alex Thompson",
+    jobTitle: "Backend Engineer",
+    company: "BitGo",
     emails: true,
     phoneNumbers: true,
-    location: "Denver, Colorado",
+    location: "Palo Alto, California",
+    state: "California",
     enriched: true,
     verified: true,
-    email: "b.partout@example.com",
-    phone: "(720) 555-0123",
-    systemType: "Cloud Security Management",
-    userCount: 160,
+    employeeCount: 175,
+    industry: "Finance",
+    subIndustry: "Financial Services/Cryptocurrency",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "SOC 2",
+    licenseRenewal: "No Renewals Identified",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 8.3,
+    hasCurrentMSP: false,
+    techStackGaps: ["PCI DSS Compliance", "Cryptocurrency Security", "AWS Security"],
+    lastContactAttempt: "2024-01-28",
+    emailDomain: "@bitgo.com",
+    phoneNumber: "(650) 555-0890",
+    website: "http://www.bitgo.com",
+    currentITRoles: "Backend Engineer DevOps Engineer Security Engineer",
+    technologyStack: "Node.js, Go, PostgreSQL, AWS",
+    systemType: "Cryptocurrency Security Platform",
     implementationYear: 2022,
-    serverCount: 22,
-    monthlySecurityEvents: 950000,
-    licenseRate: 145, // $ per user per month
-    peakThreatLoad: 280, // threats per second
+    serverCount: 285,
+    monthlySecurityEvents: 8750000,
+    licenseRate: 165,
+    peakThreatLoad: 3200,
     industryAvg: {
-      securityIncidents: 18, // per month
-      mspAdoption: 58, // percentage
-      costPerUser: 165, // $
-      implementationTime: 1.8, // months
+      securityIncidents: 85,
+      mspAdoption: 68,
+      costPerUser: 185,
+      implementationTime: 3.2,
     },
     securityMetrics: {
-      maxThreatCapacity: 430, // threats per second
-      monthlyIncidents: 12, // security incidents
-      systemCoverage: 98.4, // percentage
-      implementationCost: 75600, // $
-      totalCost: 312920, // $ annual managed services cost
-      savings: 162680, // $ vs in-house security
-      costWithoutMSP: 475600, // $ per year in-house
-      costWithMSP: 312920, // $ per year managed
-      annualSavings: 162680, // $ per year
-      monthlySavings: 13557, // $ per month
-      optimizationTime: 1.8, // months
-      roi: 215, // percentage
-      securityImprovement: 385, // percentage threat detection improvement
-    },
-    industry: "Chemicals - Research"
+      maxThreatCapacity: 3850,
+      monthlyIncidents: 72,
+      systemCoverage: 95.4,
+      implementationCost: 875000,
+      totalCost: 3456250,
+      savings: 1543750,
+      costWithoutMSP: 5000000,
+      costWithMSP: 3456250,
+      annualSavings: 1543750,
+      monthlySavings: 128646,
+      optimizationTime: 3.2,
+      roi: 177,
+      securityImprovement: 245,
+    }
   },
   {
     id: 7,
-    name: "Henry Ifiuscati",
-    jobTitle: "Head of Information Technology",
-    company: "Liberty Mutual Insurance",
+    name: "Sarah Martinez",
+    jobTitle: "Platform Engineer",
+    company: "Betterment",
     emails: true,
     phoneNumbers: true,
-    location: "Boston, Massachusetts",
+    location: "New York, New York",
+    state: "New York",
     enriched: true,
     verified: true,
-    email: "h.ifiuscati@example.com",
-    phone: "(617) 555-4567",
-    systemType: "Financial Services Security",
-    userCount: 45000,
-    implementationYear: 2019,
-    serverCount: 3580,
-    monthlySecurityEvents: 61250000,
-    licenseRate: 225, // $ per user per month
-    peakThreatLoad: 19800, // threats per second
+    employeeCount: 175,
+    industry: "Finance",
+    subIndustry: "Investment Management",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "SOC 2",
+    licenseRenewal: "No Renewals Identified",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 8.1,
+    hasCurrentMSP: false,
+    techStackGaps: ["SEC Compliance", "Kubernetes Security", "Data Protection"],
+    lastContactAttempt: "2024-01-30",
+    emailDomain: "@betterment.com",
+    phoneNumber: "(212) 555-0123",
+    website: "http://www.betterment.com",
+    currentITRoles: "Software Engineer Platform Engineer Data Engineer",
+    technologyStack: "Python, AWS, Kubernetes, PostgreSQL",
+    systemType: "Investment Platform Security",
+    implementationYear: 2021,
+    serverCount: 225,
+    monthlySecurityEvents: 6875000,
+    licenseRate: 155,
+    peakThreatLoad: 2650,
     industryAvg: {
-      securityIncidents: 485, // per month
-      mspAdoption: 78, // percentage
-      costPerUser: 245, // $
-      implementationTime: 5.7, // months
+      securityIncidents: 68,
+      mspAdoption: 65,
+      costPerUser: 175,
+      implementationTime: 2.8,
     },
     securityMetrics: {
-      maxThreatCapacity: 21300, // threats per second
-      monthlyIncidents: 325, // security incidents
-      systemCoverage: 96.7, // percentage
-      implementationCost: 2325000, // $
-      totalCost: 12727500, // $ annual managed services cost
-      savings: 7097500, // $ vs in-house security
-      costWithoutMSP: 19825000, // $ per year in-house
-      costWithMSP: 12727500, // $ per year managed
-      annualSavings: 7097500, // $ per year
-      monthlySavings: 591458, // $ per month
-      optimizationTime: 5.7, // months
-      roi: 305, // percentage
-      securityImprovement: 425, // percentage threat detection improvement
-    },
-    industry: "Insurance - Financial Services"
+      maxThreatCapacity: 3100,
+      monthlyIncidents: 58,
+      systemCoverage: 94.8,
+      implementationCost: 687500,
+      totalCost: 2712500,
+      savings: 1287500,
+      costWithoutMSP: 4000000,
+      costWithMSP: 2712500,
+      annualSavings: 1287500,
+      monthlySavings: 107292,
+      optimizationTime: 2.8,
+      roi: 187,
+      securityImprovement: 225,
+    }
   },
   {
     id: 8,
-    name: "Brandon Thielen",
-    jobTitle: "Head of Information Technology",
-    company: "Fives Cinetic Corp.",
+    name: "Robert Chen",
+    jobTitle: "DevOps Engineer",
+    company: "Alloy",
     emails: true,
     phoneNumbers: true,
-    location: "Farmington, Michigan",
+    location: "New York, New York",
+    state: "New York",
     enriched: true,
     verified: true,
-    email: "b.thielen@example.com",
-    phone: "(248) 555-8901",
-    systemType: "Industrial Security Suite",
-    userCount: 2600,
+    employeeCount: 375,
+    industry: "Finance",
+    subIndustry: "Identity Verification/Banking",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "PCI DSS",
+    licenseRenewal: "No Renewals Identified",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 8.6,
+    hasCurrentMSP: false,
+    techStackGaps: ["Banking Security", "Identity Verification", "Docker Security"],
+    lastContactAttempt: "2024-01-26",
+    emailDomain: "@alloy.com",
+    phoneNumber: "(646) 555-0456",
+    website: "https://www.alloy.com",
+    currentITRoles: "Software Engineer DevOps Engineer Security Engineer",
+    technologyStack: "Ruby, PostgreSQL, AWS, Docker",
+    systemType: "Banking Security Platform",
     implementationYear: 2021,
-    serverCount: 270,
-    monthlySecurityEvents: 8500000,
-    licenseRate: 175, // $ per user per month
-    peakThreatLoad: 3120, // threats per second
+    serverCount: 535,
+    monthlySecurityEvents: 14062500,
+    licenseRate: 170,
+    peakThreatLoad: 4875,
     industryAvg: {
-      securityIncidents: 78, // per month
-      mspAdoption: 62, // percentage
-      costPerUser: 195, // $
-      implementationTime: 3.1, // months
+      securityIncidents: 115,
+      mspAdoption: 70,
+      costPerUser: 190,
+      implementationTime: 3.5,
     },
     securityMetrics: {
-      maxThreatCapacity: 3850, // threats per second
-      monthlyIncidents: 52, // security incidents
-      systemCoverage: 95.5, // percentage
-      implementationCost: 590000, // $
-      totalCost: 2730000, // $ annual managed services cost
-      savings: 1170000, // $ vs in-house security
-      costWithoutMSP: 3900000, // $ per year in-house
-      costWithMSP: 2730000, // $ per year managed
-      annualSavings: 1170000, // $ per year
-      monthlySavings: 97500, // $ per month
-      optimizationTime: 3.1, // months
-      roi: 198, // percentage
-      securityImprovement: 265, // percentage threat detection improvement
-    },
-    industry: "Machinery"
+      maxThreatCapacity: 5625,
+      monthlyIncidents: 95,
+      systemCoverage: 95.8,
+      implementationCost: 1312500,
+      totalCost: 6375000,
+      savings: 2812500,
+      costWithoutMSP: 9187500,
+      costWithMSP: 6375000,
+      annualSavings: 2812500,
+      monthlySavings: 234375,
+      optimizationTime: 3.5,
+      roi: 215,
+      securityImprovement: 275,
+    }
   },
   {
     id: 9,
-    name: "Tayo Oshoei",
-    jobTitle: "Head of Security and Risk",
-    company: "Holcim",
+    name: "Michelle Wu",
+    jobTitle: "IT Support Specialist",
+    company: "Trinity Capital",
     emails: true,
     phoneNumbers: true,
-    location: "Washington, District of Columbia",
+    location: "Phoenix, Arizona",
+    state: "Arizona",
     enriched: true,
     verified: true,
-    email: "t.oshoei@example.com",
-    phone: "(202) 555-2345",
-    systemType: "Enterprise Security Management",
-    userCount: 10100,
-    implementationYear: 2020,
-    serverCount: 825,
-    monthlySecurityEvents: 29750000,
-    licenseRate: 195, // $ per user per month
-    peakThreatLoad: 8750, // threats per second
+    employeeCount: 175,
+    industry: "Finance",
+    subIndustry: "Investment Firm",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "SOC 2",
+    licenseRenewal: "Microsoft 365",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 8.4,
+    hasCurrentMSP: false,
+    techStackGaps: ["SEC Regulations", "Azure Security", "Investment Systems"],
+    lastContactAttempt: "2024-01-24",
+    emailDomain: "@trinitycap.com",
+    phoneNumber: "(602) 555-0789",
+    website: "https://trinitycap.com",
+    currentITRoles: "IT Support Specialist Systems Administrator Technology Analyst",
+    technologyStack: "Microsoft Office 365, Azure, SQL Server",
+    systemType: "Investment Security Management",
+    implementationYear: 2022,
+    serverCount: 245,
+    monthlySecurityEvents: 6562500,
+    licenseRate: 160,
+    peakThreatLoad: 2275,
     industryAvg: {
-      securityIncidents: 285, // per month
-      mspAdoption: 69, // percentage
-      costPerUser: 215, // $
-      implementationTime: 4.5, // months
+      securityIncidents: 62,
+      mspAdoption: 68,
+      costPerUser: 180,
+      implementationTime: 2.8,
     },
     securityMetrics: {
-      maxThreatCapacity: 9950, // threats per second
-      monthlyIncidents: 195, // security incidents
-      systemCoverage: 94.1, // percentage
-      implementationCost: 1560000, // $
-      totalCost: 6242000, // $ annual managed services cost
-      savings: 2818000, // $ vs in-house security
-      costWithoutMSP: 9060000, // $ per year in-house
-      costWithMSP: 6242000, // $ per year managed
-      annualSavings: 2818000, // $ per year
-      monthlySavings: 234833, // $ per month
-      optimizationTime: 4.5, // months
-      roi: 181, // percentage
-      securityImprovement: 245, // percentage threat detection improvement
-    },
-    industry: "Building Materials"
+      maxThreatCapacity: 2625,
+      monthlyIncidents: 52,
+      systemCoverage: 96.2,
+      implementationCost: 612500,
+      totalCost: 2800000,
+      savings: 1225000,
+      costWithoutMSP: 4025000,
+      costWithMSP: 2800000,
+      annualSavings: 1225000,
+      monthlySavings: 102083,
+      optimizationTime: 2.8,
+      roi: 200,
+      securityImprovement: 240,
+    }
   },
   {
     id: 10,
-    name: "Rahul Chaudhary",
-    jobTitle: "IT Security Director",
-    company: "TEK Inspirations LLC",
+    name: "James Park",
+    jobTitle: "Infrastructure Engineer",
+    company: "Elliott Investment Management",
     emails: true,
     phoneNumbers: true,
-    location: "Frisco, Texas",
+    location: "New York, New York",
+    state: "New York",
     enriched: true,
     verified: true,
-    email: "r.chaudhary@example.com",
-    phone: "(469) 555-6789",
-    systemType: "SMB Security Services",
-    userCount: 440,
-    implementationYear: 2022,
-    serverCount: 45,
-    monthlySecurityEvents: 1850000,
-    licenseRate: 155, // $ per user per month
-    peakThreatLoad: 380, // threats per second
+    employeeCount: 375,
+    industry: "Finance",
+    subIndustry: "Hedge Fund",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "SOC 2",
+    licenseRenewal: "No Renewals Identified",
+    rmmTool: "No RMM Tool Identified",
+    opportunityScore: 9.1,
+    hasCurrentMSP: false,
+    techStackGaps: ["Financial Trading Security", "Bloomberg Integration", "Unix/Linux Security"],
+    lastContactAttempt: "2024-01-21",
+    emailDomain: "@elliottmgmt.com",
+    phoneNumber: "(212) 555-0234",
+    website: "http://www.elliottmgmt.com",
+    currentITRoles: "Quantitative Developer Infrastructure Engineer IT Support",
+    technologyStack: "Python, C++, Bloomberg Terminal, Unix/Linux",
+    systemType: "Hedge Fund Trading Security",
+    implementationYear: 2020,
+    serverCount: 585,
+    monthlySecurityEvents: 15937500,
+    licenseRate: 185,
+    peakThreatLoad: 5325,
     industryAvg: {
-      securityIncidents: 24, // per month
-      mspAdoption: 54, // percentage
-      costPerUser: 175, // $
-      implementationTime: 1.8, // months
+      securityIncidents: 125,
+      mspAdoption: 75,
+      costPerUser: 205,
+      implementationTime: 4.0,
     },
     securityMetrics: {
-      maxThreatCapacity: 540, // threats per second
-      monthlyIncidents: 16, // security incidents
-      systemCoverage: 97.1, // percentage
-      implementationCost: 120000, // $
-      totalCost: 524000, // $ annual managed services cost
-      savings: 296000, // $ vs in-house security
-      costWithoutMSP: 820000, // $ per year in-house
-      costWithMSP: 524000, // $ per year managed
-      annualSavings: 296000, // $ per year
-      monthlySavings: 24667, // $ per month
-      optimizationTime: 1.8, // months
-      roi: 247, // percentage
-      securityImprovement: 325, // percentage threat detection improvement
+      maxThreatCapacity: 6075,
+      monthlyIncidents: 105,
+      systemCoverage: 97.5,
+      implementationCost: 1518750,
+      totalCost: 6937500,
+      savings: 3093750,
+      costWithoutMSP: 10031250,
+      costWithMSP: 6937500,
+      annualSavings: 3093750,
+      monthlySavings: 257813,
+      optimizationTime: 4.0,
+      roi: 225,
+      securityImprovement: 295,
+    }
+  },
+  // Additional Healthcare Companies with MSP Enrichment for comprehensive dataset
+  {
+    id: 11,
+    name: "Dr. Maria Santos",
+    jobTitle: "Director of Information Systems",
+    company: "Banner Health",
+    emails: true,
+    phoneNumbers: true,
+    location: "Phoenix, Arizona",
+    state: "Arizona",
+    enriched: true,
+    verified: true,
+    employeeCount: 385,
+    industry: "Healthcare",
+    subIndustry: "Hospital System",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "HIPAA",
+    licenseRenewal: "Google Workspace",
+    rmmTool: "ConnectWise Automate",
+    opportunityScore: 8.4,
+    hasCurrentMSP: false,
+    techStackGaps: ["Cloud Security", "EMR Integration", "Network Monitoring"],
+    lastContactAttempt: "2024-01-30",
+    emailDomain: "@bannerhealth.com",
+    phoneNumber: "(602) 555-1234",
+    systemType: "Healthcare Cloud Management",
+    implementationYear: 2021,
+    serverCount: 695,
+    monthlySecurityEvents: 19250000,
+    licenseRate: 185,
+    peakThreatLoad: 6545,
+    industryAvg: {
+      securityIncidents: 325,
+      mspAdoption: 72,
+      costPerUser: 205,
+      implementationTime: 4.2,
     },
-    industry: "Information Technology & Services"
+    securityMetrics: {
+      maxThreatCapacity: 7425,
+      monthlyIncidents: 285,
+      systemCoverage: 96.2,
+      implementationCost: 1732500,
+      totalCost: 7892500,
+      savings: 3507500,
+      costWithoutMSP: 11400000,
+      costWithMSP: 7892500,
+      annualSavings: 3507500,
+      monthlySavings: 292292,
+      optimizationTime: 4.2,
+      roi: 202,
+      securityImprovement: 280,
+    }
+  },
+  {
+    id: 12,
+    name: "Robert Williams",
+    jobTitle: "IT Manager",
+    company: "Intermountain Healthcare",
+    emails: true,
+    phoneNumbers: true,
+    location: "Salt Lake City, Utah",
+    state: "Utah",
+    enriched: true,
+    verified: true,
+    employeeCount: 425,
+    industry: "Healthcare",
+    subIndustry: "Hospital System",
+    hiringStatus: "Recently Hired Technical Support",
+    compliance: "HIPAA",
+    licenseRenewal: "Microsoft 365",
+    rmmTool: "Kaseya VSA",
+    opportunityScore: 7.8,
+    hasCurrentMSP: true,
+    techStackGaps: ["Security Analytics", "Backup Solutions"],
+    lastContactAttempt: "2024-01-28",
+    emailDomain: "@intermountain.org",
+    phoneNumber: "(801) 555-2345",
+    systemType: "Healthcare Security Analytics",
+    implementationYear: 2020,
+    serverCount: 765,
+    monthlySecurityEvents: 21250000,
+    licenseRate: 190,
+    peakThreatLoad: 7225,
+    industryAvg: {
+      securityIncidents: 345,
+      mspAdoption: 74,
+      costPerUser: 210,
+      implementationTime: 4.4,
+    },
+    securityMetrics: {
+      maxThreatCapacity: 8075,
+      monthlyIncidents: 295,
+      systemCoverage: 96.8,
+      implementationCost: 1912500,
+      totalCost: 8662500,
+      savings: 3787500,
+      costWithoutMSP: 12450000,
+      costWithMSP: 8662500,
+      annualSavings: 3787500,
+      monthlySavings: 315625,
+      optimizationTime: 4.4,
+      roi: 198,
+      securityImprovement: 275,
+    }
+  },
+  // Additional Finance Companies with MSP Enrichment
+  {
+    id: 13,
+    name: "Michael Davis",
+    jobTitle: "Chief Technology Officer",
+    company: "Charles Schwab",
+    emails: true,
+    phoneNumbers: true,
+    location: "San Francisco, California",
+    state: "California",
+    enriched: true,
+    verified: true,
+    employeeCount: 485,
+    industry: "Finance",
+    subIndustry: "Investment Firm",
+    hiringStatus: "CIO/CTO Position Open",
+    compliance: "PCI DSS",
+    licenseRenewal: "Microsoft 365",
+    rmmTool: "ConnectWise Automate",
+    opportunityScore: 9.3,
+    hasCurrentMSP: false,
+    techStackGaps: ["Trading Platform Security", "Real-time Analytics", "Compliance Automation"],
+    lastContactAttempt: "2024-01-29",
+    emailDomain: "@schwab.com",
+    phoneNumber: "(415) 555-4567",
+    systemType: "Trading Platform Security",
+    implementationYear: 2021,
+    serverCount: 873,
+    monthlySecurityEvents: 24250000,
+    licenseRate: 205,
+    peakThreatLoad: 8245,
+    industryAvg: {
+      securityIncidents: 185,
+      mspAdoption: 78,
+      costPerUser: 225,
+      implementationTime: 4.8,
+    },
+    securityMetrics: {
+      maxThreatCapacity: 9345,
+      monthlyIncidents: 165,
+      systemCoverage: 97.8,
+      implementationCost: 2182500,
+      totalCost: 9942500,
+      savings: 4357500,
+      costWithoutMSP: 14300000,
+      costWithMSP: 9942500,
+      annualSavings: 4357500,
+      monthlySavings: 363125,
+      optimizationTime: 4.8,
+      roi: 215,
+      securityImprovement: 320,
+    }
+  },
+  {
+    id: 14,
+    name: "Jennifer Adams",
+    jobTitle: "VP of Information Technology",
+    company: "American Express",
+    emails: true,
+    phoneNumbers: true,
+    location: "New York, New York",
+    state: "New York",
+    enriched: true,
+    verified: true,
+    employeeCount: 445,
+    industry: "Finance",
+    subIndustry: "Payment Processing",
+    hiringStatus: "Actively Hiring IT Staff",
+    compliance: "PCI DSS",
+    licenseRenewal: "SentinelOne",
+    rmmTool: "Kaseya VSA",
+    opportunityScore: 8.7,
+    hasCurrentMSP: true,
+    techStackGaps: ["Payment Security", "Fraud Detection", "API Security"],
+    lastContactAttempt: "2024-01-27",
+    emailDomain: "@aexp.com",
+    phoneNumber: "(212) 555-5678",
+    systemType: "Payment Security Platform",
+    implementationYear: 2020,
+    serverCount: 801,
+    monthlySecurityEvents: 22250000,
+    licenseRate: 195,
+    peakThreatLoad: 7565,
+    industryAvg: {
+      securityIncidents: 175,
+      mspAdoption: 75,
+      costPerUser: 215,
+      implementationTime: 4.5,
+    },
+    securityMetrics: {
+      maxThreatCapacity: 8565,
+      monthlyIncidents: 155,
+      systemCoverage: 97.2,
+      implementationCost: 2002500,
+      totalCost: 8677500,
+      savings: 3822500,
+      costWithoutMSP: 12500000,
+      costWithMSP: 8677500,
+      annualSavings: 3822500,
+      monthlySavings: 318542,
+      optimizationTime: 4.5,
+      roi: 191,
+      securityImprovement: 295,
+    }
+  },
+  {
+    id: 15,
+    name: "Dr. Rachel Kim",
+    jobTitle: "Director of Technology Operations",
+    company: "Goldman Sachs",
+    emails: true,
+    phoneNumbers: true,
+    location: "New York, New York",
+    state: "New York",
+    enriched: true,
+    verified: true,
+    employeeCount: 465,
+    industry: "Finance",
+    subIndustry: "Investment Banking",
+    hiringStatus: "Recently Hired Technical Support",
+    compliance: "SOC 2",
+    licenseRenewal: "PrinterLogic",
+    rmmTool: "Datto RMM",
+    opportunityScore: 8.2,
+    hasCurrentMSP: true,
+    techStackGaps: ["High-Frequency Trading Security", "Risk Management Systems"],
+    lastContactAttempt: "2024-01-31",
+    emailDomain: "@gs.com",
+    phoneNumber: "(212) 555-6789",
+    systemType: "Investment Banking Security",
+    implementationYear: 2019,
+    serverCount: 837,
+    monthlySecurityEvents: 23250000,
+    licenseRate: 210,
+    peakThreatLoad: 7895,
+    industryAvg: {
+      securityIncidents: 195,
+      mspAdoption: 80,
+      costPerUser: 235,
+      implementationTime: 5.2,
+    },
+    securityMetrics: {
+      maxThreatCapacity: 8995,
+      monthlyIncidents: 175,
+      systemCoverage: 98.1,
+      implementationCost: 2092500,
+      totalCost: 9765000,
+      savings: 4335000,
+      costWithoutMSP: 14100000,
+      costWithMSP: 9765000,
+      annualSavings: 4335000,
+      monthlySavings: 361250,
+      optimizationTime: 5.2,
+      roi: 207,
+      securityImprovement: 315,
+    }
   }
 ];
 
@@ -420,8 +856,27 @@ const SignalScanner = () => {
   const [showLoadingAnimation, setShowLoadingAnimation] = useState(false);
   const [enrichedData, setEnrichedData] = useState(false);
   
-  // Total enterprises in the database (showing 2,300 to match MarketDatabase)
-  const totalEnterprisesInDatabase = 2300;
+  // Dataset switching functionality
+  const [selectedDataset, setSelectedDataset] = useState<'combined' | 'healthcare' | 'finance'>('combined');
+  
+  // Function to get companies based on selected dataset
+  const getCompaniesForDataset = () => {
+    const healthcareCompanies = enrichedEnterprises.filter(company => company.industry === 'Healthcare');
+    const financeCompanies = enrichedEnterprises.filter(company => company.industry === 'Finance');
+    
+    switch (selectedDataset) {
+      case 'healthcare':
+        return healthcareCompanies;
+      case 'finance':
+        return financeCompanies;
+      case 'combined':
+      default:
+        return enrichedEnterprises;
+    }
+  };
+  
+  // Total enterprises in the database (showing 5540 to match displayed count)
+  const totalEnterprisesInDatabase = 5540;
   
   // MSP system data
   const mspData = {
@@ -967,7 +1422,7 @@ const SignalScanner = () => {
                     <div className="flex justify-between items-start">
                       <div>
                         <p className="text-sm font-medium text-white/90 mb-1">Total Systems</p>
-                        <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">2.3K</h3>
+                        <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">5540</h3>
                       </div>
                       <div className="rounded-2xl p-3 bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c] shadow-lg shadow-[#10ba82]/20 backdrop-blur-md border border-white/20">
                         <FaDatabase className="text-white text-xl" />
@@ -992,7 +1447,7 @@ const SignalScanner = () => {
                       <div>
                         <p className="text-sm font-medium text-white/90 mb-1">Avg. User Count</p>
                         <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                          {Math.round(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.userCount, 0) / selectedEnterprises.length).toLocaleString()}
+                          {Math.round(getCompaniesForDataset().reduce((sum, enterprise) => sum + (enterprise.employeeCount || 100), 0) / getCompaniesForDataset().length).toLocaleString()}
                         </h3>
                       </div>
                       <div className="rounded-2xl p-3 bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c] shadow-lg shadow-[#10ba82]/20 backdrop-blur-md border border-white/20">
@@ -1018,7 +1473,7 @@ const SignalScanner = () => {
                       <div>
                         <p className="text-sm font-medium text-white/90 mb-1">Avg. MSP ROI</p>
                         <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                          {(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.securityMetrics.roi, 0) / selectedEnterprises.length).toFixed(1)}%
+                          {(getCompaniesForDataset().reduce((sum, enterprise) => sum + (enterprise.securityMetrics?.roi || 150), 0) / getCompaniesForDataset().length).toFixed(1)}%
                         </h3>
                       </div>
                       <div className="rounded-2xl p-3 bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c] shadow-lg shadow-[#10ba82]/20 backdrop-blur-md border border-white/20">
@@ -1044,7 +1499,7 @@ const SignalScanner = () => {
                       <div>
                         <p className="text-sm font-medium text-white/90 mb-1">Total Transactions</p>
                         <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                          {(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.monthlySecurityEvents, 0) / 1000000).toFixed(1)}M
+                          {(getCompaniesForDataset().reduce((sum, enterprise) => sum + (enterprise.monthlySecurityEvents || 1000000), 0) / 1000000).toFixed(1)}M
                         </h3>
                       </div>
                       <div className="rounded-2xl p-3 bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c] shadow-lg shadow-[#10ba82]/20 backdrop-blur-md border border-white/20">
@@ -1070,7 +1525,7 @@ const SignalScanner = () => {
                       <div>
                         <p className="text-sm font-medium text-white/90 mb-1">Total Savings</p>
                         <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
-                          ${(selectedEnterprises.reduce((sum, enterprise) => sum + enterprise.securityMetrics.savings, 0) / 1000).toFixed(0)}K/yr
+                          ${(getCompaniesForDataset().reduce((sum, enterprise) => sum + (enterprise.securityMetrics?.savings || 50000), 0) / 1000).toFixed(0)}K/yr
                         </h3>
                       </div>
                       <div className="rounded-2xl p-3 bg-gradient-to-br from-[#10ba82] via-[#0c9a6c] to-[#0a8a5c] shadow-lg shadow-[#10ba82]/20 backdrop-blur-md border border-white/20">
@@ -1084,6 +1539,52 @@ const SignalScanner = () => {
               {/* Search and Filter Controls */}
               <div className={`${cardBaseClass} mb-6`}>
                 <div className="p-4">
+                  {/* Dataset Selection Controls */}
+                  <div className="mb-4 p-3 bg-[rgba(40,41,43,0.6)] rounded-xl border border-[#10ba82]/10">
+                    <h3 className="text-sm font-medium text-white/80 mb-3">Dataset Selection:</h3>
+                    <div className="grid grid-cols-3 gap-2">
+                      <button
+                        onClick={() => setSelectedDataset('combined')}
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                          selectedDataset === 'combined'
+                            ? 'bg-gradient-to-r from-[#10ba82] to-[#0c9a6c] text-white shadow-lg'
+                            : 'bg-white/10 text-white/80 hover:bg-white/20'
+                        }`}
+                      >
+                        <div className="text-center">
+                          <div>Combined</div>
+                          <div className="text-xs opacity-70">5,540</div>
+                        </div>
+                      </button>
+                      <button
+                        onClick={() => setSelectedDataset('healthcare')}
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                          selectedDataset === 'healthcare'
+                            ? 'bg-gradient-to-r from-[#10ba82] to-[#0c9a6c] text-white shadow-lg'
+                            : 'bg-white/10 text-white/80 hover:bg-white/20'
+                        }`}
+                      >
+                        <div className="text-center">
+                          <div>Healthcare</div>
+                          <div className="text-xs opacity-70">3,328</div>
+                        </div>
+                      </button>
+                      <button
+                        onClick={() => setSelectedDataset('finance')}
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                          selectedDataset === 'finance'
+                            ? 'bg-gradient-to-r from-[#10ba82] to-[#0c9a6c] text-white shadow-lg'
+                            : 'bg-white/10 text-white/80 hover:bg-white/20'
+                        }`}
+                      >
+                        <div className="text-center">
+                          <div>Finance</div>
+                          <div className="text-xs opacity-70">2,212</div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                  
                   <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
                     <div className="relative w-full md:w-96">
                       <input
@@ -1121,30 +1622,29 @@ const SignalScanner = () => {
                   <table className="w-full table-auto text-sm">
                     <thead>
                       <tr className="text-left border-b border-white/10">
-                        <th className="px-2 py-3 text-xs font-semibold text-white/70">System Admin</th>
+                        <th className="px-2 py-3 text-xs font-semibold text-white/70">Contact</th>
                         <th className="px-2 py-3 text-xs font-semibold text-white/70">Company</th>
                         <th className="px-2 py-3 text-xs font-semibold text-white/70">Location</th>
-                        <th className="px-2 py-3 text-xs font-semibold text-white/70">Type</th>
-                        <th className="px-2 py-3 text-xs font-semibold text-white/70">Users</th>
-                        <th className="px-2 py-3 text-xs font-semibold text-white/70">Transactions</th>
-                        <th className="px-2 py-3 text-xs font-semibold text-white/70">License Rate</th>
+                        <th className="px-2 py-3 text-xs font-semibold text-white/70">Industry</th>
+                        <th className="px-2 py-3 text-xs font-semibold text-white/70">Employees</th>
+                        <th className="px-2 py-3 text-xs font-semibold text-white/70">Hiring Status</th>
+                        <th className="px-2 py-3 text-xs font-semibold text-white/70">Compliance</th>
                         {showEnriched && (
                           <>
-                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Throughput</th>
-                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Efficiency</th>
-                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Current Cost</th>
-                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Optimized Cost</th>
-                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Savings/yr</th>
-                            <th className="px-2 py-3 text-xs font-semibold text-white/70">ROI</th>
-                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Payback</th>
-                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Performance</th>
+                            <th className="px-2 py-3 text-xs font-semibold text-white/70">License Renewal</th>
+                            <th className="px-2 py-3 text-xs font-semibold text-white/70">RMM Tool</th>
+                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Tech Stack Gaps</th>
+                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Opportunity Score</th>
+                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Current MSP</th>
+                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Last Contact</th>
+                            <th className="px-2 py-3 text-xs font-semibold text-white/70">Contact Info</th>
                           </>
                         )}
                         <th className="px-2 py-3 text-xs font-semibold text-white/70">Details</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {selectedEnterprises
+                      {getCompaniesForDataset()
                         .filter(f => 
                           searchTerm ? 
                             f.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -1168,28 +1668,64 @@ const SignalScanner = () => {
                             </td>
                             <td className="px-2 py-2 text-white text-xs">{enterprise.company}</td>
                             <td className="px-2 py-2 text-white text-xs">{enterprise.location}</td>
-                            <td className="px-2 py-2 text-white text-xs">{enterprise.systemType}</td>
-                            <td className="px-2 py-2 text-white text-xs">{enterprise.userCount.toLocaleString()}</td>
-                            <td className="px-2 py-2 text-white text-xs">{(enterprise.monthlySecurityEvents/1000000).toFixed(2)}M</td>
-                            <td className="px-2 py-2 text-white text-xs">${enterprise.licenseRate.toFixed(3)}</td>
+                            <td className="px-2 py-2 text-white text-xs">{enterprise.industry || 'Healthcare'}</td>
+                            <td className="px-2 py-2 text-white text-xs">{enterprise.employeeCount}</td>
+                            <td className="px-2 py-2 text-white text-xs">
+                              <span className={`px-2 py-1 rounded-full text-xs ${
+                                (enterprise.hiringStatus || 'Actively Hiring IT Staff').includes('Actively') 
+                                  ? 'bg-green-500/20 text-green-300' 
+                                  : (enterprise.hiringStatus || 'Recently Hired').includes('Recently')
+                                  ? 'bg-yellow-500/20 text-yellow-300'
+                                  : 'bg-gray-500/20 text-gray-300'
+                              }`}>
+                                {enterprise.hiringStatus || 'Actively Hiring IT Staff'}
+                              </span>
+                            </td>
+                            <td className="px-2 py-2 text-white text-xs">
+                              <span className="px-2 py-1 rounded-full text-xs bg-blue-500/20 text-blue-300">
+                                {enterprise.compliance || 'HIPAA'}
+                              </span>
+                            </td>
                             
                             {showEnriched ? (
                               <>
-                                <td className="px-2 py-2 text-white text-xs">{enterprise.securityMetrics.maxThreatCapacity} tps</td>
-                                <td className="px-2 py-2 text-xs">
+                                <td className="px-2 py-2 text-white text-xs">{enterprise.licenseRenewal || 'Microsoft 365'}</td>
+                                <td className="px-2 py-2 text-white text-xs">{enterprise.rmmTool || 'No RMM Tool'}</td>
+                                <td className="px-2 py-2 text-white text-xs">
+                                                                     <div className="flex flex-wrap gap-1">
+                                     {(enterprise.techStackGaps || ['Security', 'Backup']).slice(0, 2).map((gap: string, idx: number) => (
+                                       <span key={idx} className="px-1 py-0.5 rounded text-xs bg-red-500/20 text-red-300">{gap}</span>
+                                     ))}
+                                     {(enterprise.techStackGaps || []).length > 2 && (
+                                       <span className="text-xs text-white/50">+{(enterprise.techStackGaps || []).length - 2}</span>
+                                     )}
+                                   </div>
+                                </td>
+                                <td className="px-2 py-2 text-white text-xs">
                                   <div className="flex items-center">
-                                    <div className="w-8 bg-gray-200 rounded-full h-1.5 mr-1">
-                                      <div className="bg-[#10ba82] h-1.5 rounded-full" style={{ width: `${Math.min(100, enterprise.securityMetrics.systemCoverage)}%` }}></div>
-                                    </div>
-                                    <span className="text-white">{enterprise.securityMetrics.systemCoverage.toFixed(0)}%</span>
+                                    <span className={`font-medium ${
+                                      (enterprise.opportunityScore || 8.5) >= 8 ? 'text-green-400' :
+                                      (enterprise.opportunityScore || 8.5) >= 7 ? 'text-yellow-400' : 'text-red-400'
+                                    }`}>
+                                      {(enterprise.opportunityScore || 8.5).toFixed(1)}
+                                    </span>
+                                    <span className="text-white/50 ml-1">/10</span>
                                   </div>
                                 </td>
-                                <td className="px-2 py-2 text-white text-xs">${(enterprise.securityMetrics.costWithoutMSP/1000).toFixed(0)}K</td>
-                                <td className="px-2 py-2 text-white text-xs">${(enterprise.securityMetrics.costWithMSP/1000).toFixed(0)}K</td>
-                                <td className="px-2 py-2 text-[#10ba82] text-xs">${(enterprise.securityMetrics.savings/1000).toFixed(0)}K</td>
-                                <td className="px-2 py-2 text-white text-xs">{enterprise.securityMetrics.roi.toFixed(1)}%</td>
-                                <td className="px-2 py-2 text-white text-xs">{enterprise.securityMetrics.optimizationTime.toFixed(1)} mo</td>
-                                <td className="px-2 py-2 text-white text-xs">{enterprise.securityMetrics.securityImprovement}%</td>
+                                <td className="px-2 py-2 text-white text-xs">
+                                  <span className={`px-2 py-1 rounded-full text-xs ${
+                                    enterprise.hasCurrentMSP ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'
+                                  }`}>
+                                    {enterprise.hasCurrentMSP ? 'Yes' : 'No'}
+                                  </span>
+                                </td>
+                                <td className="px-2 py-2 text-white text-xs">{enterprise.lastContactAttempt || '2024-01-15'}</td>
+                                                                 <td className="px-2 py-2 text-white text-xs">
+                                   <div className="flex items-center gap-1">
+                                     {enterprise.emails && <MdOutlineEmail className="text-[#10ba82]" size={12} />}
+                                     {enterprise.phoneNumbers && <MdOutlinePhone className="text-[#10ba82]" size={12} />}
+                                   </div>
+                                 </td>
                                 <td className="px-2 py-2 text-xs">
                                   <button 
                                     className="bg-gradient-to-r from-[#10ba82] to-[#0c9a6c] text-white rounded-lg px-2 py-1 text-xs font-medium hover:from-[#0c9a6c] hover:to-[#0a8a5c] transition-all"
@@ -1200,10 +1736,10 @@ const SignalScanner = () => {
                                 </td>
                               </>
                             ) : (
-                              <td colSpan={9} className="px-2 py-2 text-white/50 text-xs">
+                              <td colSpan={7} className="px-2 py-2 text-white/50 text-xs">
                                 <div className="flex items-center gap-1">
                                   <MdOutlineWarning size={12} />
-                                  <span>MSP system analysis data not yet displayed</span>
+                                  <span>ProCloud enriched data not yet displayed</span>
                                 </div>
                               </td>
                             )}
@@ -1225,7 +1761,7 @@ const SignalScanner = () => {
                   <button className="bg-white/10 text-white px-3 py-1 rounded-md hover:bg-white/20 transition-all">2</button>
                   <button className="bg-white/10 text-white px-3 py-1 rounded-md hover:bg-white/20 transition-all">3</button>
                   <button className="bg-white/10 text-white px-3 py-1 rounded-md hover:bg-white/20 transition-all">...</button>
-                  <button className="bg-white/10 text-white px-3 py-1 rounded-md hover:bg-white/20 transition-all">385</button>
+                  <button className="bg-white/10 text-white px-3 py-1 rounded-md hover:bg-white/20 transition-all">554</button>
                   <button className="bg-white/10 text-white/70 px-3 py-1 rounded-md hover:bg-white/20 transition-all">Next</button>
                 </div>
               </div>

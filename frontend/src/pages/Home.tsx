@@ -16,6 +16,7 @@ import {
   MdOutlineWbSunny,
   MdOutlineEmail,
   MdOutlineTrackChanges,
+  MdReply,
   MdArrowForward,
   MdArrowOutward,
   MdOutlineSettings,
@@ -1101,11 +1102,220 @@ const Home = () => {
                 </div>
                 
                 <h3 className="text-lg font-bold text-white mb-2">MSP Outreach Performance</h3>
+                <p className="text-sm text-slate-300 mb-4">AI-powered email campaigns targeting MSP service prospects</p>
                 
-                {/* ... rest of the email campaign widget remains similar but with MSP context ... */}
+                {/* View Toggle */}
+                <div className="flex gap-1 mb-4 bg-[rgba(15,23,42,0.4)] backdrop-blur-sm rounded-lg p-1 border border-emerald-500/10">
+                  <button 
+                    onClick={() => setCampaignView('weekly')}
+                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ${
+                      isViewActive('weekly') 
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
+                        : 'text-white/60 hover:text-white/80'
+                    }`}
+                  >
+                    Weekly
+                  </button>
+                  <button 
+                    onClick={() => setCampaignView('monthly')}
+                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ${
+                      isViewActive('monthly') 
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
+                        : 'text-white/60 hover:text-white/80'
+                    }`}
+                  >
+                    Monthly
+                  </button>
+                  <button 
+                    onClick={() => setCampaignView('overall')}
+                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-300 ${
+                      isViewActive('overall') 
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
+                        : 'text-white/60 hover:text-white/80'
+                    }`}
+                  >
+                    Overall
+                  </button>
                 </div>
-                        </div>
-                        </div>
+
+                {/* Chart Container */}
+                <div className="h-36 mb-4 bg-[rgba(15,23,42,0.3)] backdrop-blur-sm rounded-xl p-3 border border-emerald-500/10 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-emerald-500/5 to-emerald-600/5 opacity-30"></div>
+                  
+                  <div className="relative z-10 h-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      {campaignView === 'weekly' ? (
+                        <AreaChart data={emailCampaignData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+                          <defs>
+                            <linearGradient id="colorSent" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+                            </linearGradient>
+                            <linearGradient id="colorOpened" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+                            </linearGradient>
+                            <linearGradient id="colorClicked" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.1}/>
+                            </linearGradient>
+                          </defs>
+                          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                          <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.6)' }} />
+                          <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.6)' }} />
+                          <Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'rgba(6, 78, 59, 0.9)', 
+                              border: '1px solid rgba(16, 185, 129, 0.3)',
+                              borderRadius: '8px',
+                              color: 'white',
+                              fontSize: '12px'
+                            }}
+                          />
+                          <Area type="monotone" dataKey="sent" stackId="1" stroke="#10b981" fill="url(#colorSent)" />
+                          <Area type="monotone" dataKey="opened" stackId="1" stroke="#3b82f6" fill="url(#colorOpened)" />
+                          <Area type="monotone" dataKey="clicked" stackId="1" stroke="#8b5cf6" fill="url(#colorClicked)" />
+                        </AreaChart>
+                      ) : campaignView === 'monthly' ? (
+                        <AreaChart data={monthlyEmailCampaignData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+                          <defs>
+                            <linearGradient id="colorSentMonthly" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+                            </linearGradient>
+                            <linearGradient id="colorOpenedMonthly" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+                            </linearGradient>
+                            <linearGradient id="colorClickedMonthly" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.1}/>
+                            </linearGradient>
+                          </defs>
+                          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                          <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.6)' }} />
+                          <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.6)' }} />
+                          <Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'rgba(6, 78, 59, 0.9)', 
+                              border: '1px solid rgba(16, 185, 129, 0.3)',
+                              borderRadius: '8px',
+                              color: 'white',
+                              fontSize: '12px'
+                            }}
+                          />
+                          <Area type="monotone" dataKey="sent" stackId="1" stroke="#10b981" fill="url(#colorSentMonthly)" />
+                          <Area type="monotone" dataKey="opened" stackId="1" stroke="#3b82f6" fill="url(#colorOpenedMonthly)" />
+                          <Area type="monotone" dataKey="clicked" stackId="1" stroke="#8b5cf6" fill="url(#colorClickedMonthly)" />
+                        </AreaChart>
+                      ) : (
+                        <AreaChart data={overallEmailCampaignData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+                          <defs>
+                            <linearGradient id="colorSentOverall" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+                            </linearGradient>
+                            <linearGradient id="colorOpenedOverall" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+                            </linearGradient>
+                            <linearGradient id="colorClickedOverall" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.1}/>
+                            </linearGradient>
+                          </defs>
+                          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                          <XAxis dataKey="quarter" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.6)' }} />
+                          <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.6)' }} />
+                          <Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'rgba(6, 78, 59, 0.9)', 
+                              border: '1px solid rgba(16, 185, 129, 0.3)',
+                              borderRadius: '8px',
+                              color: 'white',
+                              fontSize: '12px'
+                            }}
+                          />
+                          <Area type="monotone" dataKey="sent" stackId="1" stroke="#10b981" fill="url(#colorSentOverall)" />
+                          <Area type="monotone" dataKey="opened" stackId="1" stroke="#3b82f6" fill="url(#colorOpenedOverall)" />
+                          <Area type="monotone" dataKey="clicked" stackId="1" stroke="#8b5cf6" fill="url(#colorClickedOverall)" />
+                        </AreaChart>
+                      )}
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="bg-[rgba(15,23,42,0.4)] backdrop-blur-sm rounded-lg border border-emerald-500/10 p-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <MdOutlineEmail className="text-emerald-400 text-sm" />
+                      <span className="text-xs text-white/60">Emails Sent</span>
+                    </div>
+                    <div className="text-lg font-bold text-white">
+                      {campaignView === 'weekly' ? '6.3K' : campaignView === 'monthly' ? '34.8K' : '122K'}
+                    </div>
+                    <div className="text-xs text-emerald-400">+18.5% from last period</div>
+                  </div>
+                  
+                  <div className="bg-[rgba(15,23,42,0.4)] backdrop-blur-sm rounded-lg border border-emerald-500/10 p-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <MdReply className="text-blue-400 text-sm" />
+                      <span className="text-xs text-white/60">Reply Rate</span>
+                    </div>
+                    <div className="text-lg font-bold text-white">
+                      {campaignView === 'weekly' ? '12.4%' : campaignView === 'monthly' ? '15.2%' : '18.7%'}
+                    </div>
+                    <div className="text-xs text-emerald-400">+5.3% from last period</div>
+                  </div>
+                  
+                  <div className="bg-[rgba(15,23,42,0.4)] backdrop-blur-sm rounded-lg border border-emerald-500/10 p-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <MdOutlineCalendarMonth className="text-purple-400 text-sm" />
+                      <span className="text-xs text-white/60">Meetings Booked</span>
+                    </div>
+                    <div className="text-lg font-bold text-white">
+                      {campaignView === 'weekly' ? '47' : campaignView === 'monthly' ? '203' : '892'}
+                    </div>
+                    <div className="text-xs text-emerald-400">+22.8% from last period</div>
+                  </div>
+                  
+                  <div className="bg-[rgba(15,23,42,0.4)] backdrop-blur-sm rounded-lg border border-emerald-500/10 p-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <MdTrendingUp className="text-emerald-400 text-sm" />
+                      <span className="text-xs text-white/60">Conversion</span>
+                    </div>
+                    <div className="text-lg font-bold text-white">
+                      {campaignView === 'weekly' ? '7.2%' : campaignView === 'monthly' ? '8.8%' : '11.3%'}
+                    </div>
+                    <div className="text-xs text-emerald-400">+3.1% from last period</div>
+                  </div>
+                </div>
+
+                {/* Quick Stats */}
+                <div className="bg-[rgba(15,23,42,0.3)] backdrop-blur-sm rounded-xl p-3 border border-emerald-500/10">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-white/60">Campaign Performance</span>
+                    <span className="text-xs text-emerald-400 font-medium">Live</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                      <span className="text-xs text-white/80">Active: 8</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                      <span className="text-xs text-white/80">Scheduled: 3</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                      <span className="text-xs text-white/80">Optimizing: 2</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
                               </div>
                                     </div>
 

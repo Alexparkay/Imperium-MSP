@@ -520,7 +520,7 @@ const OutreachTracking = () => {
       {
         type: 'content',
         title: 'Content Evolution Engine',
-        description: 'Posts about SAP migration case studies with specific ROI metrics generate 4.7x more engagement. AI continuously refines content approach.',
+        description: 'Posts about MSP security case studies with specific ROI metrics generate 4.7x more engagement. AI continuously refines content approach.',
         impact: 'high',
         metric: 'engagement',
         change: '+470%',
@@ -644,14 +644,14 @@ const OutreachTracking = () => {
 
   // Example contacts data for the list
   const contactsData = [
-    { id: 1, name: "Jeff Levy", email: "j.levy@example.com", company: "SAP Finance", position: "SAP Manager", status: "positive", date: "2023-12-17", notes: "Interested in scheduling a demo" },
+    { id: 1, name: "Jeff Levy", email: "j.levy@example.com", company: "TechSecure Finance", position: "IT Director", status: "positive", date: "2023-12-17", notes: "Interested in scheduling a demo" },
     { id: 2, name: "Amy Huke", email: "a.huke@example.com", company: "Honeywell", position: "ERP Director", status: "replied", date: "2023-12-15", notes: "Asked for more information" },
     { id: 3, name: "Ryan Kuddes", email: "r.kuddes@example.com", company: "Siemens", position: "IT Manager", status: "not_replied", date: "2023-12-22", notes: "" },
     { id: 4, name: "Sarah Johnson", email: "s.johnson@example.com", company: "Microsoft", position: "CTO", status: "positive", date: "2023-12-12", notes: "Very interested in our solution" },
-    { id: 5, name: "Michael Chang", email: "m.chang@example.com", company: "Oracle", position: "SAP Consultant", status: "negative", date: "2023-12-10", notes: "Not interested at this time" },
+    { id: 5, name: "Michael Chang", email: "m.chang@example.com", company: "Oracle", position: "Security Consultant", status: "negative", date: "2023-12-10", notes: "Not interested at this time" },
     { id: 6, name: "Lisa Fernandez", email: "l.fernandez@example.com", company: "IBM", position: "IT Director", status: "replied", date: "2023-12-08", notes: "Requested pricing information" },
     { id: 7, name: "David Kim", email: "d.kim@example.com", company: "Samsung", position: "ERP Manager", status: "not_replied", date: "2023-12-05", notes: "" },
-    { id: 8, name: "Emily Wilson", email: "e.wilson@example.com", company: "Deloitte", position: "SAP Specialist", status: "not_replied", date: "2023-12-03", notes: "" },
+    { id: 8, name: "Emily Wilson", email: "e.wilson@example.com", company: "Deloitte", position: "Cybersecurity Specialist", status: "not_replied", date: "2023-12-03", notes: "" },
   ];
 
   // Filter contacts based on selected filter
@@ -805,7 +805,7 @@ const OutreachTracking = () => {
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold text-white">Email Outreach</h2>
-                  <p className="text-white/60 text-sm">SAP migration email campaigns</p>
+                  <p className="text-white/60 text-sm">MSP services email campaigns</p>
                 </div>
               </div>
             </button>
@@ -823,7 +823,7 @@ const OutreachTracking = () => {
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold text-white">LinkedIn Outreach</h2>
-                  <p className="text-white/60 text-sm">B2B SAP professional targeting</p>
+                  <p className="text-white/60 text-sm">B2B MSP professional targeting</p>
                 </div>
               </div>
             </button>
